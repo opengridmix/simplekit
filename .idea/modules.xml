@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/modules/activity/activity.iml" filepath="$PROJECT_DIR$/modules/activity/activity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/admin/admin.iml" filepath="$PROJECT_DIR$/modules/admin/admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/cms/cms.iml" filepath="$PROJECT_DIR$/modules/cms/cms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/gen/gen.iml" filepath="$PROJECT_DIR$/modules/gen/gen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/modules.iml" filepath="$PROJECT_DIR$/modules/modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/oa/oa.iml" filepath="$PROJECT_DIR$/modules/oa/oa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/simplekit.iml" filepath="$PROJECT_DIR$/.idea/simplekit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webadmin/webadmin.iml" filepath="$PROJECT_DIR$/webadmin/webadmin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webfront/webfront.iml" filepath="$PROJECT_DIR$/webfront/webfront.iml" />
+    </modules>
+  </component>
+</project>

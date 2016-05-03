@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <resourceExtensions />
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+      <profile default="false" name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="activity" />
+        <module name="admin" />
+        <module name="cms" />
+        <module name="core" />
+        <module name="gen" />
+        <module name="oa" />
+        <module name="webadmin" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="activity" target="1.8" />
+      <module name="admin" target="1.8" />
+      <module name="cms" target="1.8" />
+      <module name="core" target="1.8" />
+      <module name="gen" target="1.8" />
+      <module name="modules" target="1.8" />
+      <module name="oa" target="1.8" />
+      <module name="simplekit" target="1.8" />
+      <module name="webadmin" target="1.8" />
+      <module name="webfront" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
