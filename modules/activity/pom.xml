@@ -17,8 +17,10 @@
         <!-- main version setting -->
         <spring.version>4.2.5.RELEASE</spring.version>
         <validator.version>5.2.4.Final</validator.version>
-        <mybatis.version>3.4.0</mybatis.version>
+        <mybatis.version>3.2.5</mybatis.version>
         <shiro.version>1.2.4</shiro.version>
+        <activiti.version>5.15.1</activiti.version>
+        <jackson.version>1.9.13</jackson.version>
     </properties>
     <dependencies>
         <dependency>
@@ -62,7 +64,32 @@
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>activiti-engine</artifactId>
-            <version>5.15.1</version>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-common-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-diagram-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-modeler</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
     </dependencies>
 </project>

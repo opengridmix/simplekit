@@ -92,18 +92,18 @@
 	</servlet-mapping>
 
 	<!-- Activiti -->
-	<!--<servlet>-->
-		<!--<servlet-name>RestletServlet</servlet-name>-->
-		<!--<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>-->
-		<!--<init-param>-->
-			<!--<param-name>org.restlet.application</param-name>-->
-			<!--<param-value>org.thrive.sites.core.modules.act.rest.ActRestApplication</param-value>-->
-		<!--</init-param>-->
-	<!--</servlet>-->
-	<!--<servlet-mapping>-->
-		<!--<servlet-name>RestletServlet</servlet-name>-->
-		<!--<url-pattern>/act/rest/service/*</url-pattern>-->
-	<!--</servlet-mapping>-->
+	<servlet>
+		<servlet-name>RestletServlet</servlet-name>
+		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+		<init-param>
+			<param-name>org.restlet.application</param-name>
+			<param-value>org.thrive.sites.module.activity.rest.ActRestApplication</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RestletServlet</servlet-name>
+		<url-pattern>/act/rest/service/*</url-pattern>
+	</servlet-mapping>
 
 	<!-- DruidStatView -->
 	<servlet>
@@ -119,54 +119,54 @@
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
 	
-	<!--&lt;!&ndash; CKFinder &ndash;&gt;-->
-	<!--<servlet>-->
-		<!--<servlet-name>CKFinderConnectorServlet</servlet-name>-->
-		<!--<servlet-class>org.thrive.sites.core.web.CKFinderConnectorServlet</servlet-class>-->
-		<!--<init-param>-->
-			<!--<param-name>XMLConfig</param-name>-->
-			<!--<param-value>/WEB-INF/ckfinder.xml</param-value>-->
-		<!--</init-param>-->
-		<!--<init-param>-->
-			<!--<param-name>debug</param-name>-->
-			<!--<param-value>false</param-value>-->
-		<!--</init-param>-->
-		<!--<init-param>-->
-			<!--<param-name>configuration</param-name>-->
-			<!--<param-value>org.thrive.sites.core.web.CKFinderConfig</param-value>-->
-		<!--</init-param>-->
-		<!--<load-on-startup>1</load-on-startup>-->
-	<!--</servlet>-->
-	<!--<servlet-mapping>-->
-		<!--<servlet-name>CKFinderConnectorServlet</servlet-name>-->
-		<!--<url-pattern>/static/ckfinder/core/connector/java/connector.java</url-pattern>-->
-	<!--</servlet-mapping>-->
-	<!--<filter>-->
-		<!--<filter-name>FileUploadFilter</filter-name>-->
-		<!--<filter-class>com.ckfinder.connector.FileUploadFilter</filter-class>-->
-		<!--<init-param>-->
-			<!--<param-name>sessionCookieName</param-name>-->
-			<!--<param-value>JSESSIONID</param-value>-->
-		<!--</init-param>-->
-		<!--<init-param>-->
-			<!--<param-name>sessionParameterName</param-name>-->
-			<!--<param-value>jsessionid</param-value>-->
-		<!--</init-param>-->
-	<!--</filter>-->
-	<!--<filter-mapping>-->
-		<!--<filter-name>FileUploadFilter</filter-name>-->
-		<!--<url-pattern>/static/ckfinder/core/connector/java/connector.java</url-pattern>-->
-	<!--</filter-mapping>-->
+	<!-- CKFinder -->
+	<servlet>
+		<servlet-name>CKFinderConnectorServlet</servlet-name>
+		<servlet-class>org.thrive.sites.core.servlet.CKFinderConnectorServlet</servlet-class>
+		<init-param>
+			<param-name>XMLConfig</param-name>
+			<param-value>/WEB-INF/ckfinder.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<init-param>
+			<param-name>configuration</param-name>
+			<param-value>org.thrive.sites.core.controller.CKFinderConfig</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CKFinderConnectorServlet</servlet-name>
+		<url-pattern>/static/ckfinder/core/connector/java/connector.java</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>FileUploadFilter</filter-name>
+		<filter-class>com.ckfinder.connector.FileUploadFilter</filter-class>
+		<init-param>
+			<param-name>sessionCookieName</param-name>
+			<param-value>JSESSIONID</param-value>
+		</init-param>
+		<init-param>
+			<param-name>sessionParameterName</param-name>
+			<param-value>jsessionid</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>FileUploadFilter</filter-name>
+		<url-pattern>/static/ckfinder/core/connector/java/connector.java</url-pattern>
+	</filter-mapping>
 
 	<!-- Userfiles download -->
-	<!--<servlet>-->
-	  	<!--<servlet-name>UserfilesDownloadServlet</servlet-name>-->
-	  	<!--<servlet-class>org.thrive.sites.core.servlet.UserfilesDownloadServlet</servlet-class>-->
-	<!--</servlet>-->
-	<!--<servlet-mapping>-->
-	  	<!--<servlet-name>UserfilesDownloadServlet</servlet-name>-->
-	  	<!--<url-pattern>/userfiles/*</url-pattern>-->
-	<!--</servlet-mapping>-->
+	<servlet>
+	  	<servlet-name>UserfilesDownloadServlet</servlet-name>
+	  	<servlet-class>org.thrive.sites.core.servlet.UserfilesDownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	  	<servlet-name>UserfilesDownloadServlet</servlet-name>
+	  	<url-pattern>/userfiles/*</url-pattern>
+	</servlet-mapping>
 	
 	<!-- Validate code -->
 	<!--<servlet>-->

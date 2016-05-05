@@ -5,6 +5,19 @@
 <head>
 	<title>${fns:getConfig('productName')} 登录</title>
 	<meta name="decorator" content="blank"/>
+	<style type="text/css">
+      html,body,table{background-color:#3E75C0;width:100%;text-align:center;}.form-signin-heading{font-family:Helvetica, Georgia, Arial, sans-serif, 黑体;font-size:36px;margin-bottom:20px;color:#0663a2;}
+      .form-signin{position:absolute;text-align:left;width:300px;padding:25px 29px 29px;margin:0 auto 20px;border:0;background:none;box-shadow:none;
+        	-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;-webkit-box-shadow:0 1px 2px rgba(0,0,0,.05);-moz-box-shadow:0 1px 2px rgba(0,0,0,.05);box-shadow:0 1px 2px rgba(0,0,0,.05);}
+      .form-signin .checkbox{margin-bottom:10px;color:#0663a2;} .form-signin .input-label{font-size:16px;line-height:23px;color:#fff;}
+      .form-signin .input-block-level{font-size:16px;height:auto;margin-bottom:15px;padding:7px;*width:283px;*padding-bottom:0;_padding:7px 7px 9px 7px;}
+      .form-signin .btn.btn-large{font-size:16px;} .form-signin #themeSwitch{position:absolute;right:15px;bottom:10px;}
+      .form-signin div.validateCode {padding-bottom:15px;} .mid{vertical-align:middle;}
+      .header{height:80px;padding-top:20px;} .footer{position:absolute;} .footer, .footer a{color:#779ACA}
+      .alert{position:relative;width:300px;margin:0 auto;*padding-bottom:0px;}
+      label.error{background:none;width:270px;font-weight:normal;color:inherit;margin:0;}
+      body{background:url(${ctxStatic}/images/login_bg.jpg) no-repeat center center;}
+    </style>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#loginForm").validate({

@@ -58,7 +58,7 @@ public class GenSchemeController extends BaseController {
         Page<GenScheme> page = genSchemeService.find(new Page<GenScheme>(request, response), genScheme); 
         model.addAttribute("page", page);
 		
-		return "modules/gen/genSchemeList";
+		return "module/gen/genSchemeList";
 	}
 
 	@RequiresPermissions("gen:genScheme:view")
@@ -73,7 +73,7 @@ public class GenSchemeController extends BaseController {
 		model.addAttribute("genScheme", genScheme);
 		model.addAttribute("config", GenUtil.getConfig());
 		model.addAttribute("tableList", genTableService.findAll());
-		return "modules/gen/genSchemeForm";
+		return "module/gen/genSchemeForm";
 	}
 
 	@RequiresPermissions("gen:genScheme:edit")

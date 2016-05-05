@@ -6,6 +6,14 @@
 	<meta name="decorator" content="blank"/>
     <c:if test="${cookie.tabmode.value eq '1'}"><link rel="Stylesheet" href="${ctxStatic}/jerichotab/css/jquery.jerichotab.css" />
     <script type="text/javascript" src="${ctxStatic}/jerichotab/js/jquery.jerichotab.js"></script></c:if>
+	<style type="text/css">
+		#main {padding:0;margin:0;} #main .container-fluid{padding:0 4px 0 6px;}
+		#header {margin:0 0 8px;position:static;} #header li {font-size:14px;_font-size:12px;}
+		#header .brand {font-family:Helvetica, Georgia, Arial, sans-serif, 黑体;font-size:26px;padding-left:33px;}
+		#footer {margin:8px 0 0 0;padding:3px 0 0 0;font-size:11px;text-align:center;border-top:2px solid #0663A2;}
+		#footer, #footer a {color:#999;} #left{overflow-x:hidden;overflow-y:auto;} #left .collapse{position:static;}
+		#userControl>li>a{color:#555;text-shadow:none;} #userControl>li>a:hover, #user #userControl>li.open>a{background:transparent;}
+	</style>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			// <c:if test="${cookie.tabmode.value eq '1'}"> 初始化页签
@@ -63,17 +71,17 @@
 						});
 						// 二级标题
 						$(menuId + " .accordion-heading a").click(function(){
-							$(menuId + " .accordion-toggle i").removeClass('fa fa-toggle-down').addClass('fa fa-toggle-right');
+							$(menuId + " .accordion-toggle i").removeClass('icon-chevron-down').addClass('icon-chevron-right');
 							if(!$($(this).attr('data-href')).hasClass('in')){
-								$(this).children("i").removeClass('fa fa-toggle-right').addClass('fa fa-toggle-down');
+								$(this).children("i").removeClass('icon-chevron-right').addClass('icon-chevron-down');
 							}
 						});
 						// 二级内容
 						$(menuId + " .accordion-body a").click(function(){
 							$(menuId + " li").removeClass("active");
-							$(menuId + " li i").removeClass("fa fa-white");
+							$(menuId + " li i").removeClass("icon-white");
 							$(this).parent().addClass("active");
-							$(this).children("i").addClass("fa fa-white");
+							$(this).children("i").addClass("icon-white");
 						});
 						// 展现三级
 						$(menuId + " .accordion-inner a").click(function(){
@@ -137,9 +145,9 @@
 			<div class="navbar-inner">
 				<div class="brand"><span id="productName">${fns:getConfig('productName')}</span></div>
 				<ul id="userControl" class="nav pull-right"><%--
-					<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="fa fa-home"></i></a></li>--%>
+					<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="icon-home"></i></a></li>--%>
 					<li id="themeSwitch" class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="fa fa-th-large"></i></a>
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="icon-th-large"></i></a>
 						<ul class="dropdown-menu">
 							<c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
 							<li><a href="javascript:cookie('tabmode','${cookie.tabmode.value eq '1' ? '0' : '1'}');location=location.href">${cookie.tabmode.value eq '1' ? '关闭' : '开启'}页签模式</a></li>
@@ -149,9 +157,9 @@
 					<li id="userInfo" class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息">您好, ${fns:getUser().name}&nbsp;<span id="notifyNum" class="label label-info hide"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="${ctx}/sys/user/info" target="mainFrame"><i class="fa fa-user"></i>&nbsp; 个人信息</a></li>
-							<li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i class="fa fa-lock"></i>&nbsp;  修改密码</a></li>
-							<li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="fa fa-bell"></i>&nbsp;  我的通知 <span id="notifyNum2" class="label label-info hide"></span></a></li>
+							<li><a href="${ctx}/sys/user/info" target="mainFrame"><i class="icon-user"></i>&nbsp; 个人信息</a></li>
+							<li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i class="icon-lock"></i>&nbsp;  修改密码</a></li>
+							<li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="icon-bell"></i>&nbsp;  我的通知 <span id="notifyNum2" class="label label-info hide"></span></a></li>
 						</ul>
 					</li>
 					<li><a href="${ctx}/logout" title="退出登录">退出</a></li>

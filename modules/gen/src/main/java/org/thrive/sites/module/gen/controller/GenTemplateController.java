@@ -52,14 +52,14 @@ public class GenTemplateController extends BaseController {
 		}
         Page<GenTemplate> page = genTemplateService.find(new Page<GenTemplate>(request, response), genTemplate); 
         model.addAttribute("page", page);
-		return "modules/gen/genTemplateList";
+		return "module/gen/genTemplateList";
 	}
 
 	@RequiresPermissions("gen:genTemplate:view")
 	@RequestMapping(value = "form")
 	public String form(GenTemplate genTemplate, Model model) {
 		model.addAttribute("genTemplate", genTemplate);
-		return "modules/gen/genTemplateForm";
+		return "module/gen/genTemplateForm";
 	}
 
 	@RequiresPermissions("gen:genTemplate:edit")
