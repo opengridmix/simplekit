@@ -1,194 +1,174 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" %>--%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 <html>
 <head>
     <title>${fns:getConfig('productName')}</title>
-    <meta name="decorator" content="blank"/><c:set var="tabmode" value="${empty cookie.tabmode.value ? '1' : cookie.tabmode.value}"/>
-    <c:if test="${tabmode eq '1'}"><link rel="Stylesheet" href="${ctxStatic}/component/jquery/plugins/jerichotab/css/jquery.jerichotab.css" />
-        <script type="text/javascript" src="${ctxStatic}/component/jquery/plugins/jerichotab/js/jquery.jerichotab.js"></script></c:if>
-    <style type="text/css">
-        #footer {margin:8px 0 0 0;padding:3px 0 0 0;font-size:11px;text-align:center;border-top:2px solid #0663A2;}
-    </style>
+    <meta name="decorator" content="blank"/>
+    <c:set var="tabmode" value="${empty cookie.tabmode.value ? '1' : cookie.tabmode.value}"/>
+    <!-- init -->
     <script type="text/javascript">
-        $(document).ready(function() {
-            var tabTitleHeight = 33;
-            $.fn.initJerichoTab({
-                renderTo: '#right', uniqueId: 'jerichotab',
-                contentCss: { 'height': $('#right').height() - tabTitleHeight },
-                tabs: [], loadOnce: true, tabWidth: 110, titleHeight: tabTitleHeight
+        $(function() {
+            BJUI.init({
+                JSPATH       : '${ctxStatic}/component/BJUI/',
+                PLUGINPATH   : '${ctxStatic}/component/BJUI/plugins/',
+                loginInfo    : {url:'login_timeout.html', title:'登录', width:400, height:200}, // 会话超时后弹出登录对话框
+                statusCode   : {ok:200, error:300, timeout:301}, //[可选]
+                ajaxTimeout  : 50000, //[可选]全局Ajax请求超时时间(毫秒)
+                alertTimeout : 1000,  //[可选]信息提示[info/correct]自动关闭延时(毫秒)
+                pageInfo     : {pageCurrent:'pageCurrent', pageSize:'pageSize', orderField:'orderField', orderDirection:'orderDirection'}, //[可选]分页参数
+                keys         : {statusCode:'statusCode', message:'message'}, //[可选]
+                ui           : {showSlidebar:true, clientPaging:true}, //[可选]clientPaging:在客户端响应分页及排序参数
+                debug        : true,    // [可选]调试模式 [true|false，默认false]
+                theme        : 'blue' // 若有Cookie['bjui_theme'],优先选择Cookie['bjui_theme']。皮肤[五种皮肤:default, orange, purple, blue, red, green]
             });
-            // 获取通知数目
-            function getNotifyNum(){
-                $.get("${ctx}/oa/oaNotify/self/count?updateSession=0&t="+new Date().getTime(),function(data){
-                    var num = parseFloat(data);
-                    if (num > 0){
-                        $("#notifyNum,#notifyNum2").show().html("("+num+")");
-                    }else{
-                        $("#notifyNum,#notifyNum2").hide()
-                    }
-                });
-            };
-            // 加一个页签
-            function addTab($this, refresh){
-                $(".jericho_tab").show();
-                $("#mainFrame").hide();
-                $.fn.jerichoTab.addTab({
-                    tabFirer: $this,
-                    title: $this.children('span').text(),
-                    closeable: true,
-                    data: {
-                        dataType: 'iframe',
-                        dataLink: $this.attr('href')
-                    }
-                }).loadData(refresh);
-                //$("#mainFrame").show();
-                var pageHeight = $(window).innerHeight() - $('header').outerHeight();
-                $(".jericho_tab iframe").height(pageHeight - tabTitleHeight);
-                return false;
-            };
-            // 绑定菜单单击事件
-            $("#navmenu a").click(function() {
-                // 一级菜单焦点
-                $("#navmenu li.menu").removeClass("active");
-                $(this).parent().addClass("active");
-                // 左侧区域隐藏
-                if ($(this).attr("target") == "mainFrame"){
-                    $("#mainFrame").show();
-                    return true;
-                }
-
-                // 显示二级菜单
-                $("#left .sidebar").hide();
-
-                var menuId = "#sidemenu-" + $(this).attr("data-id");
-                if ($(menuId).length > 0){
-
-                    $(menuId).parent().show();
-                    // 初始化点击第一个二级菜单
-                    if (!$(menuId + " .menu-item:first").hasClass('in')){
-                        $(menuId + " .menu-item:first a").click();
-                    }
-                    if (!$(menuId + " .menu-item li:first ul:first").is(":visible")){
-                        $(menuId + " .menu-item a:first i").click();
-                    }
-                    // 初始化点击第一个三级菜单
-                    $(menuId + " .menu-item:first span").click();
-                }else{
-                    // 获取二级菜单数据
-                    $.get($(this).attr("data-href"), function(data){
-                        if (data.indexOf("id=\"loginForm\"") != -1){
-                            alert('未登录或登录超时。请重新登录，谢谢！');
-                            top.location = "${ctx}";
-                            return false;
-                        }
-                        $("#left").append(data);
-                        // 展现三级
-                        $(menuId + " .menu-item a").click(function(){
-                            addTab($(this));
-                        });
-                        // 默认选中第一个菜单
-                        $(menuId + " .menu-item:first span").click();
-                        console.log("getdata:"+menuId);
-                        Main.sidebarInit(menuId);
-                    });
-                }
-
-            });
-            // 初始化点击第一个一级菜单
-            $("#navmenu a:first span").click();
-
-
-            //getNotifyNum();
-            //setInterval(getNotifyNum, ${oaNotifyRemindInterval});
         });
 
+        // main - menu
+        $('#bjui-accordionmenu')
+                .collapse()
+                .on('hidden.bs.collapse', function(e) {
+                    $(this).find('> .panel > .panel-heading').each(function() {
+                        var $heading = $(this), $a = $heading.find('> h4 > a')
+
+                        if ($a.hasClass('collapsed')) $heading.removeClass('active')
+                    })
+                })
+                .on('shown.bs.collapse', function (e) {
+                    $(this).find('> .panel > .panel-heading').each(function() {
+                        var $heading = $(this), $a = $heading.find('> h4 > a')
+
+                        if (!$a.hasClass('collapsed')) $heading.addClass('active')
+                    })
+                })
+
+        $(document).on('click', 'ul.menu-items li > a', function(e) {
+            var $a = $(this), $li = $a.parent(), options = $a.data('options').toObj(), $children = $li.find('> .menu-items-children')
+            var onClose = function() {
+                $li.removeClass('active')
+            }
+            var onSwitch = function() {
+                $('#bjui-accordionmenu').find('ul.menu-items li').removeClass('switch')
+                $li.addClass('switch')
+            }
+
+            $li.addClass('active')
+            if (options) {
+                options.url      = $a.attr('href')
+                options.onClose  = onClose
+                options.onSwitch = onSwitch
+                options.isIFrame = true;
+                if (!options.title) options.title = $a.text()
+
+                if (!options.target)
+                    $a.navtab(options)
+                else
+                    $a.dialog(options)
+            }
+            if ($children.length) {
+                $li.toggleClass('open')
+            }
+
+            e.preventDefault()
+        });
+
+        $(document).on('click', '#bjui-hnav-navbar li.menu-title > a', function(e) {
+            //var menuId = "#sidemenu-" + $(this).attr("data-id");
+            var menuId = "#navmenu-"+$(this).data("id");
+            var that = $(this);
+            if($(menuId + " div").length == 0) {
+                // 获取二级菜单数据
+                $.get($(this).attr("data-href"), function(data){
+                    if (data.indexOf("id=\"loginForm\"") != -1){
+                        alert('未登录或登录超时。请重新登录，谢谢！');
+                        top.location = "${ctx}";
+                        return false;
+                    }
+                    $(menuId).append(data);
+                    $.fn.slidebar.call(that, 'initHnav');
+                    $(menuId + " div").remove();
+                });
+            }
+        });
+
+        $(document).ready(function() {
+            $("#bjui-hnav-navbar li:first a").click();
+            //时钟
+            var today = new Date(), time = today.getTime()
+            $('#bjui-date').html(today.formatDate('yyyy/MM/dd'))
+            setInterval(function() {
+                today = new Date(today.setSeconds(today.getSeconds() + 1))
+                $('#bjui-clock').html(today.formatDate('HH:mm:ss'))
+            }, 1000);
+        });
+
+
+
+        ;
+
+
+        //console.log('IE:'+ (!$.support.leadingWhitespace))
+        //菜单-事件
+        function MainMenuClick(event, treeId, treeNode) {
+            if (treeNode.isParent) {
+                var zTree = $.fn.zTree.getZTreeObj(treeId)
+
+                zTree.expandNode(treeNode)
+                return
+            }
+
+            if (treeNode.target && treeNode.target == 'dialog')
+                $(event.target).dialog({id:treeNode.tabid, url:treeNode.url, title:treeNode.name})
+            else
+                $(event.target).navtab({id:treeNode.tabid, url:treeNode.url, title:treeNode.name, fresh:treeNode.fresh, external:treeNode.external})
+            event.preventDefault()
+        }
     </script>
 </head>
-<body>
-<div id="app">
-    <!-- start: TOP NAVBAR -->
-    <header class="header">
-        <!-- start: NAVBAR HEADER -->
-        <nav class="navbar navbar-static-top" role="navigation">
-            <div class="navbar-header">
-                <!--toogle for mobile device-->
-                <a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" class="btn btn-navbar sidebar-toggle" data-toggle-class="app-slide-off" data-toggle-target="#app" data-toggle-click-outside="#sidebar">
-                    <i class="fa fa-align-justify"></i>
-                </a>
-                <a class="navbar-brand" href="#">
-                    <span id="productName">${fns:getConfig('productName')}</span>
-                </a>
-                <!--toogle for pc device-->
-                <a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed" data-toggle-target="#app">
-                    <i class="fa fa-align-justify"></i>
-                </a>
-                <a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" data-toggle="collapse" href=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <i class="fa fa-cc"></i>
-                </a>
-            </div>
 
-            <div class="nav-collapse">
-                <ul id="navmenu" class="nav navbar-nav">
-                    <c:set var="firstMenu" value="true"/>
-                    <c:forEach items="${fns:getMenuList()}" var="menu" varStatus="idxStatus">
-                        <c:if test="${menu.parent.id eq '1'&&menu.isShow eq '1'}">
-                            <li class="${not empty firstMenu && firstMenu ? ' active' : ''}">
-                                <c:if test="${empty menu.href}">
-                                    <a href="javascript:" data-href="${ctx}/sys/menu/tree?parentId=${menu.id}" data-id="${menu.id}"><span>${menu.name}</span></a>
-                                </c:if>
-                                <c:if test="${not empty menu.href}">
-                                    <a href="${fn:indexOf(menu.href, '://') eq -1 ? ctx : ''}${menu.href}" data-id="${menu.id}" target="mainFrame"><span>${menu.name}</span></a>
-                                </c:if>
-                            </li>
-                            <c:if test="${firstMenu}">
-                                <c:set var="firstMenuId" value="${menu.id}"/>
-                            </c:if>
-                            <c:set var="firstMenu" value="false"/>
-                        </c:if>
-                    </c:forEach>
-                </ul>
-            </div><!--/.nav-collapse -->
-            <div class="navbar-right">
-                <ul class="nav navbar-nav">
-                    <li id="themeSwitch" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="fa fa-th-large"></i></a>
-                        <ul class="dropdown-menu">
-                            <c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
-                            <li><a href="javascript:cookie('tabmode','${tabmode eq '1' ? '0' : '1'}');location=location.href">${tabmode eq '1' ? '关闭' : '开启'}页签模式</a></li>
-                        </ul>
-                        <!--[if lte IE 6]><script type="text/javascript">$('#themeSwitch').hide();</script><![endif]-->
-                    </li>
-                    <li id="userInfo" class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息">您好, ${fns:getUser().name}&nbsp;<span id="notifyNum" class="label label-info hide"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="${ctx}/sys/user/info" target="mainFrame"><i class="fa fa-user"></i>&nbsp; 个人信息</a></li>
-                            <li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i class="fa fa-lock"></i>&nbsp;  修改密码</a></li>
-                            <li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="fa fa-bell"></i>&nbsp;  我的通知 <span id="notifyNum2" class="label label-info hide"></span></a></li>
-                        </ul>
-                    </li>
-                    <li><a href="${ctx}/logout" title="退出登录">退出</a></li>
-                    <li>&nbsp;</li>
-                </ul>
-            </div>
-        </nav>
-        <!-- end: NAVBAR HEADER -->
-    </header>
+<body>
+<div id="bjui-window">
+    <!-- start: TOP NAVBAR -->
+    <%@ include file="/WEB-INF/views/include/header.jsp" %>
     <!-- end: TOP NAVBAR -->
-    <div id="left">
-    </div>
-    <div class="app-content">
-        <div class="main-content" >
-            <div class="wrap-content container" id="container">
-                <div id="right" style="min-height:460px">
-                    <iframe id="mainFrame" name="mainFrame" src="" style="overflow:visible;" scrolling="yes" frameborder="no" width="100%" height="650px"></iframe>
+    <div id="bjui-container" class="clearfix">
+        <div id="bjui-leftside">
+            <div id="bjui-sidebar-s">
+                <div class="collapse"></div>
+            </div>
+            <div id="bjui-sidebar">
+                <div class="toggleCollapse"><h2><i class="fa fa-bars"></i> 导航栏 <i class="fa fa-bars"></i></h2><a href="javascript:;" class="lock"><i class="fa fa-lock"></i></a></div>
+                <div class="panel-group panel-main" data-toggle="accordion" id="bjui-accordionmenu">
+                </div>
+            </div>
+        </div>
+
+
+        <div id="bjui-navtab" class="tabsPage">
+            <div class="tabsPageHeader">
+                <div class="tabsPageHeaderContent">
+                    <ul class="navtab-tab nav nav-tabs">
+                        <li data-url="${ctx}/sys/user/info" data-faicon="home"><a href="javascript:;"><span><i class="fa fa-home"></i> #maintab#</span></a></li>
+                    </ul>
+                </div>
+                <div class="tabsLeft"><i class="fa fa-angle-double-left"></i></div>
+                <div class="tabsRight"><i class="fa fa-angle-double-right"></i></div>
+                <div class="tabsMore"><i class="fa fa-angle-double-down"></i></div>
+            </div>
+            <ul class="tabsMoreList">
+                <li><a href="javascript:;">#maintab#</a></li>
+            </ul>
+            <div class="navtab-panel tabsPageContent">
+                <div class="navtabPage unitBox">
+                    <div class="bjui-pageContent" style="background:#FFF;">
+                        Loading...
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="footer">
-        Copyright &copy; 2012-${fns:getConfig('copyrightYear')} ${fns:getConfig('productName')} - Powered By <a href="http://jeesite.com" target="_blank">JeeSite</a> ${fns:getConfig('version')}
-    </div>
+
+    <%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </div>
 </body>
 </html>
