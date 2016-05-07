@@ -52,7 +52,7 @@
     <description>获取当前用户对象</description>
     <name>getUser</name>
     <function-class>org.thrive.site.core.util.sys.UserUtil</function-class>
-    <function-signature>org.thrive.sites.module.admin.entity.User getUser()</function-signature>
+    <function-signature>org.thrive.site.module.admin.entity.User getUser()</function-signature>
     <example>${fns:getUser()}</example>  
   </function>
   
@@ -60,7 +60,7 @@
     <description>根据编码获取用户对象</description>
     <name>getUserById</name>
     <function-class>org.thrive.site.core.util.sys.UserUtil</function-class>
-    <function-signature>org.thrive.sites.module.admin.entity.User get(java.lang.String)</function-signature>
+    <function-signature>org.thrive.site.module.admin.entity.User get(java.lang.String)</function-signature>
     <example>${fns:getUserById(id)}</example>  
   </function>
   
@@ -68,7 +68,7 @@
     <description>获取授权用户信息</description>
     <name>getPrincipal</name>
     <function-class>org.thrive.site.core.util.sys.UserUtil</function-class>
-    <function-signature>org.thrive.sites.module.admin.security.SystemAuthorizingRealm.Principal getPrincipal()</function-signature>
+    <function-signature>org.thrive.site.module.admin.security.SystemAuthorizingRealm.Principal getPrincipal()</function-signature>
     <example>${fns:getPrincipal()}</example>  
   </function>
   

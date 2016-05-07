@@ -51,7 +51,7 @@
 	<!-- PageCache, cache .html suffix.
 	<filter>
 		<filter-name>PageCacheFilter</filter-name>
-		<filter-class>org.thrive.sites.core.filter.PageCachingFilter</filter-class>
+		<filter-class>org.thrive.site.core.filter.PageCachingFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>PageCacheFilter</filter-name>
@@ -133,7 +133,7 @@
 		</init-param>
 		<init-param>
 			<param-name>configuration</param-name>
-			<param-value>org.thrive.sites.core.controller.CKFinderConfig</param-value>
+			<param-value>org.thrive.site.core.controller.CKFinderConfig</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -171,7 +171,7 @@
 	<!-- Validate code -->
 	<!--<servlet>-->
 		<!--<servlet-name>ValidateCodeServlet</servlet-name>-->
-		<!--<servlet-class>org.thrive.sites.core.servlet.ValidateCodeServlet</servlet-class>-->
+		<!--<servlet-class>org.thrive.site.core.servlet.ValidateCodeServlet</servlet-class>-->
 	<!--</servlet>-->
 	<!--<servlet-mapping>-->
 		<!--<servlet-name>ValidateCodeServlet</servlet-name>-->

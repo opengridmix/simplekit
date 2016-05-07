@@ -34,7 +34,7 @@
 			<label>归属栏目：</label><sys:treeselect id="category" name="categoryId" value="${paramMap.id}" labelName="categoryName" labelValue="${paramMap.name}"
 				title="栏目" url="/cms/category/treeData" module="article" cssClass="form-control" allowClear="true"/>
 			<label>归属机构：</label><sys:treeselect id="office" name="officeId" value="${paramMap.office.id}" labelName="officeName" labelValue="${paramMap.office.name}" 
-				title="机构" url="/sys/office/treeData" cssClass="form-control" allowClear="true"/>
+				title="机构" url="/admin/office/treeData" cssClass="form-control" allowClear="true"/>
 			<label>开始日期：</label><input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="form-control Wdate"
 				value="${paramMap.beginDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 			<label>结束日期：</label><input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="form-control Wdate"

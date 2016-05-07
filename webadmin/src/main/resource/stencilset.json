@@ -73,7 +73,7 @@
       "id" : "process_namespace",
       "type" : "String",
       "title" : "目标命名空间",
-      "value" : "org.thrive.sites.core.act",
+      "value" : "org.thrive.site.core.act",
       "description" : "流程定义的命名空间名称.",
       "popular" : false
     } ]

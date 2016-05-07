@@ -65,7 +65,7 @@ public class GenSchemeController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(GenScheme genScheme, Model model) {
 		if (StringUtil.isBlank(genScheme.getPackageName())){
-			genScheme.setPackageName("org.thrive.sites.modules");
+			genScheme.setPackageName("org.thrive.site.modules");
 		}
 //		if (StringUtils.isBlank(genScheme.getFunctionAuthor())){
 //			genScheme.setFunctionAuthor(UserUtils.getUser().getName());

@@ -7,9 +7,9 @@
         <artifactId>modules</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>activity</artifactId>
+    <artifactId>act</artifactId>
     <packaging>jar</packaging>
-    <name>activity</name>
+    <name>act</name>
     <description>This package contains demo modules</description>
     <!-- 项目属性 -->
     <properties>

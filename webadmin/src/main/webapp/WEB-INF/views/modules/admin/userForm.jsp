@@ -9,7 +9,7 @@
 			$("#no").focus();
 			$("#inputForm").validate({
 				rules: {
-					loginName: {remote: "${ctx}/sys/user/checkLoginName?oldLoginName=" + encodeURIComponent('${user.loginName}')}
+					loginName: {remote: "${ctx}/admin/user/checkLoginName?oldLoginName=" + encodeURIComponent('${user.loginName}')}
 				},
 				messages: {
 					loginName: {remote: "用户登录名已存在"},
@@ -34,10 +34,10 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/user/list">用户列表</a></li>
-		<li class="active"><a href="${ctx}/sys/user/form?id=${user.id}">用户<shiro:hasPermission name="sys:user:edit">${not empty user.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:user:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/admin/user/list">用户列表</a></li>
+		<li class="active"><a href="${ctx}/admin/user/form?id=${user.id}">用户<shiro:hasPermission name="sys:user:edit">${not empty user.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:user:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="user" action="${ctx}/sys/user/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="user" action="${ctx}/admin/user/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
 		<div class="form-group">
@@ -51,14 +51,14 @@
 			<label class="control-label col-sm-1">归属公司:</label>
 			<div class="col-md-4">
                 <sys:treeselect id="company" name="company.id" value="${user.company.id}" labelName="company.name" labelValue="${user.company.name}"
-					title="公司" url="/sys/office/treeData?type=1" cssClass="form-control"/>
+					title="公司" url="/admin/office/treeData?type=1" cssClass="form-control"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-1">归属部门:</label>
 			<div class="col-md-4">
                 <sys:treeselect id="office" name="office.id" value="${user.office.id}" labelName="office.name" labelValue="${user.office.name}"
-					title="部门" url="/sys/office/treeData?type=2" cssClass="form-control" notAllowSelectParent="true"/>
+					title="部门" url="/admin/office/treeData?type=2" cssClass="form-control" notAllowSelectParent="true"/>
 			</div>
 		</div>
 		<div class="form-group">

@@ -40,7 +40,7 @@
 			<label class="control-label col-sm-1">生成包路径:</label>
 			<div class="col-md-4">
 				<form:input path="packageName" htmlEscape="false" maxlength="500" class="required form-control"/>
-				<span class="help-inline">建议模块包：org.thrive.sites.module</span>
+				<span class="help-inline">建议模块包：org.thrive.site.module</span>
 			</div>
 		</div>
 		<div class="form-group">

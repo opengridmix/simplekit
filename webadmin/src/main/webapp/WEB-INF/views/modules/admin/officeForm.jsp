@@ -12,24 +12,24 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/office/list?id=${office.parent.id}&parentIds=${office.parentIds}">机构列表</a></li>
-		<li class="active"><a href="${ctx}/sys/office/form?id=${office.id}&parent.id=${office.parent.id}">机构<shiro:hasPermission name="sys:office:edit">${not empty office.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:office:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/admin/office/list?id=${office.parent.id}&parentIds=${office.parentIds}">机构列表</a></li>
+		<li class="active"><a href="${ctx}/admin/office/form?id=${office.id}&parent.id=${office.parent.id}">机构<shiro:hasPermission name="sys:office:edit">${not empty office.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:office:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="office" action="${ctx}/sys/office/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="office" action="${ctx}/admin/office/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
 		<div class="form-group">
 			<label class="control-label col-sm-1">上级机构:</label>
 			<div class="col-md-4">
                 <sys:treeselect id="office" name="parent.id" value="${office.parent.id}" labelName="parent.name" labelValue="${office.parent.name}"
-					title="机构" url="/sys/office/treeData" extId="${office.id}" cssClass="form-control" allowClear="${office.currentUser.admin}"/>
+					title="机构" url="/admin/office/treeData" extId="${office.id}" cssClass="form-control" allowClear="${office.currentUser.admin}"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-1">归属区域:</label>
 			<div class="col-md-4">
                 <sys:treeselect id="area" name="area.id" value="${office.area.id}" labelName="area.name" labelValue="${office.area.name}"
-					title="区域" url="/sys/area/treeData" cssClass="required"/>
+					title="区域" url="/admin/area/treeData" cssClass="required"/>
 			</div>
 		</div>
 		<div class="form-group">
@@ -74,14 +74,14 @@
 			<label class="control-label col-sm-1">主负责人:</label>
 			<div class="col-md-4">
 				 <sys:treeselect id="primaryPerson" name="primaryPerson.id" value="${office.primaryPerson.id}" labelName="office.primaryPerson.name" labelValue="${office.primaryPerson.name}"
-					title="用户" url="/sys/office/treeData?type=3" allowClear="true" notAllowSelectParent="true"/>
+					title="用户" url="/admin/office/treeData?type=3" allowClear="true" notAllowSelectParent="true"/>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label col-sm-1">副负责人:</label>
 			<div class="col-md-4">
 				 <sys:treeselect id="deputyPerson" name="deputyPerson.id" value="${office.deputyPerson.id}" labelName="office.deputyPerson.name" labelValue="${office.deputyPerson.name}"
-					title="用户" url="/sys/office/treeData?type=3" allowClear="true" notAllowSelectParent="true"/>
+					title="用户" url="/admin/office/treeData?type=3" allowClear="true" notAllowSelectParent="true"/>
 			</div>
 		</div>
 		<div class="form-group">

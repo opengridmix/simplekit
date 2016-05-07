@@ -9,7 +9,7 @@
 			$("#btnExport").click(function(){
 				top.$.jBox.confirm("确认要导出用户数据吗？","系统提示",function(v,h,f){
 					if(v=="ok"){
-						$("#searchForm").attr("action","${ctx}/sys/user/export");
+						$("#searchForm").attr("action","${ctx}/admin/user/export");
 						$("#searchForm").submit();
 					}
 				},{buttonsFocus:1});
@@ -23,7 +23,7 @@
 		function page(n,s){
 			if(n) $("#pageNo").val(n);
 			if(s) $("#pageSize").val(s);
-			$("#searchForm").attr("action","${ctx}/sys/user/list");
+			$("#searchForm").attr("action","${ctx}/admin/user/list");
 			$("#searchForm").submit();
 	    	return false;
 	    }
@@ -31,28 +31,28 @@
 </head>
 <body>
 	<div id="importBox" class="hide">
-		<form id="importForm" action="${ctx}/sys/user/import" method="post" enctype="multipart/form-data"
+		<form id="importForm" action="${ctx}/admin/user/import" method="post" enctype="multipart/form-data"
 			class="form-inline" style="padding-left:20px;text-align:center;" onsubmit="loading('正在导入，请稍等...');"><br/>
 			<input id="uploadFile" name="file" type="file" style="width:330px"/><br/><br/>　　
 			<input id="btnImportSubmit" class="btn btn-primary" type="submit" value="   导    入   "/>
-			<a href="${ctx}/sys/user/import/template">下载模板</a>
+			<a href="${ctx}/admin/user/import/template">下载模板</a>
 		</form>
 	</div>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/sys/user/list">用户列表</a></li>
-		<shiro:hasPermission name="sys:user:edit"><li><a href="${ctx}/sys/user/form">用户添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/admin/user/list">用户列表</a></li>
+		<shiro:hasPermission name="sys:user:edit"><li><a href="${ctx}/admin/user/form">用户添加</a></li></shiro:hasPermission>
 	</ul>
-	<form:form id="searchForm" modelAttribute="user" action="${ctx}/sys/user/listData" method="post" class="breadcrumb form-inline ">
+	<form:form id="searchForm" modelAttribute="user" action="${ctx}/admin/user/listData" method="post" class="breadcrumb form-inline ">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<sys:tableSort id="orderBy" name="orderBy" value="${page.orderBy}" callback="page();"/>
 		<ul class="ul-form">
 			<li><label>归属公司：</label><sys:treeselect id="company" name="company.id" value="${user.company.id}" labelName="company.name" labelValue="${user.company.name}" 
-				title="公司" url="/sys/office/treeData?type=1" cssClass="form-control" allowClear="true"/></li>
+				title="公司" url="/admin/office/treeData?type=1" cssClass="form-control" allowClear="true"/></li>
 			<li><label>登录名：</label><form:input path="loginName" htmlEscape="false" maxlength="50" class="form-control"/></li>
 			<li class="clearfix"></li>
 			<li><label>归属部门：</label><sys:treeselect id="office" name="office.id" value="${user.office.id}" labelName="office.name" labelValue="${user.office.name}" 
-				title="部门" url="/sys/office/treeData?type=2" cssClass="form-control" allowClear="true" notAllowSelectParent="true"/></li>
+				title="部门" url="/admin/office/treeData?type=2" cssClass="form-control" allowClear="true" notAllowSelectParent="true"/></li>
 			<li><label>姓&nbsp;&nbsp;&nbsp;名：</label><form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/></li>
 			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询" onclick="return page();"/>
 				<input id="btnExport" class="btn btn-primary" type="button" value="导出"/>
@@ -68,14 +68,14 @@
 			<tr>
 				<td>${user.company.name}</td>
 				<td>${user.office.name}</td>
-				<td><a href="${ctx}/sys/user/form?id=${user.id}">${user.loginName}</a></td>
+				<td><a href="${ctx}/admin/user/form?id=${user.id}">${user.loginName}</a></td>
 				<td>${user.name}</td>
 				<td>${user.phone}</td>
 				<td>${user.mobile}</td>
 				<td>${user.roleNames}</td>
 				<shiro:hasPermission name="sys:user:edit"><td>
-    				<a href="${ctx}/sys/user/form?id=${user.id}">修改</a>
-					<a href="${ctx}/sys/user/delete?id=${user.id}" onclick="return confirmx('确认要删除该用户吗？', this.href)">删除</a>
+    				<a href="${ctx}/admin/user/form?id=${user.id}">修改</a>
+					<a href="${ctx}/admin/user/delete?id=${user.id}" onclick="return confirmx('确认要删除该用户吗？', this.href)">删除</a>
 				</td></shiro:hasPermission>
 			</tr>
 		</c:forEach>
@@ -95,7 +95,7 @@
 			// 设置数据表格列
 			columnModel: [
 				{header:'归属公司', name:'loginName', index:'login_name', width:100, frozen:true , formatter: function(val, obj, row, act){
-					return '<a href="${ctx}/sys/user/form?id='+row.id+'" class="btnList" data-title="编辑用户">'+val+'</a>';
+					return '<a href="${ctx}/admin/user/form?id='+row.id+'" class="btnList" data-title="编辑用户">'+val+'</a>';
 				}},
 				{header:'归属公司', name:'company.name', index:'', width:160},
 				{header:'组织机构', name:'office.name', index:'', width:160},
@@ -107,7 +107,7 @@
 				{header:'操作', name:'actions', width:120, fixed:true, sortable:false, fixed:true, formatter: function(val, obj, row, act){
 					var actions = [];
 					//<shiro:hasPermission name="sys:user:edit">
-					actions.push('<a href="${ctx}/sys/user/form?id='+row.id+'" class="btnList" title="编辑用户">编辑</a>&nbsp;');
+					actions.push('<a href="${ctx}/admin/user/form?id='+row.id+'" class="btnList" title="编辑用户">编辑</a>&nbsp;');
 					//</shiro:hasPermission>
 					return actions.join('');
 				}}

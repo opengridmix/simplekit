@@ -15,9 +15,9 @@
 </head>
 <body>
 <!-- 	<ul class="nav nav-tabs"> -->
-<%-- 		<li class="active"><a href="${ctx}/sys/log/">日志列表</a></li> --%>
+<%-- 		<li class="active"><a href="${ctx}/admin/log/">日志列表</a></li> --%>
 <!-- 	</ul> -->
-	<form:form id="searchForm" action="${ctx}/sys/log/" method="post" class="breadcrumb form-inline">
+	<form:form id="searchForm" action="${ctx}/admin/log/" method="post" class="breadcrumb form-inline">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<div>

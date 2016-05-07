@@ -7,8 +7,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/role/">角色列表</a></li>
-		<li class="active"><a href="${ctx}/sys/role/assign?id=${role.id}"><shiro:hasPermission name="sys:role:edit">角色分配</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">人员列表</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/admin/role/">角色列表</a></li>
+		<li class="active"><a href="${ctx}/admin/role/assign?id=${role.id}"><shiro:hasPermission name="sys:role:edit">角色分配</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">人员列表</shiro:lacksPermission></a></li>
 	</ul>
 	<div class="container-fluid breadcrumb">
 		<div class="row span12">
@@ -24,14 +24,14 @@
 	</div>
 	<sys:message content="${message}"/>
 	<div class="breadcrumb">
-		<form id="assignRoleForm" action="${ctx}/sys/role/assignrole" method="post" class="hide">
+		<form id="assignRoleForm" action="${ctx}/admin/role/assignrole" method="post" class="hide">
 			<input type="hidden" name="id" value="${role.id}"/>
 			<input id="idsArr" type="hidden" name="idsArr" value=""/>
 		</form>
 		<input id="assignButton" class="btn btn-primary" type="submit" value="分配角色"/>
 		<script type="text/javascript">
 			$("#assignButton").click(function(){
-				top.$.jBox.open("iframe:${ctx}/sys/role/usertorole?id=${role.id}", "分配角色",810,$(top.document).height()-240,{
+				top.$.jBox.open("iframe:${ctx}/admin/role/usertorole?id=${role.id}", "分配角色",810,$(top.document).height()-240,{
 					buttons:{"确定分配":"ok", "清除已选":"clear", "关闭":true}, bottomText:"通过选择部门，然后为列出的人员分配角色。",submit:function(v, h, f){
 						var pre_ids = h.find("iframe")[0].contentWindow.pre_ids;
 						var ids = h.find("iframe")[0].contentWindow.ids;
@@ -73,12 +73,12 @@
 			<tr>
 				<td>${user.company.name}</td>
 				<td>${user.office.name}</td>
-				<td><a href="${ctx}/sys/user/form?id=${user.id}">${user.loginName}</a></td>
+				<td><a href="${ctx}/admin/user/form?id=${user.id}">${user.loginName}</a></td>
 				<td>${user.name}</td>
 				<td>${user.phone}</td>
 				<td>${user.mobile}</td>
 				<shiro:hasPermission name="sys:role:edit"><td>
-					<a href="${ctx}/sys/role/outrole?userId=${user.id}&roleId=${role.id}" 
+					<a href="${ctx}/admin/role/outrole?userId=${user.id}&roleId=${role.id}"
 						onclick="return confirmx('确认要将用户<b>[${user.name}]</b>从<b>[${role.name}]</b>角色中移除吗？', this.href)">移除</a>
 				</td></shiro:hasPermission>
 			</tr>

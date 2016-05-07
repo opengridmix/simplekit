@@ -29,8 +29,8 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="${ctx}/sys/area/">区域列表</a></li>
-		<shiro:hasPermission name="sys:area:edit"><li><a href="${ctx}/sys/area/form">区域添加</a></li></shiro:hasPermission>
+		<li class="active"><a href="${ctx}/admin/area/">区域列表</a></li>
+		<shiro:hasPermission name="sys:area:edit"><li><a href="${ctx}/admin/area/form">区域添加</a></li></shiro:hasPermission>
 	</ul>
 	<sys:message content="${message}"/>
 	<table id="treeTable" class="table table-striped table-bordered table-condensed">
@@ -39,14 +39,14 @@
 	</table>
 	<script type="text/template" id="treeTableTpl">
 		<tr id="{{row.id}}" pId="{{pid}}">
-			<td><a href="${ctx}/sys/area/form?id={{row.id}}">{{row.name}}</a></td>
+			<td><a href="${ctx}/admin/area/form?id={{row.id}}">{{row.name}}</a></td>
 			<td>{{row.code}}</td>
 			<td>{{dict.type}}</td>
 			<td>{{row.remarks}}</td>
 			<shiro:hasPermission name="sys:area:edit"><td>
-				<a href="${ctx}/sys/area/form?id={{row.id}}">修改</a>
-				<a href="${ctx}/sys/area/delete?id={{row.id}}" onclick="return confirmx('要删除该区域及所有子区域项吗？', this.href)">删除</a>
-				<a href="${ctx}/sys/area/form?parent.id={{row.id}}">添加下级区域</a> 
+				<a href="${ctx}/admin/area/form?id={{row.id}}">修改</a>
+				<a href="${ctx}/admin/area/delete?id={{row.id}}" onclick="return confirmx('要删除该区域及所有子区域项吗？', this.href)">删除</a>
+				<a href="${ctx}/admin/area/form?parent.id={{row.id}}">添加下级区域</a>
 			</td></shiro:hasPermission>
 		</tr>
 	</script>

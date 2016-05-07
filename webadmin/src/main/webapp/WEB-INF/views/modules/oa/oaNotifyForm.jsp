@@ -67,7 +67,7 @@
 				<div class="col-md-4">
 					<div class="input-inline">
 	                <sys:treeselect id="oaNotifyRecord" name="oaNotifyRecordIds" value="${oaNotify.oaNotifyRecordIds}" labelName="oaNotifyRecordNames" labelValue="${oaNotify.oaNotifyRecordNames}"
-						title="用户" url="/sys/office/treeData?type=3" cssClass="form-control required" notAllowSelectParent="true" checked="true"/>
+						title="用户" url="/admin/office/treeData?type=3" cssClass="form-control required" notAllowSelectParent="true" checked="true"/>
 					</div>
 					<span class="help-inline"><font color="red">*</font> </span>
 				</div>

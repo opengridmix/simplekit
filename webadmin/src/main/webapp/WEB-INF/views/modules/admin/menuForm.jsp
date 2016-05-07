@@ -12,17 +12,17 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/menu/">菜单列表</a></li>
-		<li class="active"><a href="${ctx}/sys/menu/form?id=${menu.id}&parent.id=${menu.parent.id}">菜单<shiro:hasPermission name="sys:menu:edit">${not empty menu.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:menu:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/admin/menu/">菜单列表</a></li>
+		<li class="active"><a href="${ctx}/admin/menu/form?id=${menu.id}&parent.id=${menu.parent.id}">菜单<shiro:hasPermission name="sys:menu:edit">${not empty menu.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:menu:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="menu" action="${ctx}/sys/menu/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="menu" action="${ctx}/admin/menu/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
 		<div class="form-group">
 			<label class="control-label col-sm-1">上级菜单:</label>
 			<div class="col-md-4">
                 <sys:treeselect id="menu" name="parent.id" value="${menu.parent.id}" labelName="parent.name" labelValue="${menu.parent.name}"
-					title="菜单" url="/sys/menu/treeData" extId="${menu.id}" cssClass="required form-control"/>
+					title="菜单" url="/admin/menu/treeData" extId="${menu.id}" cssClass="required form-control"/>
 			</div>
 		</div>
 		<div class="form-group">

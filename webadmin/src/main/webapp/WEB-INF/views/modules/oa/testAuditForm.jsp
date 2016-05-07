@@ -30,11 +30,11 @@
 				<tr>
 					<td class="tit">姓名</td><td>
 						<sys:treeselect id="user" name="user.id" value="${testAudit.user.id}" labelName="user.name" labelValue="${testAudit.user.name}" 
-							title="用户" url="/sys/office/treeData?type=3" cssClass="required recipient" cssStyle="width:150px" 
+							title="用户" url="/admin/office/treeData?type=3" cssClass="required recipient" cssStyle="width:150px"
 							allowClear="true" notAllowSelectParent="true" smallBtn="false"/>
 					</td><td class="tit">部门</td><td>
 						<sys:treeselect id="office" name="office.id" value="${testAudit.office.id}" labelName="office.name" labelValue="${testAudit.office.name}" 
-							title="用户" url="/sys/office/treeData?type=2" cssClass="required recipient" cssStyle="width:150px" 
+							title="用户" url="/admin/office/treeData?type=2" cssClass="required recipient" cssStyle="width:150px"
 							allowClear="true" notAllowSelectParent="true" smallBtn="false"/>
 					</td><td class="tit">岗位职级</td><td>
 						<form:input path="post" htmlEscape="false" maxlength="50"/>

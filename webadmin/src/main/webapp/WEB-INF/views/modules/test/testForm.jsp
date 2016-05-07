@@ -49,17 +49,17 @@
 			<label class="control-label col-sm-1">选人，选部门，选区域:</label>
 			<div class="col-md-4">
                 <sys:treeselect id="user" name="user.id" value="${user.user.id}" labelName="user.name" labelValue="${user.office.name}"
-					title="用户" url="/sys/office/treeData?type=3" cssClass="required"  allowClear="true" notAllowSelectParent="true"/>
+					title="用户" url="/admin/office/treeData?type=3" cssClass="required"  allowClear="true" notAllowSelectParent="true"/>
                 <sys:treeselect id="office" name="office.id" value="${user.office.id}" labelName="office.name" labelValue="${user.office.name}"
-					title="部门" url="/sys/office/treeData?type=2" cssClass="required" notAllowSelectParent="true"/>
+					title="部门" url="/admin/office/treeData?type=2" cssClass="required" notAllowSelectParent="true"/>
 				<sys:treeselect id="company" name="company.id" value="${user.company.id}" labelName="company.name" labelValue="${user.company.name}"
-					title="公司" url="/sys/office/treeData?type=1" cssClass="required"/><br/>多选：<br/>
+					title="公司" url="/admin/office/treeData?type=1" cssClass="required"/><br/>多选：<br/>
                 <sys:treeselect id="user2" name="user.id" value="${user.user.id}" labelName="user.name" labelValue="${user.office.name}"
-					title="用户" url="/sys/office/treeData?type=3" cssClass="required" notAllowSelectParent="true" checked="true"/>
+					title="用户" url="/admin/office/treeData?type=3" cssClass="required" notAllowSelectParent="true" checked="true"/>
                 <sys:treeselect id="office2" name="office.id" value="${user.office.id}" labelName="office.name" labelValue="${user.office.name}"
-					title="部门" url="/sys/office/treeData?type=2" cssClass="required" notAllowSelectParent="true" checked="true"/>
+					title="部门" url="/admin/office/treeData?type=2" cssClass="required" notAllowSelectParent="true" checked="true"/>
 				<sys:treeselect id="company2" name="company.id" value="${user.company.id}" labelName="company.name" labelValue="${user.company.name}"
-					title="公司" url="/sys/office/treeData?type=1" cssClass="required" notAllowSelectParent="true" checked="true"/>
+					title="公司" url="/admin/office/treeData?type=1" cssClass="required" notAllowSelectParent="true" checked="true"/>
 			</div>
 		</div>
 		<div class="form-group">

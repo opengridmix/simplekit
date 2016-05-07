@@ -26,6 +26,6 @@
         <module>cms</module>
         <module>oa</module>
         <module>gen</module>
-        <module>activity</module>
+        <module>act</module>
     </modules>
 </project>

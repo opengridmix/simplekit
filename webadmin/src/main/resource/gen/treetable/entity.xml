@@ -13,7 +13,7 @@ package ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModule
 import ${i};
 </#list>
 
-import org.thrive.sites.core.persistence..TreeEntity;
+import org.thrive.site.core.persistence..TreeEntity;
 
 /**
  * ${functionName}Entity

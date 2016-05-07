@@ -22,7 +22,7 @@
 			<label class="control-label col-sm-1">归属机构:</label>
 			<div class="col-md-4">
                 <sys:treeselect id="office" name="office.id" value="${category.office.id}" labelName="office.name" labelValue="${category.office.name}"
-					title="机构" url="/sys/office/treeData" cssClass="required form-control"/>
+					title="机构" url="/admin/office/treeData" cssClass="required form-control"/>
 			</div>
 		</div>
 		<div class="form-group">

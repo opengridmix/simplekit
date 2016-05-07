@@ -10,8 +10,8 @@
 			$("#name").focus();
 			$("#inputForm").validate({
 				rules: {
-					name: {remote: "${ctx}/sys/role/checkName?oldName=" + encodeURIComponent("${role.name}")},
-					enname: {remote: "${ctx}/sys/role/checkEnname?oldEnname=" + encodeURIComponent("${role.enname}")}
+					name: {remote: "${ctx}/admin/role/checkName?oldName=" + encodeURIComponent("${role.name}")},
+					enname: {remote: "${ctx}/admin/role/checkEnname?oldEnname=" + encodeURIComponent("${role.enname}")}
 				},
 				messages: {
 					name: {remote: "角色名已存在"},
@@ -98,17 +98,17 @@
 </head>
 <body>
 	<ul class="nav nav-tabs">
-		<li><a href="${ctx}/sys/role/">角色列表</a></li>
-		<li class="active"><a href="${ctx}/sys/role/form?id=${role.id}">角色<shiro:hasPermission name="sys:role:edit">${not empty role.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">查看</shiro:lacksPermission></a></li>
+		<li><a href="${ctx}/admin/role/">角色列表</a></li>
+		<li class="active"><a href="${ctx}/admin/role/form?id=${role.id}">角色<shiro:hasPermission name="sys:role:edit">${not empty role.id?'修改':'添加'}</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">查看</shiro:lacksPermission></a></li>
 	</ul><br/>
-	<form:form id="inputForm" modelAttribute="role" action="${ctx}/sys/role/save" method="post" class="form-horizontal">
+	<form:form id="inputForm" modelAttribute="role" action="${ctx}/admin/role/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
 		<div class="form-group">
 			<label class="control-label col-sm-1">归属机构:</label>
 			<div class="col-md-4">
                 <sys:treeselect id="office" name="office.id" value="${role.office.id}" labelName="office.name" labelValue="${role.office.name}"
-					title="机构" url="/sys/office/treeData" cssClass="form-control"/>
+					title="机构" url="/admin/office/treeData" cssClass="form-control"/>
 			</div>
 		</div>
 		<div class="form-group">

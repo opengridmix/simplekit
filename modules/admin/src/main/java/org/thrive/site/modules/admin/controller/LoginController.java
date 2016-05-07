@@ -166,8 +166,8 @@ public class LoginController extends BaseController {
 
 //		System.out.println("==========================a");
 //		try {
-//			byte[] bytes = org.thrive.sites.core.Util.FileUtil.readFileToByteArray(
-//					org.thrive.sites.core.Util.FileUtil.getFile("c:\\sxt.dmp"));
+//			byte[] bytes = org.thrive.site.core.Util.FileUtil.readFileToByteArray(
+//					org.thrive.site.core.Util.FileUtil.getFile("c:\\sxt.dmp"));
 //			UserUtil.getSession().setAttribute("kkk", bytes);
 //			UserUtil.getSession().setAttribute("kkk2", bytes);
 //		} catch (Exception e) {

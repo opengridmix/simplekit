@@ -80,7 +80,7 @@
 	</bean>
 
 	<!-- 自定义Session存储容器 -->
-<!-- 	<bean id="sessionDAO" class="org.thrive.sites.core.security.shiro.session.JedisSessionDAO"> -->
+<!-- 	<bean id="sessionDAO" class="org.thrive.site.core.security.shiro.session.JedisSessionDAO"> -->
 <!-- 		<property name="sessionIdGenerator" ref="idGen" /> -->
 <!-- 		<property name="sessionKeyPrefix" value="${redis.keyPrefix}_session_" /> -->
 <!-- 	</bean> -->
