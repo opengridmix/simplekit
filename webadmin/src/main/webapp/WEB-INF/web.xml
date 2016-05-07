@@ -97,7 +97,7 @@
 		<servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
 		<init-param>
 			<param-name>org.restlet.application</param-name>
-			<param-value>org.thrive.sites.module.activity.rest.ActRestApplication</param-value>
+			<param-value>org.thrive.site.modules.act.rest.ActRestApplication</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
@@ -122,7 +122,7 @@
 	<!-- CKFinder -->
 	<servlet>
 		<servlet-name>CKFinderConnectorServlet</servlet-name>
-		<servlet-class>org.thrive.sites.core.servlet.CKFinderConnectorServlet</servlet-class>
+		<servlet-class>org.thrive.site.core.servlet.CKFinderConnectorServlet</servlet-class>
 		<init-param>
 			<param-name>XMLConfig</param-name>
 			<param-value>/WEB-INF/ckfinder.xml</param-value>
@@ -161,7 +161,7 @@
 	<!-- Userfiles download -->
 	<servlet>
 	  	<servlet-name>UserfilesDownloadServlet</servlet-name>
-	  	<servlet-class>org.thrive.sites.core.servlet.UserfilesDownloadServlet</servlet-class>
+	  	<servlet-class>org.thrive.site.core.servlet.UserfilesDownloadServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 	  	<servlet-name>UserfilesDownloadServlet</servlet-name>

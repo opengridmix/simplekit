@@ -134,7 +134,7 @@
     <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="module" module-name="cms" />
     <orderEntry type="module" module-name="oa" />
-    <orderEntry type="module" module-name="activity" />
+    <orderEntry type="module" module-name="act" />
     <orderEntry type="module" module-name="gen" />
     <orderEntry type="library" name="Maven: org.activiti:activiti-common-rest:5.15.1" level="project" />
     <orderEntry type="library" name="Maven: org.restlet.jee:org.restlet:2.1.4" level="project" />

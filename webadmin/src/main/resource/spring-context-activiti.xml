@@ -30,8 +30,8 @@
         <!-- 自定义用户权限 -->
         <property name="customSessionFactories"> 
             <list>
-				<bean class="org.thrive.sites.module.activity.service.ext.ActUserEntityServiceFactory"/>
-				<bean class="org.thrive.sites.module.activity.service.ext.ActGroupEntityServiceFactory"/>
+				<bean class="org.thrive.site.modules.act.service.ext.ActUserEntityServiceFactory"/>
+				<bean class="org.thrive.site.modules.act.service.ext.ActGroupEntityServiceFactory"/>
             </list>
     	</property>
         

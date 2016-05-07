@@ -41,12 +41,12 @@
 	
 	<!-- 类型别名 -->
 	<typeAliases>
-		<typeAlias alias="Page" type="org.thrive.sites.core.persistence.Page" /><!--分页  -->
+		<typeAlias alias="Page" type="org.thrive.site.core.persistence.Page" /><!--分页  -->
 	</typeAliases>
 	
 	<!-- 插件配置 -->
 	<plugins>
-		<plugin interceptor="org.thrive.sites.core.persistence.interceptor.PaginationInterceptor" />
+		<plugin interceptor="org.thrive.site.core.persistence.interceptor.PaginationInterceptor" />
     </plugins>
 	
 </configuration>

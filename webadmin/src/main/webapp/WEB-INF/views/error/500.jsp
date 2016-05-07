@@ -24,9 +24,9 @@ if (Servlets.isAjaxRequest(request)) {
 else {
 %>
 <%@page import="org.slf4j.LoggerFactory"%>
-<%@page import="org.thrive.sites.core.servlet.Servlets"%>
-<%@page import="org.thrive.sites.core.util.Exceptions"%>
-<%@page import="org.thrive.sites.core.util.StringUtil"%>
+<%@page import="org.thrive.site.core.servlet.Servlets"%>
+<%@page import="org.thrive.site.core.util.Exceptions"%>
+<%@page import="org.thrive.site.core.util.StringUtil"%>
 <%@page contentType="text/html;charset=UTF-8" isErrorPage="true"%>
 <%@include file="/WEB-INF/views/include/taglib.jsp"%>
 <!DOCTYPE html>

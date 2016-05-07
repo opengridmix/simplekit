@@ -107,7 +107,7 @@
             <element id="module-output" name="oa" />
           </element>
           <element id="archive" name="activity-0.0.1-SNAPSHOT.jar">
-            <element id="module-output" name="activity" />
+            <element id="module-output" name="act" />
           </element>
           <element id="archive" name="gen-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="gen" />
