@@ -19,7 +19,7 @@
 	</script>
 	<script type="text/template" id="categoryBox">
 		<form id="categoryForm" action="${ctx}/act/process/updateCategory" method="post" enctype="multipart/form-data"
-			style="text-align:center;" class="form-search" onsubmit="loading('正在设置，请稍等...');"><br/>
+			style="text-align:center;" class="form-inline" onsubmit="loading('正在设置，请稍等...');"><br/>
 			<input id="categoryBoxId" type="hidden" name="procDefId" value="" />
 			<select id="categoryBoxCategory" name="category">
 				<c:forEach items="${fns:getDictList('act_category')}" var="dict">
@@ -37,9 +37,9 @@
 		<li><a href="${ctx}/act/process/deploy/">部署流程</a></li>
 		<li class="active"><a href="${ctx}/act/process/running/">运行中的流程</a></li>
 	</ul>
-	<form id="searchForm" action="${ctx}/act/process/running/" method="post" class="breadcrumb form-search">
-		<label>流程实例ID：</label><input type="text" id="procInsId" name="procInsId" value="${procInsId}" class="input-medium"/>
-		<label>流程定义Key：</label><input type="text" id="procDefKey" name="procDefKey" value="${procDefKey}" class="input-medium"/>
+	<form id="searchForm" action="${ctx}/act/process/running/" method="post" class="breadcrumb form-inline">
+		<label>流程实例ID：</label><input type="text" id="procInsId" name="procInsId" value="${procInsId}" class="form-control"/>
+		<label>流程定义Key：</label><input type="text" id="procDefKey" name="procDefKey" value="${procDefKey}" class="form-control"/>
 		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
 	</form>
 	<sys:message content="${message}"/>
@@ -71,6 +71,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div>${page}</div>
 </body>
 </html>

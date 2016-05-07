@@ -21,26 +21,29 @@
 		<li class="active"><a href="${ctx}/oa/oaNotify/${oaNotify.self?'self':''}">通知列表</a></li>
 		<c:if test="${!oaNotify.self}"><shiro:hasPermission name="oa:oaNotify:edit"><li><a href="${ctx}/oa/oaNotify/form">通知添加</a></li></shiro:hasPermission></c:if>
 	</ul>
-	<form:form id="searchForm" modelAttribute="oaNotify" action="${ctx}/oa/oaNotify/${oaNotify.self?'self':''}" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="oaNotify" action="${ctx}/oa/oaNotify/${oaNotify.self?'self':''}" method="post" class="breadcrumb form-inline">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<ul class="ul-form">
-			<li><label>标题：</label>
-				<form:input path="title" htmlEscape="false" maxlength="200" class="input-medium"/>
-			</li>
-			<li><label>类型：</label>
-				<form:select path="type" class="input-medium">
-					<form:option value="" label=""/>
-					<form:options items="${fns:getDictList('oa_notify_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-				</form:select>
-			</li>
-			<c:if test="${!requestScope.oaNotify.self}"><li><label>状态：</label>
-				<form:radiobuttons path="status" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
-			</li></c:if>
-			<li class="btns"><input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/></li>
-			<li class="clearfix"></li>
-		</ul>
+		<div class="form-group">
+			<label>标题：</label>
+			<form:input path="title" htmlEscape="false" maxlength="200" class="form-control"/>
+		</div>
+		<div class="form-group">
+			<label>类型：</label>
+			<form:select path="type">
+				<form:option value="" label=""/>
+				<form:options items="${fns:getDictList('oa_notify_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+			</form:select>
+		</div>
+		<c:if test="${!requestScope.oaNotify.self}">
+		<div class="form-group">
+			<label>状态：</label>
+			<form:radiobuttons path="status" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
+		</div>
+		</c:if>
+		<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>		
 	</form:form>
+	<span class="clearfix">&nbsp;</span>
 	<sys:message content="${message}"/>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
 		<thead>
@@ -84,6 +87,6 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div>${page}</div>
 </body>
 </html>

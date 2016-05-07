@@ -74,24 +74,24 @@
 	</ul>
 	<div class="btn-toolbar breadcrumb">
 		<div class="btn-group">
-			<a class="btn" href="javascript:add();"><i class="icon-file"></i>新建</a>
-			<a class="btn" href="javascript:edit();"><i class="icon-edit"></i>修改</a>
-			<a class="btn" href="javascript:dele();" onclick="return confirmx('确认要删除该测试吗？', this.href)"><i class="icon-remove"></i>删除</a>
+			<a class="btn" href="javascript:add();"><i class="fa fa-file"></i>新建</a>
+			<a class="btn" href="javascript:edit();"><i class="fa fa-edit"></i>修改</a>
+			<a class="btn" href="javascript:dele();" onclick="return confirmx('确认要删除该测试吗？', this.href)"><i class="fa fa-remove"></i>删除</a>
 		</div>
 		<div class="btn-group" >
-			<a class="btn" onclick="$('#searchForm').toggle();su.autoHeight();"><i class="icon-search"></i>查询</a>
+			<a class="btn" onclick="$('#searchForm').toggle();su.autoHeight();"><i class="fa fa-search"></i>查询</a>
 		</div>
 	</div>
-	<form:form id="searchForm" modelAttribute="test" action="${ctx}/test/test/listData.json" method="post" class="breadcrumb form-search hide" onsubmit="return page();">
+	<form:form id="searchForm" modelAttribute="test" action="${ctx}/test/test/listData.json" method="post" class="breadcrumb form-inline hide" onsubmit="return page();">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-		<label>名称 ：</label><form:input path="name" htmlEscape="false" maxlength="50" class="input-medium"/>
+		<label>名称 ：</label><form:input path="name" htmlEscape="false" maxlength="50" class="form-control"/>
 		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
 	</form:form>
 	<sys:message content="${message}"/>
 	<div id="supcan" class="supcan">
 		<script>insertTreeList('AF', 'border=none;')</script>
 	</div>
-	<div id="page" class="pagination">${test.page}</div>
+	<div id="page">${test.page}</div>
 </body>
 </html>

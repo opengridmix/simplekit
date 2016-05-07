@@ -6,22 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#name").focus();
-			$("#inputForm").validate({
-				submitHandler: function(form){
-					loading('正在提交，请稍等...');
-					form.submit();
-				},
-				errorContainer: "#messageBox",
-				errorPlacement: function(error, element) {
-					$("#messageBox").text("输入有误，请先更正。");
-					if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
-						error.appendTo(element.parent().parent());
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			});
+			validator("#inputForm","#name");
 		});
 	</script>
 </head>
@@ -33,17 +18,17 @@
 	<form:form id="inputForm" modelAttribute="genScheme" action="${ctx}/gen/genScheme/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/><form:hidden path="flag"/>
 		<sys:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">方案名称:</label>
-			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="200" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">方案名称:</label>
+			<div class="col-md-4">
+				<form:input path="name" htmlEscape="false" maxlength="200" class="required form-control"/>
 				<span class="help-inline"></span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">模板分类:</label>
-			<div class="controls">
-				<form:select path="category" class="required input-xlarge">
+		<div class="form-group">
+			<label class="control-label col-sm-1">模板分类:</label>
+			<div class="col-md-4">
+				<form:select path="category" class="required">
 					<form:options items="${config.categoryList}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 				<span class="help-inline">
@@ -51,66 +36,66 @@
 				</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成包路径:</label>
-			<div class="controls">
-				<form:input path="packageName" htmlEscape="false" maxlength="500" class="required input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成包路径:</label>
+			<div class="col-md-4">
+				<form:input path="packageName" htmlEscape="false" maxlength="500" class="required form-control"/>
 				<span class="help-inline">建议模块包：org.thrive.sites.module</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成模块名:</label>
-			<div class="controls">
-				<form:input path="moduleName" htmlEscape="false" maxlength="500" class="required input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成模块名:</label>
+			<div class="col-md-4">
+				<form:input path="moduleName" htmlEscape="false" maxlength="500" class="required form-control"/>
 				<span class="help-inline">可理解为子系统名，例如 sys</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成子模块名:</label>
-			<div class="controls">
-				<form:input path="subModuleName" htmlEscape="false" maxlength="500" class="input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成子模块名:</label>
+			<div class="col-md-4">
+				<form:input path="subModuleName" htmlEscape="false" maxlength="500" class="form-control"/>
 				<span class="help-inline">可选，分层下的文件夹，例如 </span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成功能描述:</label>
-			<div class="controls">
-				<form:input path="functionName" htmlEscape="false" maxlength="500" class="required input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成功能描述:</label>
+			<div class="col-md-4">
+				<form:input path="functionName" htmlEscape="false" maxlength="500" class="required form-control"/>
 				<span class="help-inline">将设置到类描述</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成功能名:</label>
-			<div class="controls">
-				<form:input path="functionNameSimple" htmlEscape="false" maxlength="500" class="required input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成功能名:</label>
+			<div class="col-md-4">
+				<form:input path="functionNameSimple" htmlEscape="false" maxlength="500" class="required form-control"/>
 				<span class="help-inline">用作功能提示，如：保存“某某”成功</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成功能作者:</label>
-			<div class="controls">
-				<form:input path="functionAuthor" htmlEscape="false" maxlength="500" class="required input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成功能作者:</label>
+			<div class="col-md-4">
+				<form:input path="functionAuthor" htmlEscape="false" maxlength="500" class="required form-control"/>
 				<span class="help-inline">功能开发者</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">业务表名:</label>
-			<div class="controls">
-				<form:select path="genTable.id" class="required input-xlarge">
+		<div class="form-group">
+			<label class="control-label col-sm-1">业务表名:</label>
+			<div class="col-md-4">
+				<form:select path="genTable.id" class="required">
 					<form:options items="${tableList}" itemLabel="nameAndComments" itemValue="id" htmlEscape="false"/>
 				</form:select>
 				<span class="help-inline">生成的数据表，一对多情况下请选择主表。</span>
 			</div>
 		</div>
-		<div class="control-group hide">
-			<label class="control-label">备注:</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="200" class="input-xxlarge"/>
+		<div class="form-group hide">
+			<label class="control-label col-sm-1">备注:</label>
+			<div class="col-md-4">
+				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="200" class="form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成选项:</label>
-			<div class="controls">
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成选项:</label>
+			<div class="col-md-4">
 				<form:checkbox path="replaceFile" label="是否替换现有文件"/>
 			</div>
 		</div>

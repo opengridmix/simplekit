@@ -185,10 +185,10 @@
 	<div style="position:absolute;right:8px;top:5px;cursor:pointer;" onclick="search();">
 		<i class="fa fa-search"></i><label id="txt">搜索</label>
 	</div>
-	<div id="search" class="form-search hide" style="padding:10px 0 0 13px;">
-		<label for="key" class="control-label" style="padding:5px 5px 3px 0;">关键字：</label>
-		<input type="text" class="empty" id="key" name="key" maxlength="50" style="width:110px;">
-		<button class="btn" id="btn" onclick="searchNode()">搜索</button>
+	<div id="search" class="form-inline" style="padding:10px 0 0 18px; display:none">
+		<label for="key" class="control-label col-sm-1" style="padding:5px 5px 3px 0;">关键字：</label>
+		<input type="text" class="empty form-control" id="key" name="key" maxlength="50" style="width:110px;">
+		<button class="btn btn-default form-control" id="btn" onclick="searchNode()">搜索</button>
 	</div>
 	<div id="tree" class="ztree" style="padding:15px 20px;"></div>
 </body>

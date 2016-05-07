@@ -11,12 +11,12 @@
 		<li class="active"><a href="${ctx}/sys/role/assign?id=${role.id}"><shiro:hasPermission name="sys:role:edit">角色分配</shiro:hasPermission><shiro:lacksPermission name="sys:role:edit">人员列表</shiro:lacksPermission></a></li>
 	</ul>
 	<div class="container-fluid breadcrumb">
-		<div class="row-fluid span12">
+		<div class="row span12">
 			<span class="span4">角色名称: <b>${role.name}</b></span>
 			<span class="span4">归属机构: ${role.office.name}</span>
 			<span class="span4">英文名称: ${role.enname}</span>
 		</div>
-		<div class="row-fluid span8">
+		<div class="row span8">
 			<span class="span4">角色类型: ${role.roleType}</span>
 			<c:set var="dictvalue" value="${role.dataScope}" scope="page" />
 			<span class="span4">数据范围: ${fns:getDictLabel(dictvalue, 'sys_data_scope', '')}</span>

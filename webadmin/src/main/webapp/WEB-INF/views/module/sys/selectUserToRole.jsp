@@ -94,7 +94,7 @@
 	</script>
 </head>
 <body>
-	<div id="assignRole" class="row-fluid span12">
+	<div id="assignRole" class="row span12">
 		<div class="span4" style="border-right: 1px solid #A8A8A8;">
 			<p>所在部门：</p>
 			<div id="officeTree" class="ztree"></div>

@@ -38,62 +38,62 @@
 	<form:form id="inputForm" modelAttribute="link" action="${ctx}/cms/link/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">归属栏目:</label>
-			<div class="controls">
+		<div class="form-group">
+			<label class="control-label col-sm-1">归属栏目:</label>
+			<div class="col-md-4">
                 <sys:treeselect id="category" name="category.id" value="${link.category.id}" labelName="category.name" labelValue="${link.category.name}"
-					title="栏目" url="/cms/category/treeData" module="link" selectScopeModule="true" notAllowSelectRoot="false" notAllowSelectParent="true" cssClass="required"/>
+					title="栏目" url="/cms/category/treeData" module="link" selectScopeModule="true" notAllowSelectRoot="false" notAllowSelectParent="true" cssClass="required form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">名称:</label>
-			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="200" class="input-xxlarge required measure-input"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">名称:</label>
+			<div class="col-md-4">
+				<form:input path="title" htmlEscape="false" maxlength="200" class="form-control required measure-input"/>
 				&nbsp;<label>颜色:</label>
-				<form:select path="color" class="input-mini">
+				<form:select path="color" class="">
 					<form:option value="" label="默认"/>
 					<form:options items="${fns:getDictList('color')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 				</form:select>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">链接图片:</label>
-			<div class="controls">
-				<form:hidden path="image" htmlEscape="false" maxlength="255" class="input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">链接图片:</label>
+			<div class="col-md-4">
+				<form:hidden path="image" htmlEscape="false" maxlength="255" class="form-control"/>
 				<sys:ckfinder input="image" type="images" uploadPath="/cms/link" selectMultiple="false"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">链接地址:</label>
-			<div class="controls">
-				<form:input path="href" htmlEscape="false" maxlength="255" class="input-xxlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">链接地址:</label>
+			<div class="col-md-4">
+				<form:input path="href" htmlEscape="false" maxlength="255" class="form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">权重:</label>
-			<div class="controls">
-				<form:input path="weight" htmlEscape="false" maxlength="200" class="input-mini required digits"/>&nbsp;
+		<div class="form-group">
+			<label class="control-label col-sm-1">权重:</label>
+			<div class="col-md-4">
+				<form:input path="weight" htmlEscape="false" maxlength="200" class="form-control required digits"/>&nbsp;
 				<span>
 					<input id="weightTop" type="checkbox" onclick="$('#weight').val(this.checked?'999':'0')"><label for="weightTop">置顶</label>
 				</span>
 				&nbsp;过期时间：
-				<input id="weightDate" name="weightDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
+				<input id="weightDate" name="weightDate" type="text" readonly="readonly" maxlength="20" class="form-control Wdate"
 					value="<fmt:formatDate value="${link.weightDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 				<span class="help-inline">数值越大排序越靠前，过期时间可为空，过期后取消置顶。</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">备注:</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="200" class="input-xxlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">备注:</label>
+			<div class="col-md-4">
+				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="200" class="form-control"/>
 			</div>
 		</div>
 		<shiro:hasPermission name="cms:article:audit">
-			<div class="control-group">
-				<label class="control-label">发布状态:</label>
-				<div class="controls">
-					<form:radiobuttons path="delFlag" items="${fns:getDictList('cms_del_flag')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
+			<div class="form-group">
+				<label class="control-label col-sm-1">发布状态:</label>
+				<div class="col-md-4">
+					<form:radiobuttons path="delFlag" items="${fns:getDictList('cms_del_flag')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required form-control"/>
 					<span class="help-inline"></span>
 				</div>
 			</div>

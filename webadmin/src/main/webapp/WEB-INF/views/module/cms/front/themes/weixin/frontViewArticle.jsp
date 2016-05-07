@@ -126,7 +126,7 @@
 		<div class="top46"></div>
 	</div>
 	<div class="container" style="padding: 15px 15px 0;">
-		<div class="row-fluid">
+		<div class="row">
 			<div class="span12">
 				<div>
 					<h4 id="wz_title">${article.title}</h4>

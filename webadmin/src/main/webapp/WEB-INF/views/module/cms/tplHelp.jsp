@@ -20,7 +20,7 @@
                 </div>
                 <p class="lead">下载之前先检查一下是否准备好了一个代码编辑器(我们推荐使用 <a href="http://sublimetext.com/2">Sublime Text 2</a>) ，你是否已经掌握了足够的HTML和CSS知识以开展工作。这里我们不详述源码文件，但是它们可以随时被下载。在这里我们只着重介绍使用已经编译好的Bootstrap文件进行入门讲解。</p>
 
-                <div class="row-fluid">
+                <div class="row">
                     <div class="span6">
                         <h2>下载编译好的文件</h2>
                         <p><strong>快速开始:</strong>立即下载编译好的版本吧，里面已经包含了CSS、JS和图片文件了，而且所有文件已经经过了压缩处理。不过，文档和源码文件不包含哦。</p>

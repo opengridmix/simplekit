@@ -6,22 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#name").focus();
-			$("#inputForm").validate({
-				submitHandler: function(form){
-					loading('正在提交，请稍等...');
-					form.submit();
-				},
-				errorContainer: "#messageBox",
-				errorPlacement: function(error, element) {
-					$("#messageBox").text("输入有误，请先更正。");
-					if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
-						error.appendTo(element.parent().parent());
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			});
+			validator("#inputForm","#name");
 		});
 	</script>
 </head>
@@ -33,57 +18,57 @@
 	<form:form id="inputForm" modelAttribute="site" action="${ctx}/cms/site/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">站点名称:</label>
-			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="200" class="input-xlarge required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">站点名称:</label>
+			<div class="col-md-4">
+				<form:input path="name" htmlEscape="false" maxlength="200" class="form-control required"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">站点标题:</label>
-			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="200" class="input-xlarge required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">站点标题:</label>
+			<div class="col-md-4">
+				<form:input path="title" htmlEscape="false" maxlength="200" class="form-control required"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">站点Logo:</label>
-			<div class="controls">
-				<form:hidden path="logo" htmlEscape="false" maxlength="255" class="input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">站点Logo:</label>
+			<div class="col-md-4">
+				<form:hidden path="logo" htmlEscape="false" maxlength="255" class="form-control"/>
 				<sys:ckfinder input="logo" type="images" uploadPath="/cms/site"/>
 				<span class="help-inline">建议Logo大小：1000 × 145（像素）</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">描述:</label>
-			<div class="controls">
-				<form:textarea path="description" htmlEscape="false" rows="4" maxlength="200" class="input-xxlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">描述:</label>
+			<div class="col-md-4">
+				<form:textarea path="description" htmlEscape="false" rows="4" maxlength="200" class="form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">关键字:</label>
-			<div class="controls">
+		<div class="form-group">
+			<label class="control-label col-sm-1">关键字:</label>
+			<div class="col-md-4">
 				<form:input path="keywords" htmlEscape="false" maxlength="200"/>
 				<span class="help-inline">填写描述及关键字，有助于搜索引擎优化</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">默认主题:</label>
-			<div class="controls">
-				<form:select path="theme" class="input-medium">
+		<div class="form-group">
+			<label class="control-label col-sm-1">默认主题:</label>
+			<div class="col-md-4">
+				<form:select path="theme" class="">
 					<form:options items="${fns:getDictList('cms_theme')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">版权信息:</label>
-			<div class="controls">
-				<form:textarea id="copyright" htmlEscape="true" path="copyright" rows="4" maxlength="200" class="input-xxlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">版权信息:</label>
+			<div class="col-md-4">
+				<form:textarea id="copyright" htmlEscape="true" path="copyright" rows="4" maxlength="200" class="form-control"/>
 				<sys:ckeditor replace="copyright" uploadPath="/cms/site" />
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">自定义首页视图:</label>
-			<div class="controls">
+		<div class="form-group">
+			<label class="control-label col-sm-1">自定义首页视图:</label>
+			<div class="col-md-4">
 				<form:input path="customIndexView" htmlEscape="false" maxlength="200"/>
 			</div>
 		</div>

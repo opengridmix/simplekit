@@ -21,13 +21,13 @@
 		<li class="active"><a href="${ctx}/gen/genTable/">业务表列表</a></li>
 		<shiro:hasPermission name="gen:genTable:edit"><li><a href="${ctx}/gen/genTable/form">业务表添加</a></li></shiro:hasPermission>
 	</ul>
-	<form:form id="searchForm" modelAttribute="genTable" action="${ctx}/gen/genTable/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="genTable" action="${ctx}/gen/genTable/" method="post" class="breadcrumb form-inline">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<sys:tableSort id="orderBy" name="orderBy" value="${page.orderBy}" callback="page();"/>
-		<label>表名：</label><form:input path="nameLike" htmlEscape="false" maxlength="50" class="input-medium"/>
-		<label>说明：</label><form:input path="comments" htmlEscape="false" maxlength="50" class="input-medium"/>
-		<label>父表表名：</label><form:input path="parentTable" htmlEscape="false" maxlength="50" class="input-medium"/>
+		<label>表名：</label><form:input path="nameLike" htmlEscape="false" maxlength="50" class="form-control"/>
+		<label>说明：</label><form:input path="comments" htmlEscape="false" maxlength="50" class="form-control"/>
+		<label>父表表名：</label><form:input path="parentTable" htmlEscape="false" maxlength="50" class="form-control"/>
 		&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
 	</form:form>
 	<sys:message content="${message}"/>
@@ -48,6 +48,6 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div>${page}</div>
 </body>
 </html>

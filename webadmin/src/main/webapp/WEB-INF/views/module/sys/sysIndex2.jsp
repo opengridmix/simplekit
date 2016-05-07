@@ -71,17 +71,17 @@
 						});
 						// 二级标题
 						$(menuId + " .accordion-heading a").click(function(){
-							$(menuId + " .accordion-toggle i").removeClass('icon-chevron-down').addClass('icon-chevron-right');
+							$(menuId + " .accordion-toggle i").removeClass('fa fa-chevron-down').addClass('fa fa-chevron-right');
 							if(!$($(this).attr('data-href')).hasClass('in')){
-								$(this).children("i").removeClass('icon-chevron-right').addClass('icon-chevron-down');
+								$(this).children("i").removeClass('fa fa-chevron-right').addClass('fa fa-chevron-down');
 							}
 						});
 						// 二级内容
 						$(menuId + " .accordion-body a").click(function(){
 							$(menuId + " li").removeClass("active");
-							$(menuId + " li i").removeClass("icon-white");
+							$(menuId + " li i").removeClass("fa fa-white");
 							$(this).parent().addClass("active");
-							$(this).children("i").addClass("icon-white");
+							$(this).children("i").addClass("fa fa-white");
 						});
 						// 展现三级
 						$(menuId + " .accordion-inner a").click(function(){
@@ -143,11 +143,11 @@
 	<div id="main">
 		<div id="header" class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
-				<div class="brand"><span id="productName">${fns:getConfig('productName')}</span></div>
+				<div class="navbar-brand"><span id="productName">${fns:getConfig('productName')}</span></div>
 				<ul id="userControl" class="nav pull-right"><%--
-					<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="icon-home"></i></a></li>--%>
+					<li><a href="${pageContext.request.contextPath}${fns:getFrontPath()}/index-${fnc:getCurrentSiteId()}.html" target="_blank" title="访问网站主页"><i class="fa fa-home"></i></a></li>--%>
 					<li id="themeSwitch" class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="icon-th-large"></i></a>
+						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="fa fa-th-large"></i></a>
 						<ul class="dropdown-menu">
 							<c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
 							<li><a href="javascript:cookie('tabmode','${cookie.tabmode.value eq '1' ? '0' : '1'}');location=location.href">${cookie.tabmode.value eq '1' ? '关闭' : '开启'}页签模式</a></li>
@@ -157,9 +157,9 @@
 					<li id="userInfo" class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息">您好, ${fns:getUser().name}&nbsp;<span id="notifyNum" class="label label-info hide"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="${ctx}/sys/user/info" target="mainFrame"><i class="icon-user"></i>&nbsp; 个人信息</a></li>
-							<li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i class="icon-lock"></i>&nbsp;  修改密码</a></li>
-							<li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="icon-bell"></i>&nbsp;  我的通知 <span id="notifyNum2" class="label label-info hide"></span></a></li>
+							<li><a href="${ctx}/sys/user/info" target="mainFrame"><i class="fa fa-user"></i>&nbsp; 个人信息</a></li>
+							<li><a href="${ctx}/sys/user/modifyPwd" target="mainFrame"><i class="fa fa-lock"></i>&nbsp;  修改密码</a></li>
+							<li><a href="${ctx}/oa/oaNotify/self" target="mainFrame"><i class="fa fa-bell"></i>&nbsp;  我的通知 <span id="notifyNum2" class="label label-info hide"></span></a></li>
 						</ul>
 					</li>
 					<li><a href="${ctx}/logout" title="退出登录">退出</a></li>
@@ -206,7 +206,7 @@
 			</div>
 	    </div>
 	    <div class="container-fluid">
-			<div id="content" class="row-fluid">
+			<div id="content" class="row">
 				<div id="left"><%-- 
 					<iframe id="menuFrame" name="menuFrame" src="" style="overflow:visible;" scrolling="yes" frameborder="no" width="100%" height="650"></iframe> --%>
 				</div>
@@ -215,7 +215,7 @@
 					<iframe id="mainFrame" name="mainFrame" src="" style="overflow:visible;" scrolling="yes" frameborder="no" width="100%" height="650"></iframe>
 				</div>
 			</div>
-		    <div id="footer" class="row-fluid">
+		    <div id="footer" class="row">
 	            Copyright &copy; 2012-${fns:getConfig('copyrightYear')} ${fns:getConfig('productName')}<!--  - Powered By <a href="https://github.com/thinkgem/jeesite" target="_blank">JeeSite</a> ${fns:getConfig('version')} -->
 			</div>
 		</div>

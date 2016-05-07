@@ -29,15 +29,15 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="${ctx}/cms/stats/article">信息量统计</a></li>
 	</ul>
-	<form:form id="searchForm" modelAttribute="article" action="${ctx}/cms/stats/article" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="article" action="${ctx}/cms/stats/article" method="post" class="breadcrumb form-inline">
 		<div>
 			<label>归属栏目：</label><sys:treeselect id="category" name="categoryId" value="${paramMap.id}" labelName="categoryName" labelValue="${paramMap.name}"
-				title="栏目" url="/cms/category/treeData" module="article" cssClass="input-small" allowClear="true"/>
+				title="栏目" url="/cms/category/treeData" module="article" cssClass="form-control" allowClear="true"/>
 			<label>归属机构：</label><sys:treeselect id="office" name="officeId" value="${paramMap.office.id}" labelName="officeName" labelValue="${paramMap.office.name}" 
-				title="机构" url="/sys/office/treeData" cssClass="input-small" allowClear="true"/>
-			<label>开始日期：</label><input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
+				title="机构" url="/sys/office/treeData" cssClass="form-control" allowClear="true"/>
+			<label>开始日期：</label><input id="beginDate" name="beginDate" type="text" readonly="readonly" maxlength="20" class="form-control Wdate"
 				value="${paramMap.beginDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
-			<label>结束日期：</label><input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="input-small Wdate"
+			<label>结束日期：</label><input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="form-control Wdate"
 				value="${paramMap.endDate}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>&nbsp;&nbsp;
 			<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
 		</div>
@@ -58,6 +58,6 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div>${page}</div>
 </body>
 </html>

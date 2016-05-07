@@ -41,10 +41,10 @@
 				<form:hidden path="id"/>
 				<sys:message content="${message}"/>
 				<br/>
-				<div class="control-group">
-					<label class="control-label">表名:</label>
-					<div class="controls">
-						<form:select path="name" class="input-xxlarge">
+				<div class="form-group">
+					<label class="control-label col-sm-1">表名:</label>
+					<div class="col-md-4">
+						<form:select path="name" class="">
 							<form:options items="${tableList}" itemLabel="nameAndComments" itemValue="name" htmlEscape="false"/>
 						</form:select>
 					</div>
@@ -61,50 +61,50 @@
 				<sys:message content="${message}"/>
 				<fieldset>
 					<legend>基本信息</legend>
-					<div class="control-group">
-						<label class="control-label">表名:</label>
-						<div class="controls">
-							<form:input path="name" htmlEscape="false" maxlength="200" class="required" readonly="true"/>
+					<div class="form-group">
+						<label class="control-label col-sm-1">表名:</label>
+						<div class="col-md-4">
+							<form:input path="name" htmlEscape="false" maxlength="200" class="required form-control" readonly="true"/>
 						</div>
 					</div>
-					<div class="control-group">
-						<label class="control-label">说明:</label>
-						<div class="controls">
-							<form:input path="comments" htmlEscape="false" maxlength="200" class="required"/>
+					<div class="form-group">
+						<label class="control-label col-sm-1">说明:</label>
+						<div class="col-md-4">
+							<form:input path="comments" htmlEscape="false" maxlength="200" class="form-control"/>
 						</div>
 					</div>
-					<div class="control-group">
-						<label class="control-label">类名:</label>
-						<div class="controls">
-							<form:input path="className" htmlEscape="false" maxlength="200" class="required"/>
+					<div class="form-group">
+						<label class="control-label col-sm-1">类名:</label>
+						<div class="col-md-4">
+							<form:input path="className" htmlEscape="false" maxlength="200" class="form-control"/>
 						</div>
 					</div>
-					<div class="control-group">
-						<label class="control-label">父表表名:</label>
-						<div class="controls">
-							<form:select path="parentTable" cssClass="input-xlarge">
+					<div class="form-group">
+						<label class="control-label col-sm-1">父表表名:</label>
+						<div class="col-md-4">
+							<form:select path="parentTable" cssClass="">
 								<form:option value="">无</form:option>
 								<form:options items="${tableList}" itemLabel="nameAndComments" itemValue="name" htmlEscape="false"/>
 							</form:select>
 							&nbsp;当前表外键：
-							<form:select path="parentTableFk" cssClass="input-xlarge">
+							<form:select path="parentTableFk" cssClass="">
 								<form:option value="">无</form:option>
 								<form:options items="${genTable.columnList}" itemLabel="nameAndComments" itemValue="name" htmlEscape="false"/>
 							</form:select>
 							<span class="help-inline">如果有父表，请指定父表表名和外键</span>
 						</div>
 					</div>
-					<div class="control-group hide">
-						<label class="control-label">备注:</label>
-						<div class="controls">
-							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="200" class="input-xxlarge"/>
+					<div class="form-group hide">
+						<label class="control-label col-sm-1">备注:</label>
+						<div class="col-md-4">
+							<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="200" class="form-control"/>
 						</div>
 					</div>
 					<legend>字段列表</legend>
-					<div class="control-group">
+					<div class="form-group">
 						<table id="contentTable" class="table table-striped table-bordered table-condensed">
 							<thead><tr><th title="数据库字段名">列名</th><th title="默认读取数据库字段备注">说明</th><th title="数据库中设置的字段类型及长度">物理类型</th><th title="实体对象的属性字段类型">Java类型</th>
-								<th title="实体对象的属性字段（对象名.属性名|属性名2|属性名3，例如：用户user.id|name|loginName，属性名2和属性名3为Join时关联查询的字段）">Java属性名称 <i class="icon-question-sign"></i></th>
+								<th title="实体对象的属性字段（对象名.属性名|属性名2|属性名3，例如：用户user.id|name|loginName，属性名2和属性名3为Join时关联查询的字段）">Java属性名称 <i class="fa fa-question-sign"></i></th>
 								<th title="是否是数据库主键">主键</th><th title="字段是否可为空值，不可为空字段自动进行空值验证">可空</th><th title="选中后该字段被加入到insert语句里">插入</th>
 								<th title="选中后该字段被加入到update语句里">编辑</th><th title="选中后该字段被加入到查询列表里">列表</th>
 								<th title="选中后该字段被加入到查询条件里">查询</th><th title="该字段为查询字段时的查询匹配放松">查询匹配方式</th>
@@ -119,20 +119,20 @@
 										<input type="hidden" name="columnList[${vs.index}].name" value="${column.name}"/>${column.name}
 									</td>
 									<td>
-										<input type="text" name="columnList[${vs.index}].comments" value="${column.comments}" maxlength="200" class="required" style="width:100px;"/>
+										<input type="text" name="columnList[${vs.index}].comments" value="${column.comments}" maxlength="200" class="form-control" style="width:100px;"/>
 									</td>
 									<td nowrap>
 										<input type="hidden" name="columnList[${vs.index}].jdbcType" value="${column.jdbcType}"/>${column.jdbcType}
 									</td>
 									<td>
-										<select name="columnList[${vs.index}].javaType" class="required input-mini" style="width:85px;*width:75px">
+										<select name="columnList[${vs.index}].javaType" class="required" style="width:85px;*width:75px">
 											<c:forEach items="${config.javaTypeList}" var="dict">
 												<option value="${dict.value}" ${dict.value==column.javaType?'selected':''} title="${dict.description}">${dict.label}</option>
 											</c:forEach>
 										</select>
 									</td>
 									<td>
-										<input type="text" name="columnList[${vs.index}].javaField" value="${column.javaField}" maxlength="200" class="required input-small"/>
+										<input type="text" name="columnList[${vs.index}].javaField" value="${column.javaField}" maxlength="200" class="required form-control"/>
 									</td>
 									<td>
 										<input type="checkbox" name="columnList[${vs.index}].isPk" value="1" ${column.isPk eq '1' ? 'checked' : ''}/>
@@ -153,21 +153,21 @@
 										<input type="checkbox" name="columnList[${vs.index}].isQuery" value="1" ${column.isQuery eq '1' ? 'checked' : ''}/>
 									</td>
 									<td>
-										<select name="columnList[${vs.index}].queryType" class="required input-mini">
+										<select name="columnList[${vs.index}].queryType" class="required">
 											<c:forEach items="${config.queryTypeList}" var="dict">
 												<option value="${fns:escapeHtml(dict.value)}" ${fns:escapeHtml(dict.value)==column.queryType?'selected':''} title="${dict.description}">${fns:escapeHtml(dict.label)}</option>
 											</c:forEach>
 										</select>
 									</td>
 									<td>
-										<select name="columnList[${vs.index}].showType" class="required" style="width:100px;">
+										<select name="columnList[${vs.index}].showType" class="" style="width:100px;">
 											<c:forEach items="${config.showTypeList}" var="dict">
 												<option value="${dict.value}" ${dict.value==column.showType?'selected':''} title="${dict.description}">${dict.label}</option>
 											</c:forEach>
 										</select>
 									</td>
 									<td>
-										<input type="text" name="columnList[${vs.index}].dictType" value="${column.dictType}" maxlength="200" class="input-mini"/>
+										<input type="text" name="columnList[${vs.index}].dictType" value="${column.dictType}" maxlength="200" class="form-control"/>
 									</td>
 									<td>
 										<input type="text" name="columnList[${vs.index}].sort" value="${column.sort}" maxlength="200" class="required input-min digits"/>

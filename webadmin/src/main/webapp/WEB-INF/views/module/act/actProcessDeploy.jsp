@@ -6,21 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$("#inputForm").validate({
-				submitHandler: function(form){
-					loading('正在提交，请稍等...');
-					form.submit();
-				},
-				errorContainer: "#messageBox",
-				errorPlacement: function(error, element) {
-					$("#messageBox").text("输入有误，请先更正。");
-					if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
-						error.appendTo(element.parent().parent());
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			});
+			validator("#inputForm");
 		});
 	</script>
 </head>
@@ -32,20 +18,20 @@
 	</ul><br/>
 	<sys:message content="${message}"/>
 	<form id="inputForm" action="${ctx}/act/process/deploy" method="post" enctype="multipart/form-data" class="form-horizontal">
-		<div class="control-group">
-			<label class="control-label">流程分类：</label>
-			<div class="controls">
-				<select id="category" name="category" class="required input-medium">
+		<div class="form-group">
+			<label class="control-label col-sm-1">流程分类：</label>
+			<div class="col-md-4">
+				<select id="category" name="category" class="required">
 					<c:forEach items="${fns:getDictList('act_category')}" var="dict">
 						<option value="${dict.value}">${dict.label}</option>
 					</c:forEach>
 				</select>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">流程文件：</label>
-			<div class="controls">
-				<input type="file" id="file" name="file" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">流程文件：</label>
+			<div class="col-md-4">
+				<input type="file" id="file" name="file" class="required form-control"/>
 				<span class="help-inline">支持文件格式：zip、bar、bpmn、bpmn20.xml</span>
 			</div>
 		</div>

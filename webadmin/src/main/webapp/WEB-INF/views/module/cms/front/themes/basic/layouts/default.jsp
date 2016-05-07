@@ -17,7 +17,7 @@
    			<c:when test="${not empty site.logo}">
    				<img alt="${site.title}" src="${site.logo}" class="container" onclick="location='${ctx}/index-${site.id}${fns:getUrlSuffix()}'">
    			</c:when>
-   			<c:otherwise><a class="brand" href="${ctx}/index-${site.id}${fns:getUrlSuffix()}">${site.title}</a></c:otherwise>
+   			<c:otherwise><a class="navbar-brand" href="${ctx}/index-${site.id}${fns:getUrlSuffix()}">${site.title}</a></c:otherwise>
    		  </c:choose>
           <div class="nav-collapse">
             <ul id="main_nav" class="nav nav-pills">
@@ -27,13 +27,13 @@
 		    		<li class="${requestScope.category.id eq category.id||fn:indexOf(requestScope.category.parentIds,menuCategoryId) ge 1?'active':''}"><a href="${category.url}" target="${category.target}"><span>${category.name}</span></a></li>
 		    	</c:if></c:forEach>
 			    <li id="siteSwitch" class="dropdown">
-			       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="站点"><i class="icon-retweet"></i></a>
+			       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="站点"><i class="fa fa-retweet"></i></a>
 					<ul class="dropdown-menu">
 					  <c:forEach items="${fnc:getSiteList()}" var="site"><li><a href="#" onclick="location='${ctx}/index-${site.id}${urlSuffix}'">${site.title}</a></li></c:forEach>
 					</ul>
 				</li>
 		    	<li id="themeSwitch" class="dropdown">
-			       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="icon-th-large"></i></a>
+			       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="主题切换"><i class="fa fa-th-large"></i></a>
 				    <ul class="dropdown-menu">
 				      <c:forEach items="${fns:getDictList('theme')}" var="dict"><li><a href="#" onclick="location='${pageContext.request.contextPath}/theme/${dict.value}?url='+location.href">${dict.label}</a></li></c:forEach>
 				    </ul>

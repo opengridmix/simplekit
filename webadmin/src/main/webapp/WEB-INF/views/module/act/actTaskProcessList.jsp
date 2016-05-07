@@ -19,8 +19,8 @@
 		<li><a href="${ctx}/act/task/historic/">已办任务</a></li>
 		<li class="active"><a href="${ctx}/act/task/process/">新建任务</a></li>
 	</ul>
-	<form id="searchForm" action="${ctx}/act/task/process/" method="post" class="breadcrumb form-search">
-		<select id="category" name="category" class="input-medium">
+	<form id="searchForm" action="${ctx}/act/task/process/" method="post" class="breadcrumb form-inline">
+		<select id="category" name="category" class="">
 			<option value="">全部分类</option>
 			<c:forEach items="${fns:getDictList('act_category')}" var="dict">
 				<option value="${dict.value}" ${dict.value==category?'selected':''}>${dict.label}</option>
@@ -60,6 +60,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div>${page}</div>
 </body>
 </html>

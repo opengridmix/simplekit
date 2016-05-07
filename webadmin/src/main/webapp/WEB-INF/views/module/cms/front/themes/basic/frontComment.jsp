@@ -62,7 +62,7 @@
 		<li>暂时还没有人评论！</li>
 	</c:if>
 </ul>
-<div class="pagination">${page}</div>
+<div>${page}</div>
 <h5>我要评论</h5>
 <div id="commentForm0"></div>
 <script id="commentFormTpl" type="text/javascript"><!--/*-->
@@ -71,16 +71,16 @@
 		<input type="hidden" name="contentId" value="${comment.contentId}"/>
 		<input type="hidden" name="title" value="${comment.title}"/>
 		<input type="hidden" name="replyId"/>
-		<div class="control-group">
-			<label class="control-label">留言内容:</label>
-			<div class="controls">
-				<textarea name="content" rows="4" maxlength="200" class="txt required" style="width:400px;"></textarea>
+		<div class="form-group">
+			<label class="control-label col-sm-1">留言内容:</label>
+			<div class="col-md-4">
+				<textarea name="content" rows="4" maxlength="200" class="txt required form-control" style="width:400px;"></textarea>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">姓名:</label>
-			<div class="controls">
-				<input type="text" name="name" maxlength="11" class="txt required" style="width:100px;" value="匿名"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">姓名:</label>
+			<div class="col-md-4">
+				<input type="text" name="name" maxlength="11" class="txt required form-control" style="width:100px;" value="匿名"/>
 				<label class="mid">验证码:</label><sys:validateCode name="validateCode" />
 				<input class="btn mid" type="submit" value="提 交"/>&nbsp;
 			</div>

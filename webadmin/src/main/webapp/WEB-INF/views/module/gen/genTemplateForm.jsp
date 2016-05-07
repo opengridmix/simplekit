@@ -6,22 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#name").focus();
-			$("#inputForm").validate({
-				submitHandler: function(form){
-					loading('正在提交，请稍等...');
-					form.submit();
-				},
-				errorContainer: "#messageBox",
-				errorPlacement: function(error, element) {
-					$("#messageBox").text("输入有误，请先更正。");
-					if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
-						error.appendTo(element.parent().parent());
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			});
+			validator("#inputForm","#name");
 		});
 	</script>
 </head>
@@ -33,26 +18,26 @@
 	<form:form id="inputForm" modelAttribute="genTemplate" action="${ctx}/gen/genTemplate/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">名称:</label>
-			<div class="controls">
-				<form:input path="name" htmlEscape="false" maxlength="200" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">名称:</label>
+			<div class="col-md-4">
+				<form:input path="name" htmlEscape="false" maxlength="200" class="form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">归属分类:</label>
-			<div class="controls"><%--
-				<form:select path="category" class="required">
+		<div class="form-group">
+			<label class="control-label col-sm-1">归属分类:</label>
+			<div class="col-md-4"><%--
+				<form:select path="category" class="">
 					<form:option value=""></form:option>
 					<form:options items="${fns:getDictList('gen_category')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select> --%>
 				<form:checkboxes items="${fns:getDictList('gen_category')}" path="categoryList" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成路径:</label>
-			<div class="controls">
-				<form:input path="filePath" htmlEscape="false" maxlength="500" class="required input-xxlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成路径:</label>
+			<div class="col-md-4">
+				<form:input path="filePath" htmlEscape="false" maxlength="500" class="required form-control"/>
 				<br/>
 				<span class="help-inline">
 					示例如下：<br/>
@@ -62,10 +47,10 @@
 				</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">生成文件名:</label>
-			<div class="controls">
-				<form:input path="fileName" htmlEscape="false" maxlength="500" class="required input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">生成文件名:</label>
+			<div class="col-md-4">
+				<form:input path="fileName" htmlEscape="false" maxlength="500" class="required form-control"/>
 				<br/>
 				<span class="help-inline">
 					示例如下：<br/>
@@ -74,10 +59,10 @@
 				</span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">内容:</label>
-			<div class="controls">
-				<form:textarea id="content" htmlEscape="true" path="content" rows="25" class="required" style="width:90%;" wrap="off" />
+		<div class="form-group">
+			<label class="control-label col-sm-1">内容:</label>
+			<div class="col-md-4">
+				<form:textarea id="content" htmlEscape="true" path="content" rows="25" class="form-control" style="width:90%;" wrap="off" />
 				<script type="text/javascript">
 			        /*------selection operations-------*/
 			        function insertAtCursor(obj, txt) {
@@ -158,10 +143,10 @@
 				</script>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">备注:</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="200" class="input-xxlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">备注:</label>
+			<div class="col-md-4">
+				<form:textarea path="remarks" htmlEscape="false" rows="4" maxlength="200" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-actions">

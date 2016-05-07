@@ -19,7 +19,7 @@
 	</script>
 	<script type="text/template" id="categoryBox">
 		<form id="categoryForm" action="${ctx}/act/model/updateCategory" method="post" enctype="multipart/form-data"
-			style="text-align:center;" class="form-search" onsubmit="loading('正在分类，请稍等...');"><br/>
+			style="text-align:center;" class="form-inline" onsubmit="loading('正在分类，请稍等...');"><br/>
 			<input id="categoryBoxId" type="hidden" name="id" value="" />
 			<select id="categoryBoxCategory" name="category">
 				<c:forEach items="${fns:getDictList('act_category')}" var="dict">
@@ -36,8 +36,8 @@
 		<li class="active"><a href="${ctx}/act/model/">模型管理</a></li>
 		<li><a href="${ctx}/act/model/create">新建模型</a></li>
 	</ul>
-	<form id="searchForm" action="${ctx}/act/model/" method="post" class="breadcrumb form-search">
-		<select id="category" name="category" class="input-medium">
+	<form id="searchForm" action="${ctx}/act/model/" method="post" class="breadcrumb form-inline">
+		<select id="category" name="category" class="">
 			<option value="">全部分类</option>
 			<c:forEach items="${fns:getDictList('act_category')}" var="dict">
 				<option value="${dict.value}" ${dict.value==category?'selected':''}>${dict.label}</option>
@@ -79,6 +79,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div>${page}</div>
 </body>
 </html>

@@ -6,22 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#value").focus();
-			$("#inputForm").validate({
-				submitHandler: function(form){
-					loading('正在提交，请稍等...');
-					form.submit();
-				},
-				errorContainer: "#messageBox",
-				errorPlacement: function(error, element) {
-					$("#messageBox").text("输入有误，请先更正。");
-					if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
-						error.appendTo(element.parent().parent());
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			});
+			validator("#inputForm","#value");
 		});
 	</script>
 </head>
@@ -33,40 +18,40 @@
 	<form:form id="inputForm" modelAttribute="dict" action="${ctx}/sys/dict/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">键值:</label>
-			<div class="controls">
-				<form:input path="value" htmlEscape="false" maxlength="50" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">键值:</label>
+			<div class="col-md-4">
+				<form:input path="value" htmlEscape="false" maxlength="50" class="required form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">标签:</label>
-			<div class="controls">
-				<form:input path="label" htmlEscape="false" maxlength="50" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">标签:</label>
+			<div class="col-md-4">
+				<form:input path="label" htmlEscape="false" maxlength="50" class="required form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">类型:</label>
-			<div class="controls">
+		<div class="form-group">
+			<label class="control-label col-sm-1">类型:</label>
+			<div class="col-md-4">
 				<form:input path="type" htmlEscape="false" maxlength="50" class="required abc"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">描述:</label>
-			<div class="controls">
-				<form:input path="description" htmlEscape="false" maxlength="50" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">描述:</label>
+			<div class="col-md-4">
+				<form:input path="description" htmlEscape="false" maxlength="50" class="required form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">排序:</label>
-			<div class="controls">
+		<div class="form-group">
+			<label class="control-label col-sm-1">排序:</label>
+			<div class="col-md-4">
 				<form:input path="sort" htmlEscape="false" maxlength="11" class="required digits"/>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">备注:</label>
-			<div class="controls">
-				<form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="input-xlarge"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">备注:</label>
+			<div class="col-md-4">
+				<form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="form-control"/>
 			</div>
 		</div>
 		<div class="form-actions">

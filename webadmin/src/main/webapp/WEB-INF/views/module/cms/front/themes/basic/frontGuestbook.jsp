@@ -55,36 +55,36 @@
 				<li>暂时还没有人留言！</li>
 			</c:if>
 		</ul>
-		<div class="pagination">${page}</div>
+		<div>${page}</div>
 		<h4>我要留言</h4>
 		<form:form id="inputForm" action="${ctx}/guestbook" method="post" class="form-horizontal">
-			<div class="control-group">
-				<label class="control-label">名称:</label>
-				<div class="controls">
-					<input type="text" name="name" maxlength="11" class="required" style="width:300px;"/>
+			<div class="form-group">
+				<label class="control-label col-sm-1">名称:</label>
+				<div class="col-md-4">
+					<input type="text" name="name" maxlength="11" class="required form-control" style="width:300px;"/>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">邮箱:</label>
-				<div class="controls">
-					<input type="text" name="email" maxlength="50" class="required email" style="width:300px;"/>
+			<div class="form-group">
+				<label class="control-label col-sm-1">邮箱:</label>
+				<div class="col-md-4">
+					<input type="text" name="email" maxlength="50" class="required email form-control" style="width:300px;"/>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">电话:</label>
-				<div class="controls">
-					<input type="text" name="phone" maxlength="50" class="required phone" style="width:300px;"/>
+			<div class="form-group">
+				<label class="control-label col-sm-1">电话:</label>
+				<div class="col-md-4">
+					<input type="text" name="phone" maxlength="50" class="required phone form-control" style="width:300px;"/>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">单位:</label>
-				<div class="controls">
-					<input type="text" name="workunit" maxlength="50" class="required" style="width:300px;"/>
+			<div class="form-group">
+				<label class="control-label col-sm-1">单位:</label>
+				<div class="col-md-4">
+					<input type="text" name="workunit" maxlength="50" class="required form-control" style="width:300px;"/>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">留言分类:</label>
-				<div class="controls">
+			<div class="form-group">
+				<label class="control-label col-sm-1">留言分类:</label>
+				<div class="col-md-4">
 					<select name="type" class="txt required" style="width:100px;">
 						<option value="">请选择</option>
 						<c:forEach items="${fns:getDictList('cms_guestbook')}" var="type">
@@ -93,15 +93,15 @@
 					</select>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">留言内容:</label>
-				<div class="controls">
-					<textarea name="content" rows="4" maxlength="200" class="required" style="width:400px;"></textarea>
+			<div class="form-group">
+				<label class="control-label col-sm-1">留言内容:</label>
+				<div class="col-md-4">
+					<textarea name="content" rows="4" maxlength="200" class="required form-control" style="width:400px;"></textarea>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">验证码:</label>
-				<div class="controls">
+			<div class="form-group">
+				<label class="control-label col-sm-1">验证码:</label>
+				<div class="col-md-4">
 					<sys:validateCode name="validateCode" />
 				</div>
 			</div>

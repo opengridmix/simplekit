@@ -6,7 +6,7 @@
 	<meta name="decorator" content="default"/>
 </head>
 <body>
-	<div id="content" class="row-fluid">
+	<div id="content" class="row">
 		<div id="left">
 			<iframe id="cmsMenuFrame" name="cmsMenuFrame" src="${ctx}/cms/tree" style="overflow:visible;"
 				scrolling="yes" frameborder="no" width="100%"></iframe>

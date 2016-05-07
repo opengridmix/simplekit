@@ -38,24 +38,24 @@
 	<form:form id="inputForm" modelAttribute="user" action="${ctx}/sys/user/modifyPwd" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">旧密码:</label>
-			<div class="controls">
-				<input id="oldPassword" name="oldPassword" type="password" value="" maxlength="50" minlength="3" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">旧密码:</label>
+			<div class="col-md-4">
+				<input id="oldPassword" name="oldPassword" type="password" value="" maxlength="50" minlength="3" class="required form-control"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">新密码:</label>
-			<div class="controls">
-				<input id="newPassword" name="newPassword" type="password" value="" maxlength="50" minlength="3" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">新密码:</label>
+			<div class="col-md-4">
+				<input id="newPassword" name="newPassword" type="password" value="" maxlength="50" minlength="3" class="required form-control"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">确认新密码:</label>
-			<div class="controls">
-				<input id="confirmNewPassword" name="confirmNewPassword" type="password" value="" maxlength="50" minlength="3" class="required" equalTo="#newPassword"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">确认新密码:</label>
+			<div class="col-md-4">
+				<input id="confirmNewPassword" name="confirmNewPassword" type="password" value="" maxlength="50" minlength="3" class="required form-control" equalTo="#newPassword"/>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>

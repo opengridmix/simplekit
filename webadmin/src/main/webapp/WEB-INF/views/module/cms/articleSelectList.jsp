@@ -48,12 +48,12 @@
 </head>
 <body>
 	<div style="margin:10px;">
-	<form:form id="searchForm" modelAttribute="article" action="${ctx}/cms/article/selectList" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="article" action="${ctx}/cms/article/selectList" method="post" class="breadcrumb form-inline">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<label>栏目：</label><sys:treeselect id="category" name="category.id" value="${article.category.id}" labelName="category.name" labelValue="${article.category.name}"
-					title="栏目" url="/cms/category/treeData" module="article" cssClass="input-small"/>
-		<label>标题：</label><form:input path="title" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+					title="栏目" url="/cms/category/treeData" module="article" cssClass="form-control"/>
+		<label>标题：</label><form:input path="title" htmlEscape="false" maxlength="50" class="form-control"/>&nbsp;
 		<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>&nbsp;&nbsp;
 	</form:form>
 	<table id="contentTable" class="table table-striped table-bordered table-condensed">
@@ -72,7 +72,7 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div>${page}</div>
 	</div>
 </body>
 </html>

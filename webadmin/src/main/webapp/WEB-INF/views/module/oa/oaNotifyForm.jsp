@@ -6,22 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			//$("#name").focus();
-			$("#inputForm").validate({
-				submitHandler: function(form){
-					loading('正在提交，请稍等...');
-					form.submit();
-				},
-				errorContainer: "#messageBox",
-				errorPlacement: function(error, element) {
-					$("#messageBox").text("输入有误，请先更正。");
-					if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
-						error.appendTo(element.parent().parent());
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			});
+			validator("#inputForm");
 		});
 	</script>
 </head>
@@ -33,65 +18,72 @@
 	<form:form id="inputForm" modelAttribute="oaNotify" action="${ctx}/oa/oaNotify/save" method="post" class="form-horizontal">
 		<form:hidden path="id"/>
 		<sys:message content="${message}"/>	
-		<div class="control-group">
-			<label class="control-label">类型：</label>
-			<div class="controls">
-				<form:select path="type" class="input-xlarge required">
+		<div class="form-group">
+			<label class="control-label col-sm-1">类型：</label>
+			<div class="col-md-4">
+				<form:select path="type" class="required">
 					<form:option value="" label=""/>
 					<form:options items="${fns:getDictList('oa_notify_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 				</form:select>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>	
-		<div class="control-group">
-			<label class="control-label">标题：</label>
-			<div class="controls">
-				<form:input path="title" htmlEscape="false" maxlength="200" class="input-xlarge required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">标题：</label>
+			
+			<div class="col-md-4">
+				<div class="input-inline">
+				<form:input path="title" htmlEscape="false" maxlength="200" class="form-control required"/>
+				</div>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
-		<div class="control-group">
-			<label class="control-label">内容：</label>
-			<div class="controls">
-				<form:textarea path="content" htmlEscape="false" rows="6" maxlength="2000" class="input-xxlarge required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">内容：</label>
+			<div class="col-md-4">
+				<div class="input-inline">
+				<form:textarea path="content" htmlEscape="false" rows="6" maxlength="2000" class="form-control required"/>
+				</div>
 				<span class="help-inline"><font color="red">*</font> </span>
 			</div>
 		</div>
 		<c:if test="${oaNotify.status ne '1'}">
-			<div class="control-group">
-				<label class="control-label">附件：</label>
-				<div class="controls">
-					<form:hidden id="files" path="files" htmlEscape="false" maxlength="255" class="input-xlarge"/>
+			<div class="form-group">
+				<label class="control-label col-sm-1">附件：</label>
+				<div class="col-md-4">
+					<form:hidden id="files" path="files" htmlEscape="false" maxlength="255" class="form-control"/>
 					<sys:ckfinder input="files" type="files" uploadPath="/oa/notify" selectMultiple="true"/>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">状态：</label>
-				<div class="controls">
-					<form:radiobuttons path="status" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
+			<div class="form-group">
+				<label class="control-label col-sm-1">状态：</label>
+				<div class="col-md-4">
+					<form:radiobuttons path="status" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required radio-inline"/>
 					<span class="help-inline"><font color="red">*</font> 发布后不能进行操作。</span>
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">接受人：</label>
-				<div class="controls">
+			<div class="form-group">
+				<label class="control-label col-sm-1">接受人：</label>
+				<div class="col-md-4">
+					<div class="input-inline">
 	                <sys:treeselect id="oaNotifyRecord" name="oaNotifyRecordIds" value="${oaNotify.oaNotifyRecordIds}" labelName="oaNotifyRecordNames" labelValue="${oaNotify.oaNotifyRecordNames}"
-						title="用户" url="/sys/office/treeData?type=3" cssClass="input-xxlarge required" notAllowSelectParent="true" checked="true"/>
+						title="用户" url="/sys/office/treeData?type=3" cssClass="form-control required" notAllowSelectParent="true" checked="true"/>
+					</div>
 					<span class="help-inline"><font color="red">*</font> </span>
 				</div>
 			</div>
 		</c:if>
 		<c:if test="${oaNotify.status eq '1'}">
-			<div class="control-group">
-				<label class="control-label">附件：</label>
-				<div class="controls">
-					<form:hidden id="files" path="files" htmlEscape="false" maxlength="255" class="input-xlarge"/>
+			<div class="form-group">
+				<label class="control-label col-sm-1">附件：</label>
+				<div class="col-md-4">
+					<form:hidden id="files" path="files" htmlEscape="false" maxlength="255" class="form-control"/>
 					<sys:ckfinder input="files" type="files" uploadPath="/oa/notify" selectMultiple="true" readonly="true" />
 				</div>
 			</div>
-			<div class="control-group">
-				<label class="control-label">接受人：</label>
-				<div class="controls">
+			<div class="form-group">
+				<label class="control-label col-sm-1">接受人：</label>
+				<div class="col-md-4">
 					<table id="contentTable" class="table table-striped table-bordered table-condensed">
 						<thead>
 							<tr>

@@ -6,22 +6,7 @@
 	<meta name="decorator" content="default"/>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#value").focus();
-			$("#inputForm").validate({
-				submitHandler: function(form){
-					loading('正在提交，请稍等...');
-					form.submit();
-				},
-				errorContainer: "#messageBox",
-				errorPlacement: function(error, element) {
-					$("#messageBox").text("输入有误，请先更正。");
-					if (element.is(":checkbox")||element.is(":radio")||element.parent().is(".input-append")){
-						error.appendTo(element.parent().parent());
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			});
+			validator("#inputForm","#value");
 		});
 	</script>
 </head>
@@ -32,13 +17,13 @@
 	<form:form id="inputForm" modelAttribute="template" action="${ctx}/cms/template/save" method="post" class="form-horizontal">
         <form:hidden path="name" />
 		<sys:message content="${message}"/>
-		<div class="control-group">
-			<label class="control-label">文件名:</label>
-			<div class="controls">
-				<form:input path="filename" htmlEscape="false" maxlength="50" class="required"/>
+		<div class="form-group">
+			<label class="control-label col-sm-1">文件名:</label>
+			<div class="col-md-4">
+				<form:input path="filename" htmlEscape="false" maxlength="50" class="required form-control"/>
 			</div>
 		</div>
-		<div class="control-group">
+		<div class="form-group">
             <form:textarea id="source" path="source" htmlEscape="true" cssStyle="width:100%;height:460px;"/>
             <%--<sys:ckeditor replace="source" uploadPath="/cms/template" />--%>
 		</div>

@@ -18,12 +18,12 @@
 		<li class="active"><a href="${ctx}/cms/link/?category.id=${link.category.id}">链接列表</a></li>
 		<shiro:hasPermission name="cms:link:edit"><li><a href="<c:url value='${fns:getAdminPath()}/cms/link/form?id=${link.id}&category.id=${link.category.id}'><c:param name='category.name' value='${link.category.name}'/></c:url>">链接添加</a></li></shiro:hasPermission>
 	</ul>
-	<form:form id="searchForm" modelAttribute="link" action="${ctx}/cms/link/" method="post" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="link" action="${ctx}/cms/link/" method="post" class="breadcrumb form-inline">
 		<input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
 		<input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
 		<label>栏目：</label><sys:treeselect id="category" name="category.id" value="${link.category.id}" labelName="category.name" labelValue="${link.category.name}"
-					title="栏目" url="/cms/category/treeData" module="link" notAllowSelectRoot="false" cssClass="input-small"/>
-		<label>名称：</label><form:input path="title" htmlEscape="false" maxlength="50" class="input-small"/>&nbsp;
+					title="栏目" url="/cms/category/treeData" module="link" notAllowSelectRoot="false" cssClass="form-control"/>
+		<label>名称：</label><form:input path="title" htmlEscape="false" maxlength="50" class="form-control"/>&nbsp;
 		<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>&nbsp;&nbsp;
 		<label>状态：</label><form:radiobuttons onclick="$('#searchForm').submit();" path="delFlag" items="${fns:getDictList('cms_del_flag')}" itemLabel="label" itemValue="value" htmlEscape="false" />
 	</form:form>
@@ -46,6 +46,6 @@
 		</c:forEach>
 		</tbody>
 	</table>
-	<div class="pagination">${page}</div>
+	<div>${page}</div>
 </body>
 </html>

@@ -29,19 +29,19 @@
 		<li><a href="${ctx}/act/task/historic/">已办任务</a></li>
 		<li><a href="${ctx}/act/task/process/">新建任务</a></li>
 	</ul>
-	<form:form id="searchForm" modelAttribute="act" action="${ctx}/act/task/todo/" method="get" class="breadcrumb form-search">
+	<form:form id="searchForm" modelAttribute="act" action="${ctx}/act/task/todo/" method="get" class="breadcrumb form-inline">
 		<div>
 			<label>流程类型：&nbsp;</label>
-			<form:select path="procDefKey" class="input-medium">
+			<form:select path="procDefKey" class="">
 				<form:option value="" label="全部流程"/>
 				<form:options items="${fns:getDictList('act_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
 			</form:select>
 			<label>创建时间：</label>
-			<input id="beginDate"  name="beginDate"  type="text" readonly="readonly" maxlength="20" class="input-medium Wdate" style="width:163px;"
+			<input id="beginDate"  name="beginDate"  type="text" readonly="readonly" maxlength="20" class="form-control Wdate" style="width:163px;"
 				value="<fmt:formatDate value="${act.beginDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});"/>
 				　--　
-			<input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="input-medium Wdate" style="width:163px;"
+			<input id="endDate" name="endDate" type="text" readonly="readonly" maxlength="20" class="form-control Wdate" style="width:163px;"
 				value="<fmt:formatDate value="${act.endDate}" pattern="yyyy-MM-dd"/>"
 					onclick="WdatePicker({dateFmt:'yyyy-MM-dd'});"/>
 			&nbsp;<input id="btnSubmit" class="btn btn-primary" type="submit" value="查询"/>
