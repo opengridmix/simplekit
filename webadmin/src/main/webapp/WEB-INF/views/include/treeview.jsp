@@ -1,2 +1,2 @@
-<link href="${ctxStatic}/MUI/plugins/jquery-ztree/3.5.12/css/zTreeStyle/zTreeStyle.min.css" rel="stylesheet" type="text/css"/>
-<script src="${ctxStatic}/MUI/plugins/jquery-ztree/3.5.12/js/jquery.ztree.all-3.5.min.js" type="text/javascript"></script>
+<link href="${ctxStatic}/MUI/plugins/jquery-ztree/3.5.16/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css"/>
+<script src="${ctxStatic}/MUI/plugins/jquery-ztree/3.5.16/js/jquery.ztree.all-3.5.min.js" type="text/javascript"></script>

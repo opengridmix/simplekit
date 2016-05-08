@@ -7,7 +7,7 @@
 	<meta name="decorator" content="cms_default_${site.theme}"/>
 	<meta name="description" content="${site.description}" />
 	<meta name="keywords" content="${site.keywords}" />
-	<script src="${ctxStatic}/MUI/plugins/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+	<script src="${ctxStatic}/MUI/plugins/My97DatePicker/4.8-beta2/WdatePicker.js" type="text/javascript"></script>
 	<style type="text/css">
 		form.search{margin:12px 20px 5px;} .page{margin:20px;}
 		form.search input.txt{padding:3px;font-size:16px;width:300px;margin:5px;}

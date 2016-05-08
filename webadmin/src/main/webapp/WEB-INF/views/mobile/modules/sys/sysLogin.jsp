@@ -8,8 +8,6 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="${ctxStatic}/MUI/plugins/jingle/css/Jingle.css">
-    <link rel="stylesheet" href="${ctxStatic}/MUI/plugins/jingle/css/app.css">
 </head>
 <body>
 <div id="aside_container">
@@ -51,59 +49,5 @@
 	    </article>
     </section>
 </div>
-<!--<script type="text/javascript" src="${ctxStatic}/MUI/plugins/jingle/js/lib/cordova.js"></script>-->
-<!-- lib -->
-<script type="text/javascript" src="${ctxStatic}/MUI/plugins/jingle/js/lib/zepto.js"></script>
-<script type="text/javascript" src="${ctxStatic}/MUI/plugins/jingle/js/lib/iscroll.js"></script>
-<%-- <script type="text/javascript" src="${ctxStatic}/MUI/plugins/jingle/js/lib/template.min.js"></script> --%>
-<script type="text/javascript" src="${ctxStatic}/MUI/plugins/jingle/js/lib/Jingle.debug.js"></script>
-<script type="text/javascript" src="${ctxStatic}/MUI/plugins/jingle/js/lib/zepto.touch2mouse.js"></script>
-<%-- <script type="text/javascript" src="${ctxStatic}/MUI/plugins/jingle/js/lib/JChart.debug.js"></script> --%>
-<!--- app --->
-<script type="text/javascript">var ctx = '${ctx}';</script>
-<script type="text/javascript" src="${ctxStatic}/MUI/plugins/jingle/js/app/app.js"></script>
-<!--<script src="http://192.168.2.153:8080/target/target-script-min.js#anonymous"></script>-->
-<script type="text/javascript">
-var sessionid = '${not empty fns:getPrincipal() ? fns:getPrincipal().sessionid : ""}';
-$('body').delegate('#login_section','pageinit',function(){
-	$("#loginForm").submit(function(){
-		if ($('#username').val() == ''){
-			J.showToast('请填写账号', 'info');
-		}else if ($('#password').val() == ''){
-			J.showToast('请填写密码', 'info');
-		}else if ($('#validateCodeDiv').is(':visible') && $('#validateCode').val() == ''){
-			J.showToast('请填写验证码', 'info');
-		}else{
-			var loginForm = $("#loginForm");
-			$.post(loginForm.attr('action'), loginForm.serializeArray(), function(data){
-				if (data && data.sessionid){
-					sessionid = data.sessionid;
-					J.showToast('登录成功！', 'success');
-					J.Router.goTo('#index_section?index');
-				}else{
-					J.showToast(data.message, 'error');
-					if (data.shiroLoginFailure == 'org.apache.shiro.authc.AuthenticationException'){
-						$('#validateCodeDiv').show();
-					}
-					$('#validateCodeDiv a').click();
-				}
-				//console.log(data);
-			});
-		}
-		return false;
-	});
-});
-$('body').delegate('#login_section','pageshow',function(){
-	if (sessionid != ''){
-        var targetHash = location.hash;
-        if (targetHash == '#login_section'){
-    		//J.showToast('你已经登录！', 'success');
-    		J.Router.goTo('#index_section?index');
-        }
-	}else{
-		$('#login_article').addClass('active');
-	}
-});
-</script>
 </body>
 </html>

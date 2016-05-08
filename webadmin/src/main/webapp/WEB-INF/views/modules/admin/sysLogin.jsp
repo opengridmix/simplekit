@@ -25,10 +25,6 @@
 				messages: {
 					username: {required: "请填写用户名."},password: {required: "请填写密码."},
 					validateCode: {remote: "验证码不正确.", required: "请填写验证码."}
-				},
-				errorLabelContainer: "#messageBox",
-				errorPlacement: function(error, element) {
-					error.appendTo($("#loginError").parent());
 				} 
 			});
 		});

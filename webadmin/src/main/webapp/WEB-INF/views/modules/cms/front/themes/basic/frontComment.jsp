@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/modules/cms/front/include/taglib.jsp"%>
-<link href="${ctxStatic}/MUI/plugins/jquery-validation/1.11.1/jquery.validate.min.css" type="text/css" rel="stylesheet" />
-<script src="${ctxStatic}/MUI/plugins/jquery-validation/1.11.1/jquery.validate.min.js" type="text/javascript"></script>
-<script src="${ctxStatic}/MUI/plugins/jquery-validation/1.11.1/jquery.validate.method.min.js" type="text/javascript"></script>
+<link href="${ctxStatic}/MUI/plugins/jquery-validation/1.15.0/jquery.validate.min.css" type="text/css" rel="stylesheet" />
+<script src="${ctxStatic}/MUI/plugins/jquery-validation/1.15.0/jquery.validate.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/MUI/plugins/jquery-validation/1.15.0/jquery.validate.method.min.js" type="text/javascript"></script>
 <style type="text/css">.reply{border:1px solid #ddd;background:#fefefe;margin:10px;}</style>
 <script type="text/javascript">
 	$(document).ready(function() {
