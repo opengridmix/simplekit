@@ -26,7 +26,8 @@
 	<input id="${id}Id" name="${name}" class="${cssClass}" type="hidden" value="${value}"/>
 	<input id="${id}Name" name="${labelName}" ${allowInput?'':'readonly="readonly"'} type="text" value="${labelValue}" data-msg-required="${dataMsgRequired}"
 		class="${cssClass}" style="${cssStyle}"/>
-	<span id="${id}Button" href="javascript:" class="btn btn-default input-group-addon ${disabled} ${hideBtn ? 'hide' : ''}" style="${smallBtn?'padding:4px 2px;':''}">&nbsp;<i class="fa fa-search"></i>&nbsp;</span>&nbsp;&nbsp;
+	<%--<span id="${id}Button" href="javascript:" class="btn btn-default input-group-addon ${disabled} ${hideBtn ? 'hide' : ''}" style="${smallBtn?'padding:4px 2px;':''}">&nbsp;<i class="fa fa-search"></i>&nbsp;</span>&nbsp;&nbsp;--%>
+	<a id="${id}Button" href="${ctx}/tag/treeselect?url=${url}&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}"  data-target="#ajax" data-toggle="modal" class="btn btn-default input-group-addon ${disabled} ${hideBtn ? 'hide' : ''}" style="${smallBtn?'padding:4px 2px;':''}">&nbsp;<i class="fa fa-search"></i>&nbsp;</span>&nbsp;&nbsp;
 </div>
 <script type="text/javascript">
 	$("#${id}Button, #${id}Name").click(function(){
@@ -34,10 +35,16 @@
 		if ($("#${id}Button").hasClass("disabled")){
 			return true;
 		}
-		// 正常打开	
-		top.$.jBox.open("iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}")+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}", "选择${title}", 300, 420, {
-			ajaxData:{selectIds: $("#${id}Id").val()},buttons:{"确定":"ok", ${allowClear?"\"清除\":\"clear\", ":""}"关闭":true}, submit:function(v, h, f){
-				if (v=="ok"){
+
+		BootstrapDialog.show({
+			message: function(dialog) {
+				var url = "${ctx}/tag/treeselect?url="+encodeURIComponent("${url}")+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}";
+				var $message = $('<div></div>').load(url);
+				return $message;
+			},
+			buttons: [{
+				label: '确定',
+				action:function () {
 					var tree = h.find("iframe")[0].contentWindow.tree;//h.find("iframe").contents();
 					var ids = [], names = [], nodes = [];
 					if ("${checked}" == "true"){
@@ -70,17 +77,64 @@
 					}
 					$("#${id}Id").val(ids.join(",").replace(/u_/ig,""));
 					$("#${id}Name").val(names.join(","));
-				}//<c:if test="${allowClear}">
-				else if (v=="clear"){
+				}
+			}, {
+				label: '取消',
+				cssClass: 'btn-primary',
+				action: function(){
 					$("#${id}Id").val("");
 					$("#${id}Name").val("");
-                }//</c:if>
-				if(typeof ${id}TreeselectCallBack == 'function'){
-					${id}TreeselectCallBack(v, h, f);
+					dialogItself.close();
 				}
-			}, loaded:function(h){
-				$(".jbox-content", top.document).css("overflow-y","hidden");
-			}
+			}]
 		});
-	});
+		<%--// 正常打开--%>
+		<%--top.$.jBox.open("iframe:${ctx}/tag/treeselect?url="+encodeURIComponent("${url}")+"&module=${module}&checked=${checked}&extId=${extId}&isAll=${isAll}", "选择${title}", 300, 420, {--%>
+			<%--ajaxData:{selectIds: $("#${id}Id").val()},buttons:{"确定":"ok", ${allowClear?"\"清除\":\"clear\", ":""}"关闭":true}, submit:function(v, h, f){--%>
+				<%--if (v=="ok"){--%>
+					<%--var tree = h.find("iframe")[0].contentWindow.tree;//h.find("iframe").contents();--%>
+					<%--var ids = [], names = [], nodes = [];--%>
+					<%--if ("${checked}" == "true"){--%>
+						<%--nodes = tree.getCheckedNodes(true);--%>
+					<%--}else{--%>
+						<%--nodes = tree.getSelectedNodes();--%>
+					<%--}--%>
+					<%--for(var i=0; i<nodes.length; i++) {//<c:if test="${checked && notAllowSelectParent}">--%>
+						<%--if (nodes[i].isParent){--%>
+							<%--continue; // 如果为复选框选择，则过滤掉父节点--%>
+						<%--}//</c:if><c:if test="${notAllowSelectRoot}">--%>
+						<%--if (nodes[i].level == 0){--%>
+							<%--top.$.jBox.tip("不能选择根节点（"+nodes[i].name+"）请重新选择。");--%>
+							<%--return false;--%>
+						<%--}//</c:if><c:if test="${notAllowSelectParent}">--%>
+						<%--if (nodes[i].isParent){--%>
+							<%--top.$.jBox.tip("不能选择父节点（"+nodes[i].name+"）请重新选择。");--%>
+							<%--return false;--%>
+						<%--}//</c:if><c:if test="${not empty module && selectScopeModule}">--%>
+						<%--if (nodes[i].module == ""){--%>
+							<%--top.$.jBox.tip("不能选择公共模型（"+nodes[i].name+"）请重新选择。");--%>
+							<%--return false;--%>
+						<%--}else if (nodes[i].module != "${module}"){--%>
+							<%--top.$.jBox.tip("不能选择当前栏目以外的栏目模型，请重新选择。");--%>
+							<%--return false;--%>
+						<%--}//</c:if>--%>
+						<%--ids.push(nodes[i].id);--%>
+						<%--names.push(nodes[i].name);//<c:if test="${!checked}">--%>
+						<%--break; // 如果为非复选框选择，则返回第一个选择  </c:if>--%>
+					<%--}--%>
+					<%--$("#${id}Id").val(ids.join(",").replace(/u_/ig,""));--%>
+					<%--$("#${id}Name").val(names.join(","));--%>
+				<%--}//<c:if test="${allowClear}">--%>
+				<%--else if (v=="clear"){--%>
+					<%--$("#${id}Id").val("");--%>
+					<%--$("#${id}Name").val("");--%>
+                <%--}//</c:if>--%>
+				<%--if(typeof ${id}TreeselectCallBack == 'function'){--%>
+					<%--${id}TreeselectCallBack(v, h, f);--%>
+				<%--}--%>
+			<%--}, loaded:function(h){--%>
+				<%--$(".jbox-content", top.document).css("overflow-y","hidden");--%>
+			<%--}--%>
+		<%--});--%>
+	<%--});--%>
 </script>
