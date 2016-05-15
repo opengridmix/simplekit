@@ -10,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/modules/gen" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/modules/oa" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/webadmin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webadmin/src/main/webapp/static/JRUX/license.txt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/webfront" charset="UTF-8" />
   </component>
 </project>
