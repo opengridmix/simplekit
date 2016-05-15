@@ -6,12 +6,12 @@
 */
 
 (function($ , undefined) {
-	//if( !$.fn.jrui_scroll ) return;
+	//if( !$.fn.ju_scroll ) return;
 	
-	var hasTouch = jrui.vars['touch'];
-	var nativeScroll = /**jrui.vars['old_ie'] ||*/ hasTouch;
+	var hasTouch = ju.vars['touch'];
+	var nativeScroll = /**ju.vars['old_ie'] ||*/ hasTouch;
 
-	var old_safari = jrui.vars['safari'] && navigator.userAgent.match(/version\/[1-5]/i)
+	var old_safari = ju.vars['safari'] && navigator.userAgent.match(/version\/[1-5]/i)
 	//NOTE
 	//Safari on windows has not been updated for a long time.
 	//And it has a problem when sidebar is fixed&scrollable and there is a CSS3 animation inside page content.
@@ -42,15 +42,15 @@
 		if(!nav) return;
 
 		
-		var attrib_values = jrui.helper.getAttrSettings(sidebar, $.fn.jrui_sidebar_scroll.defaults);
-		this.settings = $.extend({}, $.fn.jrui_sidebar_scroll.defaults, settings, attrib_values);
+		var attrib_values = ju.helper.getAttrSettings(sidebar, $.fn.ju_sidebar_scroll.defaults);
+		this.settings = $.extend({}, $.fn.ju_sidebar_scroll.defaults, settings, attrib_values);
 				
 		var scroll_to_active = self.settings.scroll_to_active;
 		this.only_if_fixed = self.settings.only_if_fixed;
 		
 
 			
-		var ace_sidebar = $sidebar.jrui_sidebar('ref');
+		var ju_sidebar = $sidebar.ju_sidebar('ref');
 		$sidebar.attr('data-sidebar-scroll', 'true');
 
 		var submenu_hover = function() {
@@ -62,7 +62,7 @@
 			scroll_content = null,
 			scroll_content_div = null,
 			bar = null,
-			ace_scroll = null;
+			ju_scroll = null;
 
 		this.is_scrolling = false;
 		var _initiated = false;
@@ -73,7 +73,7 @@
 		var available_height = function() {
 			//available window space
 			var offset = $nav.parent().offset();//because `$nav.offset()` considers the "scrolled top" amount as well
-			if(self.sidebar_fixed) offset.top -= jrui.helper.scrollTop();
+			if(self.sidebar_fixed) offset.top -= ju.helper.scrollTop();
 
 			return $window.innerHeight() - offset.top - ( self.settings.include_toggle ? 0 : $toggle.outerHeight() ) + 1;
 		}
@@ -93,7 +93,7 @@
 
 			if(!nativeScroll) {
 				scroll_div = $nav.parent()
-				.jrui_scroll({
+				.ju_scroll({
 					size: available_height(),
 					reset: true,
 					mouseWheelLock: true,
@@ -101,22 +101,22 @@
 					styleClass: self.settings.scroll_style,
 					hoverReset: false
 				})
-				.closest('.jrui-scroll').addClass('nav-scroll');
+				.closest('.ju-scroll').addClass('nav-scroll');
 				
-				ace_scroll = scroll_div.data('jrui_scroll');
+				ju_scroll = scroll_div.data('ju_scroll');
 
 				scroll_content = scroll_div.find('.scroll-content').eq(0);
 
 				if(old_safari && !self.settings.include_toggle) {
 					var toggle = $toggle.get(0);
 					if(toggle) scroll_content.on('scroll.safari', function() {
-						jrui.helper.redraw(toggle);
+						ju.helper.redraw(toggle);
 					});
 				}
 			}
 			else {
 				$nav.parent().addClass('sidebar-scroll-native').css('max-height', available_height());
-				ace_scroll = true;
+				ju_scroll = true;
 				scroll_div = scroll_content = $nav.parent();
 			}
 
@@ -136,12 +136,12 @@
 		
 		
 		this.scroll_to_active = function() {
-			if( !nativeScroll && (!ace_scroll || !ace_scroll.is_active()) ) return;
+			if( !nativeScroll && (!ju_scroll || !ju_scroll.is_active()) ) return;
 			try {
 				//sometimes there's no active item or not 'offsetTop' property
 				var $active;
 				
-				var vars = ace_sidebar['vars']();
+				var vars = ju_sidebar['vars']();
 
 				var nav_list = $sidebar.find('.nav-list')
 				if(vars['minimized'] && !vars['collapsible']) {
@@ -188,7 +188,7 @@
 			
 			$sidebar.addClass('sidebar-scroll');
 			
-			var vars = ace_sidebar['vars']();
+			var vars = ju_sidebar['vars']();
 			
 
 			//enable if:
@@ -200,13 +200,13 @@
 								&& ($avail_height = available_height()) < ($content_height = nav.parentNode.scrollHeight);
 
 			this.is_scrolling = true;
-			if( enable_scroll && ace_scroll ) {
+			if( enable_scroll && ju_scroll ) {
 				//scroll_content_div.css({height: $content_height, width: 8});
 				//scroll_div.prev().css({'max-height' : $avail_height})
 				if(!nativeScroll) {
-					ace_scroll.update({size: $avail_height});
-					ace_scroll.enable();
-					ace_scroll.reset();
+					ju_scroll.update({size: $avail_height});
+					ju_scroll.enable();
+					ju_scroll.reset();
 				}
 				else {
 					$nav.parent().addClass('sidebar-scroll-native').css('max-height', $avail_height);
@@ -214,7 +214,7 @@
 			}
 			
 			if(!nativeScroll) {
-				if( !enable_scroll || !ace_scroll.is_active() ) {
+				if( !enable_scroll || !ju_scroll.is_active() ) {
 					if(this.is_scrolling) this.disable();
 				}
 			}
@@ -227,8 +227,8 @@
 		
 		this.disable = function() {
 			this.is_scrolling = false;
-			if(ace_scroll) {
-				if(!nativeScroll) ace_scroll.disable();
+			if(ju_scroll) {
+				if(!nativeScroll) ju_scroll.disable();
 				else $nav.parent().removeClass('sidebar-scroll-native').css('max-height', '');
 			}
 			
@@ -236,7 +236,7 @@
 		}
 		
 		this.prehide = function(height_change) {
-			if(!this.is_scrolling || ace_sidebar.get('minimized')) return;//when minimized submenu's toggle should have no effect
+			if(!this.is_scrolling || ju_sidebar.get('minimized')) return;//when minimized submenu's toggle should have no effect
 
 			if(content_height() + height_change < available_height()) {
 				this.disable();
@@ -256,7 +256,7 @@
 				this.sidebar_fixed = is_element_pos(sidebar, 'fixed');
 			}
 			
-			if(jrui.vars['webkit']) 
+			if(ju.vars['webkit']) 
 				setTimeout(function() { self.reset() } , 0);
 			else this.reset();
 		}
@@ -273,17 +273,17 @@
 		}
 		
 		this.updateStyle = function(styleClass) {
-			if(!ace_scroll || nativeScroll) return;
-			ace_scroll.update({styleClass: styleClass});
+			if(!ju_scroll || nativeScroll) return;
+			ju_scroll.update({styleClass: styleClass});
 		}
 		
 		
 		//change scrollbar size after a submenu is hidden/shown
 		//but don't change if sidebar is minimized
-		$sidebar.on('hidden.jrui.submenu.sidebar_scroll shown.jrui.submenu.sidebar_scroll', '.submenu', function(e) {
+		$sidebar.on('hidden.ju.submenu.sidebar_scroll shown.ju.submenu.sidebar_scroll', '.submenu', function(e) {
 			e.stopPropagation();
 
-			if( !ace_sidebar.get('minimized') ) {
+			if( !ju_sidebar.get('minimized') ) {
 				//webkit has a little bit of a glitch!!!
 				self._reset();
 			}
@@ -295,13 +295,13 @@
 
 
 	//reset on document and window changes
-	$(document).on('settings.jrui.sidebar_scroll', function(ev, event_name, event_val){
+	$(document).on('settings.ju.sidebar_scroll', function(ev, event_name, event_val){
 		$('.sidebar[data-sidebar-scroll=true]').each(function() {
 			var $this = $(this);
-			var sidebar_scroll = $this.jrui_sidebar_scroll('ref');
+			var sidebar_scroll = $this.ju_sidebar_scroll('ref');
 
 			if( event_name == 'sidebar_collapsed' ) {
-				if( $this.attr('data-sidebar-hover') == 'true' ) $this.jrui_sidebar_hover('reset');
+				if( $this.attr('data-sidebar-hover') == 'true' ) $this.ju_sidebar_hover('reset');
 			
 				if(event_val == true) sidebar_scroll.disable();//disable scroll if collapsed
 				else sidebar_scroll.reset();
@@ -321,9 +321,9 @@
 		})
 	})
 
-	$(window).on('resize.jrui.sidebar_scroll', function(){
+	$(window).on('resize.ju.sidebar_scroll', function(){
 		$('.sidebar[data-sidebar-scroll=true]').each(function() {
-			var sidebar_scroll = $(this).jrui_sidebar_scroll('ref');
+			var sidebar_scroll = $(this).ju_sidebar_scroll('ref');
 			
 			var sidebar_fixed = is_element_pos(this, 'fixed')
 			sidebar_scroll.set('sidebar_fixed', sidebar_fixed);
@@ -334,16 +334,16 @@
 	
 	
 	/////////////////////////////////////////////
-	if(!$.fn.jrui_sidebar_scroll) {
-	 $.fn.jrui_sidebar_scroll = function (option, value) {
+	if(!$.fn.ju_sidebar_scroll) {
+	 $.fn.ju_sidebar_scroll = function (option, value) {
 		var method_call;
 
 		var $set = this.each(function () {
 			var $this = $(this);
-			var data = $this.data('jrui_sidebar_scroll');
+			var data = $this.data('ju_sidebar_scroll');
 			var options = typeof option === 'object' && option;
 
-			if (!data) $this.data('jrui_sidebar_scroll', (data = new Sidebar_Scroll(this, options)));
+			if (!data) $this.data('ju_sidebar_scroll', (data = new Sidebar_Scroll(this, options)));
 			if (typeof option === 'string' && typeof data[option] === 'function') {
 				method_call = data[option](value);
 			}
@@ -352,7 +352,7 @@
 		return (method_call === undefined) ? $set : method_call;
 	 }
 	 
-	  $.fn.jrui_sidebar_scroll.defaults = {
+	  $.fn.ju_sidebar_scroll.defaults = {
 		'scroll_to_active': true,
 		'include_shortcuts': true,
 		'include_toggle': false,

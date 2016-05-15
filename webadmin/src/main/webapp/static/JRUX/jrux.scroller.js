@@ -5,8 +5,8 @@
 	var Ace_Scroll = function(element , _settings) {
 		var self = this;
 		
-		var attrib_values = ace.helper.getAttrSettings(element, $.fn.ace_scroll.defaults);
-		var settings = $.extend({}, $.fn.ace_scroll.defaults, _settings, attrib_values);
+		var attrib_values = ace.helper.getAttrSettings(element, $.fn.ju_scroll.defaults);
+		var settings = $.extend({}, $.fn.ju_scroll.defaults, _settings, attrib_values);
 	
 		this.size = 0;
 		this.lock = false;
@@ -67,7 +67,7 @@
 		this.create = function(_settings) {
 			if(created) return;
 
-			if(_settings) settings = $.extend({}, $.fn.ace_scroll.defaults, _settings);
+			if(_settings) settings = $.extend({}, $.fn.ju_scroll.defaults, _settings);
 
 			this.size = parseInt(this.$element.attr('data-size')) || settings.size || 200;
 			vertical = !settings['horizontal'];
@@ -153,7 +153,7 @@
 				this.lock_anyway = settings.lockAnyway;
 
 				//mousewheel library available?
-				this.$element.on(!!$.event.special.mousewheel ? 'mousewheel.ace_scroll' : 'mousewheel.ace_scroll DOMMouseScroll.ace_scroll', function(event) {
+				this.$element.on(!!$.event.special.mousewheel ? 'mousewheel.ju_scroll' : 'mousewheel.ju_scroll DOMMouseScroll.ju_scroll', function(event) {
 					if(disabled) return;
 					checkContentChanges(true);
 
@@ -161,8 +161,8 @@
 
 					if(mouse_track) {
 						mouse_track = false;
-						$('html').off('.ace_scroll')
-						$(mouse_release_target).off('.ace_scroll');
+						$('html').off('.ju_scroll')
+						$(mouse_release_target).off('.ju_scroll');
 						if(dragEvent) self.$element.trigger('drag.end');
 					}
 					
@@ -194,11 +194,11 @@
 			
 			
 			//swipe not available yet
-			var touchDrag = ace.vars['touch'] && 'ace_drag' in $.event.special && settings.touchDrag //&& !settings.touchSwipe;
+			var touchDrag = ace.vars['touch'] && 'ju_drag' in $.event.special && settings.touchDrag //&& !settings.touchSwipe;
 			//add drag event for touch devices to scroll
 			if(touchDrag/** || ($.fn.swipe && settings.touchSwipe)*/) {
-				var dir = '', event_name = touchDrag ? 'ace_drag' : 'swipe';
-				this.$element.on(event_name + '.ace_scroll', function(event) {
+				var dir = '', event_name = touchDrag ? 'ju_drag' : 'swipe';
+				this.$element.on(event_name + '.ju_scroll', function(event) {
 					if(disabled) {
 						event.retval.cancel = true;
 						return;
@@ -236,10 +236,10 @@
 				$track.addClass('idle-hide');
 			}
 			if(observeContent) {
-				$track.on('mouseenter.ace_scroll', function() {
+				$track.on('mouseenter.ju_scroll', function() {
 					insideTrack = true;
 					checkContentChanges(false);
-				}).on('mouseleave.ace_scroll', function() {
+				}).on('mouseleave.ju_scroll', function() {
 					insideTrack = false;
 					if(mouse_track == false) hideScrollbars();
 				});
@@ -248,13 +248,13 @@
 
 			
 			//some mobile browsers don't have mouseenter
-			this.$element.on('mouseenter.ace_scroll touchstart.ace_scroll', function(e) {
+			this.$element.on('mouseenter.ju_scroll touchstart.ju_scroll', function(e) {
 				is_dirty = true;
 				if(observeContent) checkContentChanges(true);
 				else if(settings.hoverReset) self.reset(true);
 				
 				$track.addClass('scroll-hover');
-			}).on('mouseleave.ace_scroll touchend.ace_scroll', function() {
+			}).on('mouseleave.ju_scroll touchend.ju_scroll', function() {
 				$track.removeClass('scroll-hover');
 			});
 			//
@@ -373,7 +373,7 @@
 			created = false;
 			
 			this.$element.removeClass('ace-scroll scroll-disabled scroll-active');
-			this.$element.off('.ace_scroll')
+			this.$element.off('.ju_scroll')
 
 			if(!detached) {
 				if(!vertical) {
@@ -478,8 +478,8 @@
 			}
 
 			mouse_track = true;
-			$('html').off('mousemove.ace_scroll').on('mousemove.ace_scroll', mouse_move_bar)
-			$(mouse_release_target).off('mouseup.ace_scroll').on('mouseup.ace_scroll', mouse_up_bar);
+			$('html').off('mousemove.ju_scroll').on('mousemove.ju_scroll', mouse_move_bar)
+			$(mouse_release_target).off('mouseup.ju_scroll').on('mouseup.ju_scroll', mouse_up_bar);
 			
 			$track.addClass('active');
 			if(dragEvent) self.$element.trigger('drag.start');
@@ -518,8 +518,8 @@
 			e.stopPropagation();
 			
 			mouse_track = false;
-			$('html').off('.ace_scroll')
-			$(mouse_release_target).off('.ace_scroll');
+			$('html').off('.ju_scroll')
+			$(mouse_release_target).off('.ju_scroll');
 
 			$track.removeClass('active');
 			if(dragEvent) self.$element.trigger('drag.end');
@@ -617,15 +617,15 @@
 	}
 
 	
-	$.fn.ace_scroll = function (option,value) {
+	$.fn.ju_scroll = function (option,value) {
 		var retval;
 
 		var $set = this.each(function () {
 			var $this = $(this);
-			var data = $this.data('ace_scroll');
+			var data = $this.data('ju_scroll');
 			var options = typeof option === 'object' && option;
 
-			if (!data) $this.data('ace_scroll', (data = new Ace_Scroll(this, options)));
+			if (!data) $this.data('ju_scroll', (data = new Ace_Scroll(this, options)));
 			 //else if(typeof options == 'object') data['modify'](options);
 			if (typeof option === 'string') retval = data[option](value);
 		});
@@ -634,7 +634,7 @@
 	};
 
 
-	$.fn.ace_scroll.defaults = {
+	$.fn.ju_scroll.defaults = {
 		'size' : 200,
 		'horizontal': false,
 		'mouseWheel': true,
@@ -675,10 +675,10 @@
      }
 
 	/**
-	$(document).on('ace.settings.ace_scroll', function(e, name) {
+	$(document).on('ace.settings.ju_scroll', function(e, name) {
 		if(name == 'sidebar_collapsed') $('.ace-scroll').scroller('reset');
 	});
-	$(window).on('resize.ace_scroll', function() {
+	$(window).on('resize.ju_scroll', function() {
 		$('.ace-scroll').scroller('reset');
 	});
 	*/

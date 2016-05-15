@@ -5,8 +5,6 @@
 	<title>${fns:getConfig('productName')}</title>
 	<meta name="decorator" content="blank"/><c:set var="tabmode" value="${empty cookie.tabmode.value ? '1' : cookie.tabmode.value}"/>
     <c:if test="${tabmode eq '1'}">
-	<link rel="Stylesheet" href="${ctxStatic}/MUI/plugins/jerichotab/css/jquery.jerichotab.css" />
-    <script type="text/javascript" src="${ctxStatic}/MUI/plugins/jerichotab/js/jquery.jerichotab.js"></script></c:if>
 	<style type="text/css">
 		#main {padding:0;margin:0;} #main .container-fluid{padding:0 4px 0 6px;margin-left: 15px;}
 		#header {margin:0 0 8px;position:static;} #header li {font-size:14px;_font-size:12px;}
@@ -129,21 +127,6 @@
 			getNotifyNum(); //<c:if test="${oaNotifyRemindInterval ne '' && oaNotifyRemindInterval ne '0'}">
 			setInterval(getNotifyNum, ${oaNotifyRemindInterval}); //</c:if>
 		});
-		// <c:if test="${tabmode eq '1'}"> 添加一个页签
-		function addTab($this, refresh){
-			$(".jericho_tab").show();
-			$("#mainFrame").hide();
-			$.fn.jerichoTab.addTab({
-                tabFirer: $this,
-                title: $this.text(),
-                closeable: true,
-                data: {
-                    dataType: 'iframe',
-                    dataLink: $this.attr('href')
-                }
-            }).loadData(refresh);
-			return false;
-		}// </c:if>
 	</script>
 </head>
 <body>
@@ -227,34 +210,5 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript"> 
-		var leftWidth = 160; // 左侧窗口大小
-		var tabTitleHeight = 33; // 页签的高度
-		var htmlObj = $("html"), mainObj = $("#main");
-		var headerObj = $("#header"), footerObj = $("#footer");
-		var frameObj = $("#left, #openClose, #right, #right iframe");
-		function wSize(){
-			var minHeight = 500, minWidth = 980;
-			var strs = getWindowSize().toString().split(",");
-			htmlObj.css({"overflow-x":strs[1] < minWidth ? "auto" : "hidden", "overflow-y":strs[0] < minHeight ? "auto" : "hidden"});
-			mainObj.css("width",strs[1] < minWidth ? minWidth - 10 : "auto");
-			frameObj.height((strs[0] < minHeight ? minHeight : strs[0]) - headerObj.height() - footerObj.height() - (strs[1] < minWidth ? 42 : 28));
-			$("#openClose").height($("#openClose").height() - 5);// <c:if test="${tabmode eq '1'}"> 
-			$(".jericho_tab iframe").height($("#right").height() - tabTitleHeight); // </c:if>
-			wSizeWidth();
-		}
-		function wSizeWidth(){
-			if (!$("#openClose").is(":hidden")){
-				var leftWidth = ($("#left").width() < 0 ? 0 : $("#left").width());
-				$("#right").width($("#content").width()- leftWidth - $("#openClose").width() -5);
-			}else{
-				$("#right").width("100%");
-			}
-		}// <c:if test="${tabmode eq '1'}"> 
-		function openCloseClickCallBack(b){
-			$.fn.jerichoTab.resize();
-		} // </c:if>
-	</script>
-	<script src="${ctxStatic}/MUI/core/wsize.min.js" type="text/javascript"></script>
 </body>
 </html>

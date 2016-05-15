@@ -10,8 +10,8 @@
 	var Ace_File_Input = function(element , settings) {
 		var self = this;
 		
-		var attrib_values = ace.helper.getAttrSettings(element, $.fn.ace_file_input.defaults);
-		this.settings = $.extend({}, $.fn.ace_file_input.defaults, settings, attrib_values);
+		var attrib_values = ace.helper.getAttrSettings(element, $.fn.ju_file_input.defaults);
+		this.settings = $.extend({}, $.fn.ju_file_input.defaults, settings, attrib_values);
 
 		this.$element = $(element);
 		this.element = element;
@@ -20,11 +20,11 @@
 		
 
 		this.$element
-		.off('change.ace_inner_call')
-		.on('change.ace_inner_call', function(e , ace_inner_call){
+		.off('change.ju_inner_call')
+		.on('change.ju_inner_call', function(e , ju_inner_call){
 			if(self.disabled) return;
 		
-			if(ace_inner_call === true) return;//this change event is called from above drop event and extra checkings are taken care of there
+			if(ju_inner_call === true) return;//this change event is called from above drop event and extra checkings are taken care of there
 			return handle_on_change.call(self);
 			//if(ret === false) e.preventDefault();
 		});
@@ -89,7 +89,7 @@
 	}
 
 	Ace_File_Input.prototype.show_file_list = function($files , inner_call) {
-		var files = typeof $files === "undefined" ? this.$element.data('ace_input_files') : $files;
+		var files = typeof $files === "undefined" ? this.$element.data('ju_input_files') : $files;
 		if(!files || files.length == 0) return;
 		
 		//////////////////////////////////////////////////////////////////
@@ -190,9 +190,9 @@
 		//we just reset_input_ui to avoid recursion
 	}
 	Ace_File_Input.prototype.reset_input_data = function() {
-		if(this.$element.data('ace_input_files')) {
-			this.$element.removeData('ace_input_files');
-			this.$element.removeData('ace_input_method');
+		if(this.$element.data('ju_input_files')) {
+			this.$element.removeData('ju_input_files');
+			this.$element.removeData('ju_input_method');
 		}
 	}
 
@@ -210,10 +210,10 @@
 	}
 
 	Ace_File_Input.prototype.files = function() {
-		return $(this).data('ace_input_files') || null;
+		return $(this).data('ju_input_files') || null;
 	}
 	Ace_File_Input.prototype.method = function() {
-		return $(this).data('ace_input_method') || '';
+		return $(this).data('ju_input_method') || '';
 	}
 	
 	Ace_File_Input.prototype.update_settings = function(new_settings) {
@@ -279,12 +279,12 @@
 			file_list = processFiles.call(self, file_list, true);//true means files have been selected, not dropped
 			if(file_list === false) return false;
 
-			self.$element.data('ace_input_method', 'drop');
-			self.$element.data('ace_input_files', file_list);//save files data to be used later by user
+			self.$element.data('ju_input_method', 'drop');
+			self.$element.data('ju_input_files', file_list);//save files data to be used later by user
 
 			self.show_file_list(file_list , true);
 			
-			self.$element.triggerHandler('change' , [true]);//true means ace_inner_call
+			self.$element.triggerHandler('change' , [true]);//true means ju_inner_call
 			return true;
 		});
 	}
@@ -296,8 +296,8 @@
 		file_list = processFiles.call(this, file_list, false);//false means files have been selected, not dropped
 		if(file_list === false) return false;
 		
-		this.$element.data('ace_input_method', 'select');
-		this.$element.data('ace_input_files', file_list);
+		this.$element.data('ju_input_method', 'select');
+		this.$element.data('ju_input_files', file_list);
 		
 		this.show_file_list(file_list , true);
 		
@@ -471,7 +471,7 @@
 			return false;
 		}
 		if( !ret || ret.length == 0 ) {
-			if( !this.$element.data('ace_input_files') ) this.reset_input();
+			if( !this.$element.data('ju_input_files') ) this.reset_input();
 			//if nothing selected before, reset because of the newly unacceptable (ret=false||length=0) selection
 			//otherwise leave the previous selection intact?!!!
 			return false;
@@ -486,7 +486,7 @@
 			return false;
 		}
 		if(!ret || ret.length == 0) {
-			if( !this.$element.data('ace_input_files') ) this.reset_input();
+			if( !this.$element.data('ju_input_files') ) this.reset_input();
 			return false;
 		}
 		
@@ -606,15 +606,15 @@
 
 
 	///////////////////////////////////////////
-	$.fn.aceFileInput = $.fn.ace_file_input = function (option,value) {
+	$.fn.aceFileInput = $.fn.ju_file_input = function (option,value) {
 		var retval;
 
 		var $set = this.each(function () {
 			var $this = $(this);
-			var data = $this.data('ace_file_input');
+			var data = $this.data('ju_file_input');
 			var options = typeof option === 'object' && option;
 
-			if (!data) $this.data('ace_file_input', (data = new Ace_File_Input(this, options)));
+			if (!data) $this.data('ju_file_input', (data = new Ace_File_Input(this, options)));
 			if (typeof option === 'string') retval = data[option](value);
 		});
 
@@ -622,7 +622,7 @@
 	};
 
 
-	$.fn.ace_file_input.defaults = {
+	$.fn.ju_file_input.defaults = {
 		style: false,
 		no_file: 'No File ...',
 		no_icon: 'fa fa-upload',

@@ -5,11 +5,11 @@
 
 (function($ , undefined) {
 
- if( jrui.vars['very_old_ie'] ) return;
+ if( ju.vars['very_old_ie'] ) return;
  //ignore IE7 & below
 
- var hasTouch = jrui.vars['touch'];
- var nativeScroll = jrui.vars['old_ie'] || hasTouch;
+ var hasTouch = ju.vars['touch'];
+ var nativeScroll = ju.vars['old_ie'] || hasTouch;
  
 
  var is_element_pos =
@@ -21,13 +21,13 @@
 
 
 
- $(window).on('resize.sidebar.jrui_hover', function() {
-	$('.sidebar[data-sidebar-hover=true]').jrui_sidebar_hover('update_vars').jrui_sidebar_hover('reset');
+ $(window).on('resize.sidebar.ju_hover', function() {
+	$('.sidebar[data-sidebar-hover=true]').ju_sidebar_hover('update_vars').ju_sidebar_hover('reset');
  })
 
- $(document).on('settings.jrui.jrui_hover', function(e, event_name, event_val) {
-	if(event_name == 'sidebar_collapsed') $('.sidebar[data-sidebar-hover=true]').jrui_sidebar_hover('reset');
-	else if(event_name == 'navbar_fixed') $('.sidebar[data-sidebar-hover=true]').jrui_sidebar_hover('update_vars');
+ $(document).on('settings.ju.ju_hover', function(e, event_name, event_val) {
+	if(event_name == 'sidebar_collapsed') $('.sidebar[data-sidebar-hover=true]').ju_sidebar_hover('reset');
+	else if(event_name == 'navbar_fixed') $('.sidebar[data-sidebar-hover=true]').ju_sidebar_hover('update_vars');
  })
  
  var sidebars = [];
@@ -35,8 +35,8 @@
  function Sidebar_Hover(sidebar , settings) {
 	var self = this, that = this;
 	
-	var attrib_values = jrui.helper.getAttrSettings(sidebar, $.fn.jrui_sidebar_hover.defaults);
-	this.settings = $.extend({}, $.fn.jrui_sidebar_hover.defaults, settings, attrib_values);
+	var attrib_values = ju.helper.getAttrSettings(sidebar, $.fn.ju_sidebar_hover.defaults);
+	this.settings = $.extend({}, $.fn.ju_sidebar_hover.defaults, settings, attrib_values);
 	
 
 	var $sidebar = $(sidebar), nav_list = $sidebar.find('.nav-list').get(0);
@@ -45,7 +45,7 @@
 	sidebars.push($sidebar);
 
 	var sidebar_vars = {};
-	var old_ie = jrui.vars['old_ie'];
+	var old_ie = ju.vars['old_ie'];
 
 	
 	
@@ -74,8 +74,8 @@
 			var $sub = $(this), li = $sub.parent();
 			$sub.css({'top': '', 'bottom': '', 'max-height': ''});
 			
-			if($sub.hasClass('jrui-scroll')) {
-				$sub.jrui_scroll('disable');
+			if($sub.hasClass('ju-scroll')) {
+				$sub.ju_scroll('disable');
 			}
 			else {
 				$sub.removeClass('sub-scroll');
@@ -92,7 +92,7 @@
 	
 	this.updateStyle = function(newStyle) {
 		sub_scroll_style = newStyle;
-		$sidebar.find('.submenu.jrui-scroll').jrui_scroll('update', {styleClass: newStyle});
+		$sidebar.find('.submenu.ju-scroll').ju_scroll('update', {styleClass: newStyle});
 	}
 	this.changeDir = function(dir) {
 		scroll_right = (dir === 'right');
@@ -104,15 +104,15 @@
 	var lastScrollHeight = -1;
 	//hide scrollbars if it's going to be not needed anymore!
 	if(!nativeScroll)
-	$sidebar.on('hide.jrui.submenu.sidebar_hover', '.submenu', function(e) {
+	$sidebar.on('hide.ju.submenu.sidebar_hover', '.submenu', function(e) {
 		if(lastScrollHeight < 1) return;
 
 		e.stopPropagation();
-		var $sub = $(this).closest('.jrui-scroll.can-scroll');
+		var $sub = $(this).closest('.ju-scroll.can-scroll');
 		if($sub.length == 0 || !is_element_pos($sub[0], 'absolute')) return;
 
 		if($sub[0].scrollHeight - this.scrollHeight < lastScrollHeight) {
-			$sub.jrui_scroll('disable');
+			$sub.ju_scroll('disable');
 		}
 	});
 
@@ -121,19 +121,19 @@
 	
 	//reset scrollbars 
 	if(!nativeScroll)
-	$sidebar.on('shown.jrui.submenu.sidebar_hover hidden.jrui.submenu.sidebar_hover', '.submenu', function(e) {
+	$sidebar.on('shown.ju.submenu.sidebar_hover hidden.ju.submenu.sidebar_hover', '.submenu', function(e) {
 		if(lastScrollHeight < 1) return;
 	
-		var $sub = $(this).closest('.jrui-scroll.can-scroll');
+		var $sub = $(this).closest('.ju-scroll.can-scroll');
 		if($sub.length == 0 || !is_element_pos($sub[0], 'absolute') ) return;
 		
 		var sub_h = $sub[0].scrollHeight;
 		
 		if(lastScrollHeight > 14 && sub_h - lastScrollHeight > 4) {
-			$sub.jrui_scroll('enable').jrui_scroll('reset');//don't update track position
+			$sub.ju_scroll('enable').ju_scroll('reset');//don't update track position
 		}
 		else {
-			$sub.jrui_scroll('disable');
+			$sub.ju_scroll('disable');
 		}
 	});
 
@@ -148,7 +148,7 @@
 	var event_2 = !hasTouch ? 'mouseleave.sub_hover' : 'touchend.sub_hover touchcancel.sub_hover';// pointerup.sub_hover pointercancel.sub_hover';
 	
 	$sidebar.on(event_1, '.nav-list li, .sidebar-shortcuts', function (e) {
-		sidebar_vars = $sidebar.jrui_sidebar('vars');
+		sidebar_vars = $sidebar.ju_sidebar('vars');
 		
 	
 		//ignore if collapsible mode (mobile view .navbar-collapse) so it doesn't trigger submenu movements
@@ -182,7 +182,7 @@
 		 if(is_abs) {
 			self.dirty = true;
 			
-			var newScroll = jrui.helper.scrollTop();
+			var newScroll = ju.helper.scrollTop();
 			//if submenu is becoming visible for first time or document has been scrolled, then adjust menu
 			if( (hasHoverDelay && !sub_hide.is_visible()) || (!hasTouch && newScroll != currentScroll) || old_ie ) {
 				//try to move/adjust submenu if the parent is a li.hover or if submenu is minimized
@@ -208,7 +208,7 @@
 		hasHoverDelay && sub_hide.show();
 		
 	 }).on(event_2, '.nav-list li, .sidebar-shortcuts', function (e) {
-		sidebar_vars = $sidebar.jrui_sidebar('vars');
+		sidebar_vars = $sidebar.ju_sidebar('vars');
 		
 		if( sidebar_vars['collapsible'] /**|| sidebar_vars['horizontal']*/ ) return;
 
@@ -280,7 +280,7 @@
 	
 	
 	function getSubScroll(el, func) {
-		var sub_scroll = $(el).data('jrui_scroll');
+		var sub_scroll = $(el).data('ju_scroll');
 		if(!sub_scroll) return false;
 		if(typeof func === 'string') {
 			sub_scroll[func]();
@@ -302,7 +302,7 @@
 			menu_text.style.marginTop = '';
 		}
 
-		var scroll = jrui.helper.scrollTop();
+		var scroll = ju.helper.scrollTop();
 		var navbar_height = 0;
 
 		var $scroll = scroll;
@@ -410,11 +410,11 @@
 				return;
 			}
 			
-			var ace_scroll = false;
+			var ju_scroll = false;
 			if(!nativeScroll) {
-				ace_scroll = getSubScroll(sub);
-				if(ace_scroll == false) {
-					$sub.jrui_scroll({
+				ju_scroll = getSubScroll(sub);
+				if(ju_scroll == false) {
+					$sub.ju_scroll({
 						//hideOnIdle: true,
 						observeContent: true,
 						detached: true,
@@ -423,16 +423,16 @@
 						mouseWheelLock: true,
 						styleClass: self.settings.sub_scroll_style
 					});
-					ace_scroll = getSubScroll(sub);
+					ju_scroll = getSubScroll(sub);
 					
-					var track = ace_scroll.get_track();
+					var track = ju_scroll.get_track();
 					if(track) {
 						//detach it from body and insert it after submenu for better and cosistent positioning
 						$sub.after(track);
 					}
 				}
 				
-				ace_scroll.update({size: scroll_height});
+				ju_scroll.update({size: scroll_height});
 			}
 			else {
 				$sub
@@ -442,24 +442,24 @@
 
 
 			lastScrollHeight = scroll_height;
-			if(!nativeScroll && ace_scroll) {
+			if(!nativeScroll && ju_scroll) {
 				if(scroll_height > 14 && sub_h - scroll_height > 4) {
-					ace_scroll.enable()
-					ace_scroll.reset();
+					ju_scroll.enable()
+					ju_scroll.reset();
 				}			
 				else {
-					ace_scroll.disable();
+					ju_scroll.disable();
 				}
 
 				//////////////////////////////////
-				var track = ace_scroll.get_track();
+				var track = ju_scroll.get_track();
 				if(track) {
 					track.style.top = -(move_up - extra - 1) + 'px';
 					
 					var off = $sub.position();
 					var left = off.left 
 					if( !scroll_right ) {
-						left += ($sub.outerWidth() - ace_scroll.track_size());
+						left += ($sub.outerWidth() - ju_scroll.track_size());
 					}
 					else {
 						left += 2;
@@ -476,8 +476,8 @@
 
 
 		//again force redraw for safari!
-		if( jrui.vars['safari'] ) {
-			jrui.helper.redraw(sub)
+		if( ju.vars['safari'] ) {
+			ju.helper.redraw(sub)
 		}
    }
 
@@ -486,15 +486,15 @@
  
  
  /////////////////////////////////////////////
- $.fn.jrui_sidebar_hover = function (option, value) {
+ $.fn.ju_sidebar_hover = function (option, value) {
 	var method_call;
 
 	var $set = this.each(function () {
 		var $this = $(this);
-		var data = $this.data('jrui_sidebar_hover');
+		var data = $this.data('ju_sidebar_hover');
 		var options = typeof option === 'object' && option;
 
-		if (!data) $this.data('jrui_sidebar_hover', (data = new Sidebar_Hover(this, options)));
+		if (!data) $this.data('ju_sidebar_hover', (data = new Sidebar_Hover(this, options)));
 		if (typeof option === 'string' && typeof data[option] === 'function') {
 			method_call = data[option](value);
 		}
@@ -503,7 +503,7 @@
 	return (method_call === undefined) ? $set : method_call;
  }
  
-  $.fn.jrui_sidebar_hover.defaults = {
+  $.fn.ju_sidebar_hover.defaults = {
 	'sub_sub_hover_delay': 750,
 	'sub_scroll_style': 'no-track scroll-thin'
  }

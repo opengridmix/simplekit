@@ -13,8 +13,8 @@
 
 		
 		//get a list of 'data-*' attributes that override 'defaults' and 'settings'
-		var attrib_values = jrui.helper.getAttrSettings(sidebar, $.fn.jrui_sidebar.defaults, 'sidebar-');
-		this.settings = $.extend({}, $.fn.jrui_sidebar.defaults, settings, attrib_values);
+		var attrib_values = ju.helper.getAttrSettings(sidebar, $.fn.ju_sidebar.defaults, 'sidebar-');
+		this.settings = $.extend({}, $.fn.ju_sidebar.defaults, settings, attrib_values);
 
 
 		//some vars
@@ -44,7 +44,7 @@
 		
 		//toggle icon for sidebar collapse/expand button
 		var toggleIcon = function(minimized, save) {
-			var icon = $(this).find(jrui.vars['.icon']), icon1, icon2;
+			var icon = $(this).find(ju.vars['.icon']), icon1, icon2;
 			if(icon.length > 0) {
 				icon1 = icon.attr('data-icon1');//the icon for expanded state
 				icon2 = icon.attr('data-icon2');//the icon for collapsed state
@@ -58,7 +58,7 @@
 				}
 				
 				try {
-					if(save !== false) jrui.settings.saveState(icon.get(0));
+					if(save !== false) ju.settings.saveState(icon.get(0));
 				} catch(e) {}
 			}
 		}
@@ -86,7 +86,7 @@
 			else this.$sidebar.removeClass('menu-min');
 
 			try {
-				if(save) jrui.settings.saveState(sidebar, 'class', 'menu-min', this.minimized);
+				if(save) ju.settings.saveState(sidebar, 'class', 'menu-min', this.minimized);
 			} catch(e) {}
 		
 			if( !toggle_btn ) {
@@ -97,10 +97,10 @@
 			}
 
 			//force redraw for ie8
-			if(jrui.vars['old_ie']) jrui.helper.redraw(sidebar);
+			if(ju.vars['old_ie']) ju.helper.redraw(sidebar);
 			
 			
-			$(document).trigger('settings.jrui', ['sidebar_collapsed' , this.minimized, sidebar, save]);
+			$(document).trigger('settings.ju', ['sidebar_collapsed' , this.minimized, sidebar, save]);
 		}
 		this.collapse = function(toggle_btn, save) {
 			if(this.collapsible) return;
@@ -151,7 +151,7 @@
 			}
 			
 			if(toggle_btn) {
-				var icon = $(toggle_btn).find(jrui.vars['.icon']), icon1, icon2;
+				var icon = $(toggle_btn).find(ju.vars['.icon']), icon1, icon2;
 				if(icon.length > 0) {
 					icon1 = icon.attr('data-icon1');//the icon for expanded state
 					icon2 = icon.attr('data-icon2');//the icon for collapsed state
@@ -161,7 +161,7 @@
 				}
 			}
 
-			$(document).triggerHandler('settings.jrui', ['sidebar_collapsed' , this.minimized]);
+			$(document).triggerHandler('settings.ju', ['sidebar_collapsed' , this.minimized]);
 		}
 		
 		
@@ -184,7 +184,7 @@
 
 
 		//toggling (show/hide) submenu elements
-		this.$sidebar.on(jrui.click_event+'.jrui.submenu', '.nav-list', function (ev) {
+		this.$sidebar.on(ju.click_event+'.ju.submenu', '.nav-list', function (ev) {
 			var nav_list = this;
 
 			//check to see if we have clicked on an element which is inside a .dropdown-toggle element?!
@@ -202,7 +202,7 @@
 				//Good for touch devices, that when the icon is tapped to see the menu text, navigation is cancelled
 				//navigation is only done when menu text is tapped
 
-				if( jrui.click_event == 'tap'
+				if( ju.click_event == 'tap'
 					&&
 					minimized
 					&&
@@ -218,7 +218,7 @@
 
 				//ios safari only has a bit of a problem not navigating to link address when scrolling down
 				//specify data-link attribute to ignore this
-				if(jrui.vars['ios_safari'] && link_element.attr('data-link') !== 'false') {
+				if(ju.vars['ios_safari'] && link_element.attr('data-link') !== 'false') {
 					//only ios safari has a bit of a problem not navigating to link address when scrolling down
 					//please see issues section in documentation
 					document.location = link_element.attr('href');
@@ -281,7 +281,7 @@
 			//but when minimized submenu's toggle should have no effect
 			if (height_change != 0) {
 				if(self.$sidebar.attr('data-sidebar-scroll') == 'true' && !self.minimized) 
-					self.$sidebar.jrui_sidebar_scroll('prehide', height_change)
+					self.$sidebar.ju_sidebar_scroll('prehide', height_change)
 			}
 
 			return false;
@@ -295,7 +295,7 @@
 					
 			var $sub = $(sub);
 			var event;
-			$sub.trigger(event = $.Event('show.jrui.submenu'))
+			$sub.trigger(event = $.Event('show.ju.submenu'))
 			if (event.isDefaultPrevented()) {
 				return false;
 			}
@@ -320,9 +320,9 @@
 				ev && ev.stopPropagation();
 				$sub
 				.css({'transition-property': '', 'transition-duration': '', overflow:'', height: ''})
-				//if(jrui.vars['webkit']) jrui.helper.redraw(sub);//little Chrome issue, force redraw ;)
+				//if(ju.vars['webkit']) ju.helper.redraw(sub);//little Chrome issue, force redraw ;)
 
-				if(trigger !== false) $sub.trigger($.Event('shown.jrui.submenu'))
+				if(trigger !== false) $sub.trigger($.Event('shown.ju.submenu'))
 				
 				if(shouldWait) submenu_working = false;
 			}
@@ -345,10 +345,10 @@
 				.one($.support.transition.end, complete);
 				
 				//there is sometimes a glitch, so maybe retry
-				if(jrui.vars['android'] ) {
+				if(ju.vars['android'] ) {
 					setTimeout(function() {
 						complete(null, false);
-						jrui.helper.redraw(sub);
+						ju.helper.redraw(sub);
 					}, $duration + 20);
 				}
 			}
@@ -365,7 +365,7 @@
 			
 			var $sub = $(sub);
 			var event;
-			$sub.trigger(event = $.Event('hide.jrui.submenu'))
+			$sub.trigger(event = $.Event('hide.ju.submenu'))
 			if (event.isDefaultPrevented()) {
 				return false;
 			}
@@ -394,7 +394,7 @@
 				.css({display: 'none', overflow:'', height: '', 'transition-property': '', 'transition-duration': ''})
 				.removeClass('nav-show').addClass('nav-hide')//only for window < @grid-float-breakpoint and .navbar-collapse.menu-min
 
-				if(trigger !== false) $sub.trigger($.Event('hidden.jrui.submenu'))
+				if(trigger !== false) $sub.trigger($.Event('hidden.ju.submenu'))
 				
 				if(shouldWait) submenu_working = false;
 			}
@@ -415,10 +415,10 @@
 				.one($.support.transition.end, complete);
 				
 				//there is sometimes a glitch, so maybe retry
-				if(jrui.vars['android'] ) {
+				if(ju.vars['android'] ) {
 					setTimeout(function() {
 						complete(null, false);
-						jrui.helper.redraw(sub);
+						ju.helper.redraw(sub);
 					}, $duration + 20);
 				}
 			}
@@ -538,7 +538,7 @@
 	
 	//menu-toggler
 	$(document)
-	.on(jrui.click_event+'.jrui.menu', '.menu-toggler', function(e){
+	.on(ju.click_event+'.ju.menu', '.menu-toggler', function(e){
 		var btn = $(this);
 		var sidebar = $(btn.attr('data-target'));
 		if(sidebar.length == 0) return;
@@ -548,9 +548,9 @@
 		//sidebar.toggleClass('display');
 		//btn.toggleClass('display');
 		
-		sidebar.jrui_sidebar('toggleMobile', this);
+		sidebar.ju_sidebar('toggleMobile', this);
 		
-		var click_event = jrui.click_event+'.jrui.autohide';
+		var click_event = ju.click_event+'.ju.autohide';
 		var auto_hide = sidebar.attr('data-auto-hide') === 'true';
 
 		if( btn.hasClass('display') ) {
@@ -562,12 +562,12 @@
 						return;
 					}
 
-					sidebar.jrui_sidebar('toggleMobile', this, false);
+					sidebar.ju_sidebar('toggleMobile', this, false);
 					$(document).off(click_event);
 				})
 			}
 
-			if(sidebar.attr('data-sidebar-scroll') == 'true') sidebar.jrui_sidebar_scroll('reset');
+			if(sidebar.attr('data-sidebar-scroll') == 'true') sidebar.ju_sidebar_scroll('reset');
 		}
 		else {
 			if(auto_hide) $(document).off(click_event);
@@ -576,7 +576,7 @@
 		return false;
 	})
 	//sidebar collapse/expand button
-	.on(jrui.click_event+'.jrui.menu', '.sidebar-collapse', function(e){
+	.on(ju.click_event+'.ju.menu', '.sidebar-collapse', function(e){
 		
 		var target = $(this).attr('data-target'), $sidebar = null;
 		if(target) $sidebar = $(target);
@@ -584,10 +584,10 @@
 		if($sidebar.length == 0) return;
 
 		e.preventDefault();
-		$sidebar.jrui_sidebar('toggleMenu', this);
+		$sidebar.ju_sidebar('toggleMenu', this);
 	})
 	//this button is used in `mobile_style = 3` responsive menu style to expand minimized sidebar
-	.on(jrui.click_event+'.jrui.menu', '.sidebar-expand', function(e){
+	.on(ju.click_event+'.ju.menu', '.sidebar-expand', function(e){
 		var target = $(this).attr('data-target'), $sidebar = null;
 		if(target) $sidebar = $(target);
 		if($sidebar == null || $sidebar.length == 0) $sidebar = $(this).closest('.sidebar');
@@ -595,9 +595,9 @@
 	
 		var btn = this;
 		e.preventDefault();
-		$sidebar.jrui_sidebar('toggleResponsive', this);
+		$sidebar.ju_sidebar('toggleResponsive', this);
 		
-		var click_event = jrui.click_event+'.jrui.autohide';
+		var click_event = ju.click_event+'.ju.autohide';
 		if($sidebar.attr('data-auto-hide') === 'true') {
 			if( $sidebar.hasClass(responsive_max_class) ) {
 				$(document).on(click_event, function(ev) {
@@ -606,7 +606,7 @@
 						return;
 					}
 
-					$sidebar.jrui_sidebar('toggleResponsive', btn);
+					$sidebar.ju_sidebar('toggleResponsive', btn);
 					$(document).off(click_event);
 				})
 			}
@@ -617,15 +617,15 @@
 	})
 
 	
-	$.fn.jrui_sidebar = function (option, value, value2) {
+	$.fn.ju_sidebar = function (option, value, value2) {
 		var method_call;
 
 		var $set = this.each(function () {
 			var $this = $(this);
-			var data = $this.data('jrui_sidebar');
+			var data = $this.data('ju_sidebar');
 			var options = typeof option === 'object' && option;
 
-			if (!data) $this.data('jrui_sidebar', (data = new Sidebar(this, options)));
+			if (!data) $this.data('ju_sidebar', (data = new Sidebar(this, options)));
 			if (typeof option === 'string' && typeof data[option] === 'function') {
 				if(value instanceof Array) method_call = data[option].apply(data, value);
 				else if(value2 !== undefined) method_call = data[option](value, value2);
@@ -637,7 +637,7 @@
 	};
 	
 	
-	$.fn.jrui_sidebar.defaults = {
+	$.fn.ju_sidebar.defaults = {
 		'duration': 300,
 		'hide_open_subs': true
     }

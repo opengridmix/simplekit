@@ -15,9 +15,9 @@
 				$remove_position = true;
 				$box.addClass('position-relative');
 			}
-			$box.append('<div class="widget-box-overlay"><i class="'+ jrui.vars['icon'] + 'loading-icon fa fa-spinner fa-spin fa-2x white"></i></div>');
+			$box.append('<div class="widget-box-overlay"><i class="'+ ju.vars['icon'] + 'loading-icon fa fa-spinner fa-spin fa-2x white"></i></div>');
 
-			$box.one('reloaded.jrui.widget', function() {
+			$box.one('reloaded.ju.widget', function() {
 				$box.find('.widget-box-overlay').remove();
 				if($remove_position) $box.removeClass('position-relative');
 			});
@@ -30,7 +30,7 @@
 			var $box = this.$box;
 			var closeSpeed   = typeof closeSpeed === 'undefined' ? 300 : closeSpeed;
 			$box.fadeOut(closeSpeed , function(){
-					$box.trigger('closed.jrui.widget');
+					$box.trigger('closed.ju.widget');
 					$box.remove();
 				}
 			)
@@ -55,7 +55,7 @@
 
 			if(button) {
 			
-				$icon = button.find(jrui.vars['.icon']).eq(0);
+				$icon = button.find(ju.vars['.icon']).eq(0);
 
 				var $match
 				var $icon_down = null
@@ -79,14 +79,14 @@
 				$body.hide();
 				$box.removeClass('collapsed');
 				$body.slideDown(expandSpeed, function(){
-					$box.trigger(event_complete_name+'.jrui.widget')
+					$box.trigger(event_complete_name+'.ju.widget')
 				})
 			}
 			else {
 				if($icon) $icon.removeClass($icon_up).addClass($icon_down);
 				$body.slideUp(collapseSpeed, function(){
 						$box.addClass('collapsed')
-						$box.trigger(event_complete_name+'.jrui.widget')
+						$box.trigger(event_complete_name+'.ju.widget')
 					}
 				);
 			}
@@ -101,7 +101,7 @@
 		
 		
 		this.fullscreen = function() {
-			var $icon = this.$box.find('> .widget-header a[data-action=fullscreen]').find(jrui.vars['.icon']).eq(0);
+			var $icon = this.$box.find('> .widget-header a[data-action=fullscreen]').find(ju.vars['.icon']).eq(0);
 			var $icon_expand = null
 			var $icon_compress = null
 			if( ($icon_expand = $icon.attr('data-icon1')) ) {
@@ -126,7 +126,7 @@
 				applyScrollbars(this.$box, false);
 			}
 			
-			this.$box.trigger('fullscreened.jrui.widget')
+			this.$box.trigger('fullscreened.ju.widget')
 		}
 
 	}
@@ -147,7 +147,7 @@
 	};
 
 
-	$(document).on('click.jrui.widget', '.widget-header a[data-action]', function (ev) {
+	$(document).on('click.ju.widget', '.widget-header a[data-action]', function (ev) {
 		ev.preventDefault();
 
 		var $this = $(this);
@@ -164,14 +164,14 @@
 			var event_name = $box.hasClass('collapsed') ? 'show' : 'hide';
 
 			var event
-			$box.trigger(event = $.Event(event_name+'.jrui.widget'))
+			$box.trigger(event = $.Event(event_name+'.ju.widget'))
 			if (event.isDefaultPrevented()) return
 
 			$widget_box.toggle(event_name, $this);
 		}
 		else if($action == 'close') {
 			var event
-			$box.trigger(event = $.Event('close.jrui.widget'))
+			$box.trigger(event = $.Event('close.ju.widget'))
 			if (event.isDefaultPrevented()) return
 
 			$widget_box.close();
@@ -179,20 +179,20 @@
 		else if($action == 'reload') {
 			$this.blur();
 			var event
-			$box.trigger(event = $.Event('reload.jrui.widget'))
+			$box.trigger(event = $.Event('reload.ju.widget'))
 			if (event.isDefaultPrevented()) return
 
 			$widget_box.reload();
 		}
 		else if($action == 'fullscreen') {
 			var event
-			$box.trigger(event = $.Event('fullscreen.jrui.widget'))
+			$box.trigger(event = $.Event('fullscreen.ju.widget'))
 			if (event.isDefaultPrevented()) return
 		
 			$widget_box.fullscreen();
 		}
 		else if($action == 'settings') {
-			$box.trigger('setting.jrui.widget')
+			$box.trigger('setting.ju.widget')
 		}
 
 	});
@@ -203,12 +203,12 @@
 		$(window).off('resize.widget.scroll');
 		
 		//IE8 has an unresolvable issue!!! re-scrollbaring with unknown values?!
-		var nativeScrollbars = jrui.vars['old_ie'] || jrui.vars['touch'];
+		var nativeScrollbars = ju.vars['old_ie'] || ju.vars['touch'];
 		
 		if(enable) {
-			var ace_scroll = $main.data('jrui_scroll');
-			if( ace_scroll ) {
-				$main.data('save_scroll', {size: ace_scroll['size'], lock: ace_scroll['lock'], lock_anyway: ace_scroll['lock_anyway']});
+			var ju_scroll = $main.data('ju_scroll');
+			if( ju_scroll ) {
+				$main.data('save_scroll', {size: ju_scroll['size'], lock: ju_scroll['lock'], lock_anyway: ju_scroll['lock_anyway']});
 			}
 			
 			var size = $widget.height() - $widget.find('.widget-header').height() - 10;//extra paddings
@@ -216,16 +216,16 @@
 			
 			$main.css('min-height', size);
 			if( !nativeScrollbars ) {
-				if( ace_scroll ) {
-					$main.jrui_scroll('update', {'size': size, 'mouseWheelLock': true, 'lockAnyway': true});
+				if( ju_scroll ) {
+					$main.ju_scroll('update', {'size': size, 'mouseWheelLock': true, 'lockAnyway': true});
 				}
 				else {
-					$main.jrui_scroll({'size': size, 'mouseWheelLock': true, 'lockAnyway': true});
+					$main.ju_scroll({'size': size, 'mouseWheelLock': true, 'lockAnyway': true});
 				}
-				$main.jrui_scroll('enable').jrui_scroll('reset');
+				$main.ju_scroll('enable').ju_scroll('reset');
 			}
 			else {
-				if( ace_scroll ) $main.jrui_scroll('disable');
+				if( ju_scroll ) $main.ju_scroll('disable');
 				$main.css('max-height', size).addClass('overflow-scroll');
 			}
 			
@@ -237,7 +237,7 @@
 				
 				$main.css('min-height', size);
 				if( !nativeScrollbars ) {
-					$main.jrui_scroll('update', {'size': size}).jrui_scroll('reset');
+					$main.ju_scroll('update', {'size': size}).ju_scroll('reset');
 				}
 				else {
 					$main.css('max-height', size).addClass('overflow-scroll');
@@ -250,13 +250,13 @@
 			var saved_scroll = $main.data('save_scroll');
 			if(saved_scroll) {
 				$main
-				.jrui_scroll('update', {'size': saved_scroll['size'], 'mouseWheelLock': saved_scroll['lock'], 'lockAnyway': saved_scroll['lock_anyway']})
-				.jrui_scroll('enable')
-				.jrui_scroll('reset');
+				.ju_scroll('update', {'size': saved_scroll['size'], 'mouseWheelLock': saved_scroll['lock'], 'lockAnyway': saved_scroll['lock_anyway']})
+				.ju_scroll('enable')
+				.ju_scroll('reset');
 			}
 			
 			if( !nativeScrollbars ) {				
-				if(!saved_scroll) $main.jrui_scroll('disable');				
+				if(!saved_scroll) $main.ju_scroll('disable');				
 			}
 			else {
 				$main.css('max-height', '').removeClass('overflow-scroll');

@@ -11,8 +11,8 @@
 		$contentArea.attr('data-ajax-content', 'true');
 
 		//get a list of 'data-*' attributes that override 'defaults' and 'settings'
-		var attrib_values = ace.helper.getAttrSettings(contentArea, $.fn.ace_ajax.defaults);
-		this.settings = $.extend({}, $.fn.ace_ajax.defaults, settings, attrib_values);
+		var attrib_values = ace.helper.getAttrSettings(contentArea, $.fn.ju_ajax.defaults);
+		this.settings = $.extend({}, $.fn.ju_ajax.defaults, settings, attrib_values);
 
 
 		var working = false;
@@ -106,8 +106,8 @@
 								var active_li = link_element.closest('li').addClass('active').parents('.nav li').addClass('active open');
 								nav.closest('.sidebar[data-sidebar-scroll=true]').each(function() {
 									var $this = $(this);
-									$this.ace_sidebar_scroll('reset');
-									if(manual_trigger == true) $this.ace_sidebar_scroll('scroll_to_active');//first time only
+									$this.ju_sidebar_scroll('reset');
+									if(manual_trigger == true) $this.ju_sidebar_scroll('scroll_to_active');//first time only
 								})
 							}
 						}
@@ -140,17 +140,17 @@
 						$('head').find('link.ace-ajax-stylesheet').remove();
 
 						var main_selectors = ['link.ace-main-stylesheet', 'link#main-ace-style', 'link[href*="/ace.min.css"]', 'link[href*="/ace.css"]']
-						var ace_style = [];
+						var ju_style = [];
 						for(var m = 0; m < main_selectors.length; m++) {
-							ace_style = $('head').find(main_selectors[m]).first();
-							if(ace_style.length > 0) break;
+							ju_style = $('head').find(main_selectors[m]).first();
+							if(ju_style.length > 0) break;
 						}
 
 						$contentArea.find('.ajax-append-link').each(function(e) {
 							var $link = $(this);
 							if ( $link.attr('href') ) {
 								var new_link = jQuery('<link />', {type : 'text/css', rel: 'stylesheet', 'class': 'ace-ajax-stylesheet'})
-								if( ace_style.length > 0 ) new_link.insertBefore(ace_style);
+								if( ju_style.length > 0 ) new_link.insertBefore(ju_style);
 								else new_link.appendTo('head');
 								new_link.attr('href', $link.attr('href'));//we set "href" after insertion, for IE to work
 							}
@@ -381,20 +381,20 @@
 
 		/////////////////
 		$(window)
-			.off('hashchange.ace_ajax')
-			.on('hashchange.ace_ajax', function(e, manual_trigger) {
+			.off('hashchange.ju_ajax')
+			.on('hashchange.ju_ajax', function(e, manual_trigger) {
 				var hash = $.trim(window.location.hash);
 				if(!hash || hash.length == 0) return;
 
 				if(self.settings.close_mobile_menu) {
-					try {$(self.settings.close_mobile_menu).ace_sidebar('mobileHide')} catch(e){}
+					try {$(self.settings.close_mobile_menu).ju_sidebar('mobileHide')} catch(e){}
 				}
 				if(self.settings.close_dropdowns) {
 					$('.dropdown.open .dropdown-toggle').dropdown('toggle');
 				}
 
 				self.loadUrl(hash, null, manual_trigger);
-			}).trigger('hashchange.ace_ajax', [true]);
+			}).trigger('hashchange.ju_ajax', [true]);
 
 		var hash = $.trim(window.location.hash);
 		if(!hash && this.settings.default_url) window.location.hash = this.settings.default_url;
@@ -403,15 +403,15 @@
 
 
 
-	$.fn.aceAjax = $.fn.ace_ajax = function (option, value, value2, value3, value4) {
+	$.fn.aceAjax = $.fn.ju_ajax = function (option, value, value2, value3, value4) {
 		var method_call;
 
 		var $set = this.each(function () {
 			var $this = $(this);
-			var data = $this.data('ace_ajax');
+			var data = $this.data('ju_ajax');
 			var options = typeof option === 'object' && option;
 
-			if (!data) $this.data('ace_ajax', (data = new AceAjax(this, options)));
+			if (!data) $this.data('ju_ajax', (data = new AceAjax(this, options)));
 			if (typeof option === 'string' && typeof data[option] === 'function') {
 				if(value4 !== undefined) method_call = data[option](value, value2, value3, value4);
 				else if(value3 !== undefined) method_call = data[option](value, value2, value3);
@@ -425,7 +425,7 @@
 
 
 
-	$.fn.aceAjax.defaults = $.fn.ace_ajax.defaults = {
+	$.fn.aceAjax.defaults = $.fn.ju_ajax.defaults = {
 		content_url: false,
 		default_url: false,
 		loading_icon: 'fa fa-spin fa-spinner fa-2x orange',
