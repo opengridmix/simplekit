@@ -17,7 +17,7 @@
 		define(['jquery', 'fuelux/repeater'], factory);
 	} else if (typeof exports === 'object') {
 		// Node/CommonJS
-		module.exports = factory(require('jquery'), require('./repeater'));
+		module.exports = factory(require('jquery'), require('./jrux.repeater'));
 	} else {
 		// OR use browser globals if AMD is not present
 		factory(jQuery);

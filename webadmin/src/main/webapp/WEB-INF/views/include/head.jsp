@@ -12,8 +12,5 @@
 <!--[if lte IE 6]><script src="${ctxStatic}/common/bootstrap/bsie/js/bootstrap-ie.js" type="text/javascript"></script><![endif]-->
 <script src="${ctxStatic}/common/jquery/jquery-1.12.3.js" type="text/javascript"></script>
 <script src="${ctxStatic}/common/bootstrap/3.3.6/js/bootstrap.js" type="text/javascript"></script>
-<!--<script src="${ctxStatic}/JRUX/jquery.validate.js" type="text/javascript"></script>--!>
-<!--<script src="${ctxStatic}/JRUX/additional-methods.js" type="text/javascript"></script>--!>
-<script src="${ctxStatic}/JRUX/mustache.js" type="text/javascript"></script>
-<script src="${ctxStatic}/JRUX/util.js" type="text/javascript"></script>
+<script src="${ctxStatic}/JRUX/jrux.util.js" type="text/javascript"></script>
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>

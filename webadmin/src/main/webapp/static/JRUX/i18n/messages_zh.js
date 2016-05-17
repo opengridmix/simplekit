@@ -1,6 +1,6 @@
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
-		define( ["jquery", "../../../../core/jquery.validate.js"], factory );
+		define( ["jquery", "../../../../core/jrux.validate.js"], factory );
 	} else if (typeof module === "object" && module.exports) {
 		module.exports = factory( require( "jquery" ) );
 	} else {
