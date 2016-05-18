@@ -17,8 +17,8 @@
 		define(['jquery', 'fuelux/combobox', 'fuelux/datepicker', 'fuelux/radio', 'fuelux/selectlist', 'fuelux/spinbox'], factory);
 	} else if (typeof exports === 'object') {
 		// Node/CommonJS
-		module.exports = factory(require('jquery'), require('./jrux.field.combobox'), require('./jrux.field.datepicker'),
-			require('./jrux.field.radio'), require('./jrux.field.select'), require('./jrux.field.spinbox') );
+		module.exports = factory(require('jquery'), require('./jrux.field.combobox.js'), require('./jrux.field.datepicker.js'),
+			require('./jrux.field.radio.js'), require('./jrux.field.select.js'), require('./jrux.field.spinbox.js') );
 	} else {
 		// OR use browser globals if AMD is not present
 		factory(jQuery);

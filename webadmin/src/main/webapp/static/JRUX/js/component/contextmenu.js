@@ -6,7 +6,7 @@
  */
 
 /* ========================================================================
- * B-JUI: jrux.contextmenu.js  v1.2
+ * B-JUI: contextmenu.js  v1.2
  * @author K'naan (xknaan@163.com)
  * -- Modified from dwz.contextmenu.js (author:ZhangHuihua@msn.com)
  * http://git.oschina.net/xknaan/B-JUI/blob/master/BJUI/js/bjui-contextmenu.js

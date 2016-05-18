@@ -6,7 +6,7 @@
  */
 
 /* ========================================================================
- * B-JUI: jrux.theme.js  v1.2
+ * B-JUI: theme.js  v1.2
  * @author K'naan (xknaan@163.com)
  * http://git.oschina.net/xknaan/B-JUI/blob/master/BJUI/js/bjui-theme.js
  * ========================================================================
